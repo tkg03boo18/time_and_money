@@ -1,2 +1,31 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<h1>ユーザー情報編集</h1>
+<%= form_with model: @user, url: users_path, local: true do |f| %>
+
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.attachment_field :image %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :area %><br />
+    <%= f.select :area, {北海道: "北海道", 東北: "東北", 関東: "関東", 中部: "中部", 近畿: "近畿", 中国: "中国", 四国: "四国", 九州: "九州"} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :job %><br />
+    <%= f.select :job, {会社員: "会社員", 自営業（フリーランス含む）: "自営業（フリーランス含む）", 主婦・主夫: "主婦・主夫", 学生: "学生", フリーター: "フリーター", 無職: "無職", その他: "その他"} %>
+  </div>
+  <div class="actions">
+    <%= f.submit "更新する" %>
+  </div>
+<% end %>
