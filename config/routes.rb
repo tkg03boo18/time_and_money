@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :plans
  devise_for(
   :users,
   path: 'user',
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
  patch 'users' => 'users#update'
  get 'users/unsubscribe'
  patch 'users/withdraw' => 'users#withdraw'
- 
+
  resources :categories, only: [:index, :create, :edit, :update]
 
 end

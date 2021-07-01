@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  title: MyString
+  description: MyText
+  start_date: 2021-07-01 08:44:05
+  end_date: 2021-07-01 08:44:05
+  allday: false
+
+two:
+  user_id: 1
+  title: MyString
+  description: MyText
+  start_date: 2021-07-01 08:44:05
+  end_date: 2021-07-01 08:44:05
+  allday: false
