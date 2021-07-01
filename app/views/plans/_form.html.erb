@@ -1,33 +1,33 @@
-<%= form_with(model: plan, local: true) do |form| %>
+<%= form_with(model: plan, local: true) do |f| %>
 
-    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
 
   <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
   </div>
 
   <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
   </div>
 
   <div class="field">
-    <%= form.label :start_date %>
-    <%= form.datetime_select :start_date %>
+    <%= f.label :start_date %>
+    <%= f.datetime_select :start_date %>
   </div>
 
   <div class="field">
-    <%= form.label :end_date %>
-    <%= form.datetime_select :end_date %>
+    <%= f.label :end_date %>
+    <%= f.datetime_select :end_date %>
   </div>
 
   <div class="field">
-    <%= form.label :allday %>
-    <%= form.check_box :allday %>
+    <%= f.label :allday %>
+    <%= f.check_box :allday %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit %>
   </div>
 <% end %>
