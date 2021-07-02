@@ -1,0 +1,29 @@
+<h1>タスク詳細</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <td><%= @task.title %></td>
+  </tr>
+  <tr>
+    <th>Body</th>
+    <td><%= @task.body %></td>
+  </tr>
+  <tr>
+    <th>importance</th>
+    <td><%= @task.importance %></td>
+  </tr>
+  <tr>
+    <th>genre</th>
+    <td><%= @task.genre %></td>
+  </tr>
+  <tr>
+    <th>Deadline</th>
+    <td><%= @task.deadline %></td>
+  </tr>
+  <tr>
+    <th>fin</th>
+    <td><%= @task.fin %></td>
+  </tr>
+</table>
+<%= link_to "一覧へ", tasks_path %>

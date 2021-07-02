@@ -1,0 +1,31 @@
+<h1>タスク編集</h1>
+<%= form_with model: @task, local: true do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<div class="field">
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+</div>
+<div class="field">
+  <%= f.label :body %>
+  <%= f.text_field :body %>
+</div>
+<div class="field">
+  <%= f.label :importance %>
+  <%= f.select :importance, {高い: "高い", 低い: "低い"} %>
+</div>
+<div class="field">
+  <%= f.label :genre %>
+  <%= f.select :genre, {仕事: "仕事", プライベート: "プライベート"} %>
+</div>
+<div class="field">
+  <%= f.label :deadline %>
+  <%= f.datetime_field :deadline %>
+</div>
+<div class="field">
+  <%= f.label :fin %>
+  <%= f.check_box :fin %>
+</div>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
