@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  title: MyString
+  body: MyText
+  importance: 1
+  genre: 1
+  deadline: 2021-07-02 04:33:45
+  fin: false
+
+two:
+  user_id: MyString
+  title: MyString
+  body: MyText
+  importance: 1
+  genre: 1
+  deadline: 2021-07-02 04:33:45
+  fin: false

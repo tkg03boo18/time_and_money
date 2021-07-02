@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   def mypage
     @user = current_user
   end
+  
+  def mymenu
+  end
 
   def show
     @user = current_user

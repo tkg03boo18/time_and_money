@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_111140) do
+ActiveRecord::Schema.define(version: 2021_07_02_043345) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name", null: false
@@ -28,6 +28,18 @@ ActiveRecord::Schema.define(version: 2021_07_01_111140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "allday", default: false, null: false
+  end
+
+  create_table "tasks", force: :cascade do |t|
+    t.string "user_id"
+    t.string "title"
+    t.text "body"
+    t.integer "importance", default: 0
+    t.integer "genre", default: 0
+    t.datetime "deadline"
+    t.boolean "fin", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
