@@ -1,6 +1,8 @@
-<%= form_with(model: plan, local: true) do |f| %>
-
-    <%= f.hidden_field :user_id, :value => current_user.id %>
+<div class="modal-dialog">
+  <div class="modal-content">
+    
+  <%= form_with(model: @plan, remote: true) do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
 
   <div class="field">
     <%= f.label :title %>
@@ -30,4 +32,6 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+  <% end %>
+  </div>
+</div>

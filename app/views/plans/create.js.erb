@@ -1,0 +1,6 @@
+<% if @status == 'success' %>
+$("tbody").append("<%= j(render("tr", plan: @plan)) %>");
+<% elsif @status == 'fail' %>
+alert('error!');
+<% end %>
+$("#plan-modal").modal("hide");

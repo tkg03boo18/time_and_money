@@ -29,9 +29,11 @@ class PlansController < ApplicationController
       if @plan.save
         format.html { redirect_to @plan }
         format.json { render :show, status: :created, location: @plan }
+        format.js { @status = "success" }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @plan.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
       end
     end
   end
