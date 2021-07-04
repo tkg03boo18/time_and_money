@@ -1,16 +1,16 @@
 class CategoriesController < ApplicationController
-  
+
   def index
-    @categories = Category.all
+    @parents = Category.all.order("id ASC").limit(3)
   end
-  
+
   def create
   end
-  
+
   def edit
   end
-  
+
   def update
   end
-  
+
 end

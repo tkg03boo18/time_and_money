@@ -1,1 +1,10 @@
 <h1>カテゴリー設定画面</h1>
+<% @parents.each do |parent| %>
+<%= parent.name %>
+<% parent.children.each do |child| %>
+<%= child.name %>
+<% child.children.each do |children| %>
+<%= children.name %>
+<% end %>
+<% end %>
+<% end %>

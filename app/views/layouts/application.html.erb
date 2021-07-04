@@ -28,7 +28,24 @@
         });
         calendar.render();
       });
+      function reloadcalendar()
+      { var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+          },
+          locale: 'ja',
+          navLinks: true,
+          businessHours: true,
+          editable: true,
+          selectable: true,
 
+          events: '/plans.json'
+        });
+        calendar.render();}
     </script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -36,19 +53,36 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
-    <li>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-    </li>
-    <% else %>
-    <li>
-      <%= link_to "新規登録", new_user_registration_path %>
-    </li>
-    <li>
-      <%= link_to "ログイン", new_user_session_path %>
-    </li>
-    <% end %>
-
-    <%= yield %>
+    <header>
+      <% if user_signed_in? %>
+      <li>
+        <%= link_to "My Menu", users_mymenu_path %>
+      </li>
+      <div data-turbolinks='false'>
+        <li>
+          <%= link_to "Schedule", plans_path %>
+        </li>
+      </div>
+      <li>
+        <%= link_to "Task", tasks_path %>
+      </li>
+      <li>
+        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+      </li>
+      <% else %>
+      <li>
+        <%= link_to "Time and Moneyについて", about_path %>
+      </li>
+      <li>
+        <%= link_to "新規登録", new_user_registration_path %>
+      </li>
+      <li>
+        <%= link_to "ログイン", new_user_session_path %>
+      </li>
+      <% end %>
+    </header>
+    <main>
+       <%= yield %>
+    </main>
   </body>
 </html>

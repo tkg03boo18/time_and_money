@@ -1,6 +1,8 @@
 <% if @status == 'success' %>
-$("tbody").append("<%= j(render("tr", plan: @plan)) %>");
+$("#plan-tbody").append("<%= j(render("tr", plan: @plan)) %>");
+reloadcalendar();
 <% elsif @status == 'fail' %>
 alert('error!');
 <% end %>
 $("#plan-modal").modal("hide");
+
