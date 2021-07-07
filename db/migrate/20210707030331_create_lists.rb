@@ -5,7 +5,7 @@ class CreateLists < ActiveRecord::Migration[5.2]
       t.string :name
       t.date :date
       t.string :price
-      t.boolean :purchased
+      t.boolean :purchased, default: false, null: false
 
       t.timestamps
     end

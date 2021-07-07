@@ -1,0 +1,23 @@
+<h1>欲しいものリスト</h1>
+<%= form_with model: @list, local: true do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+</div>
+<div class="field">
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+</div>
+<div class="field">
+  <%= f.label :price %>
+  <%= f.text_field :price %>
+</div>
+<div class="field">
+  <%= f.label :purchased %>
+  <%= f.check_box :purchased %>
+</div>
+<div class="field">
+  <%= f.submit %>
+</div>
+<% end %>

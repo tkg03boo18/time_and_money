@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
  resources :plans
  resources :tasks
+ resources :lists
  
  
 end
