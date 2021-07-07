@@ -10,11 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_043345) do
+ActiveRecord::Schema.define(version: 2021_07_06_085400) do
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "ancestry"
+  create_table "books", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "introduction"
+    t.date "date"
+    t.string "amount"
+    t.integer "payment_method", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "main_category_id"
+    t.integer "sub_category_id"
+  end
+
+  create_table "main_categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,6 +39,13 @@ ActiveRecord::Schema.define(version: 2021_07_02_043345) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "allday", default: false, null: false
+  end
+
+  create_table "sub_categories", force: :cascade do |t|
+    t.string "name"
+    t.integer "main_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tasks", force: :cascade do |t|

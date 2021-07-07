@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  category_id: 1
+  introduction: MyString
+  date: 2021-07-05
+  amount: MyString
+  payment_method: 1
+
+two:
+  user_id: 1
+  category_id: 1
+  introduction: MyString
+  date: 2021-07-05
+  amount: MyString
+  payment_method: 1

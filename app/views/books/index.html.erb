@@ -1,0 +1,32 @@
+<h1>家計簿一覧</h1>
+<%= link_to "新規登録", new_book_path, class: "btn btn-lg btn-primary" %>
+
+<%= pie_chart Book.group(:main_category_name).sum(:amount),label: "Value" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>SubCategory</th>
+      <th>Body</th>
+      <th>amount</th>
+      <th>date</th>
+      <th>payment_method</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @books.each do |book| %>
+    <tr>
+      <td><%= book.main_category.name %></td>
+      <td><%= book.sub_category.name %></td>
+      <td><%= book.introduction %></td>
+      <td><%= book.amount %></td>
+      <td><%= book.date %></td>
+      <td><%= book.payment_method %></td>
+      <td><%= link_to 'Show', book_path(book) %></td>
+      <td><%= link_to 'Edit', edit_book_path(book) %></td>
+      <td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

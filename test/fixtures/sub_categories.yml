@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  ancestry: MyString
+  main_category: one
 
 two:
   name: MyString
-  ancestry: MyString
+  main_category: two

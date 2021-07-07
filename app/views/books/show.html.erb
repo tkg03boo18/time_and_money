@@ -1,0 +1,24 @@
+<h1>家計簿詳細</h1>
+<table>
+  <tr>
+    <th>Category</th>
+    <td><%= @book.main_category.name %></td>
+  </tr>
+  <tr>
+    <th>SubCategory</th>
+    <td><%= @book.sub_category.name %></td>
+  </tr>
+  <tr>
+    <th>Body</th>
+    <td><%= @book.introduction %></td>
+  </tr>
+  <tr>
+    <th>date</th>
+    <td><%= @book.date %></td>
+  </tr>
+  <tr>
+    <th>payment_method</th>
+    <td><%= @book.payment_method %></td>
+  </tr>
+</table>
+<%= link_to "一覧へ", books_path %>

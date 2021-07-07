@@ -18,8 +18,13 @@ Rails.application.routes.draw do
  get 'users/unsubscribe'
  patch 'users/withdraw' => 'users#withdraw'
 
+ resources :books
+ resources :main_categories, only: [] do
+    resources :sub_categories, only: :index
+  end
+
  resources :plans
  resources :tasks
- resources :categories, only: [:index, :create, :edit, :update]
-
+ 
+ 
 end
