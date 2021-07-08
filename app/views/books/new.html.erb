@@ -5,11 +5,11 @@
 <div class="field">
   <% main_category_options = MainCategory.order(:id).map { |c| [c.name, c.id, data: { children_path: main_category_sub_categories_path(c) }] } %>
   <%= f.select :main_category_id, main_category_options, { include_blank: true }, class: 'select-parent' %>
-
+</div>
+<div class="field">
   <% sub_categories = @book.main_category.try(:sub_categories) || [] %>
   <% sub_category_options = sub_categories.map { |c| [c.name, c.id] } %>
   <%= f.select :sub_category_id, sub_category_options, { include_blank: true }, class: 'select-children' %>
-
 </div>
 <div class="field">
   <%= f.label :introduction %>
@@ -23,10 +23,7 @@
   <%= f.label :date %>
   <%= f.date_field :date %>
 </div>
-<div class="field">
-  <%= f.label :payment_method %>
-  <%= f.select :payment_method, {現金: "現金", クレジットカード: "クレジットカード", 電子マネー: "電子マネー", その他支払い方法: "その他支払い方法"} %>
-</div>
+
 <div class="action">
   <%= f.submit %>
 </div>

@@ -5,8 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='fullcalendar/main.css' rel='stylesheet' />
-    <script src='fullcalendar/main.js'></script>
+    <!--<link href='lib/main.css' rel='stylesheet' />-->
+    <!--<script src='lib/main.js'></script>-->
     <script>
 
       document.addEventListener('DOMContentLoaded', function() {
@@ -53,32 +53,11 @@
   </head>
 
   <body>
-    <header>
+    <header class="border">
       <% if user_signed_in? %>
-      <li>
-        <%= link_to "My Menu", users_mymenu_path %>
-      </li>
-      <div data-turbolinks='false'>
-        <li>
-          <%= link_to "Schedule", plans_path %>
-        </li>
-      </div>
-      <li>
-        <%= link_to "Task", tasks_path %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
+       <%= render 'layouts/userheader' %>
       <% else %>
-      <li>
-        <%= link_to "Time and Moneyについて", about_path %>
-      </li>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
+       <%= render 'layouts/header' %>
       <% end %>
     </header>
     <main>
