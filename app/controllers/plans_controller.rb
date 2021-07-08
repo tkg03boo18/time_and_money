@@ -35,7 +35,7 @@ class PlansController < ApplicationController
         format.json { render json: @plan.errors, status: :unprocessable_entity }
         format.js { @status = "fail" }
       end
-   
+
     end
   end
 
