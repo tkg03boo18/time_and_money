@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def mypage
     @user = current_user
   end
-  
+
   def mymenu
   end
 
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :image_id, :job, :area, :email, :is_deleted)
+    params.require(:user).permit(:name, :image, :job, :area, :email, :is_deleted)
   end
 
 end

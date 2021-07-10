@@ -1,29 +1,38 @@
-<h1>ユーザー情報</h1>
-<div>
-  <table>
-    <tr>
-      <th>ユーザー画像</th>
-      <td><%= attachment_image_tag @item, :image %></td>
-    </tr>
-    <tr>
-      <th>ユーザー名</th>
-      <td><%= @user.name %></td>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <td><%= @user.email %></td>
-    </tr>
-    <tr>
-      <th>地域</th>
-      <td><%= @user.area %></td>
-    </tr>
-    <tr>
-      <th>職業</th>
-      <td><%= @user.job %></td>
-    </tr>
-  </table>
-  <div>
-    <p><%= link_to "編集する", users_edit_path(@user) %></p>
-    <p><%= link_to "退会する", users_unsubscribe_path %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1 my-4">
+      <h4 class="text-center">ユーザー情報詳細</h4>
+    </div>
+    <div class="col-sm-2 offset-sm-5 my-4">
+       <%= attachment_image_tag @user, :image, class: "img-fluid rounded" %>
+    </div>
+	  <table class="table col-sm-6 offset-sm-3">
+	    <tr>
+	      <th class="col-sm-2">ユーザー名</th>
+	      <td class="col-sm-4"><%= @user.name %></td>
+	    </tr>
+	    <tr>
+	      <th class="col-sm-2">メールアドレス</th>
+	      <td class="col-sm-4"><%= @user.email %></td>
+	    </tr>
+	    <tr>
+	      <th class="col-sm-2">地域</th>
+	      <td class="col-sm-4"><%= @user.area %></td>
+	    </tr>
+	    <tr>
+	      <th class="col-sm-2">職業</th>
+	      <td class="col-sm-4"><%= @user.job %></td>
+	    </tr>
+    </table>
+    <div class="col-sm-2 offset-sm-5 mt-4">
+      <%= link_to users_edit_path(@user) do %>
+      <button type="button" class="btn btn-success">編集する</button>
+      <% end %>
+    </div>
+    <div class="col-sm-2 mt-4">
+      <%= link_to  users_unsubscribe_path do %>
+      <button type="button" class="btn btn-danger">退会する</button>
+      <% end %>
+    </div>
   </div>
 </div>
