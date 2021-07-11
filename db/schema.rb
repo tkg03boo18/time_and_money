@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_133136) do
+ActiveRecord::Schema.define(version: 2021_07_11_052140) do
 
   create_table "books", force: :cascade do |t|
     t.integer "user_id"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(version: 2021_07_08_133136) do
     t.datetime "updated_at", null: false
     t.integer "main_category_id"
     t.integer "sub_category_id"
+  end
+
+  create_table "budget_plans", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "main_category_id"
+    t.integer "sub_category_id"
+    t.date "date"
+    t.string "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lists", force: :cascade do |t|

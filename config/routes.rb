@@ -19,6 +19,7 @@ Rails.application.routes.draw do
  patch 'users/withdraw' => 'users#withdraw'
 
  resources :books
+ resources :budget_plans
  resources :main_categories, only: [] do
     resources :sub_categories, only: :index
   end
@@ -26,6 +27,6 @@ Rails.application.routes.draw do
  resources :plans
  resources :tasks
  resources :lists
- 
- 
+
+
 end

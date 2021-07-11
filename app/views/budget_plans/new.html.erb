@@ -1,5 +1,5 @@
-<h1>家計簿作成</h1>
-<%= form_with model: @book, local: true do |f| %>
+<h1>収支計画作成</h1>
+<%= form_with model: @budget_plan, local: true do |f| %>
 <%= f.hidden_field :user_id, :value => current_user.id %>
 
 <div class="field">
@@ -7,13 +7,9 @@
   <%= f.select :main_category_id, main_category_options, { include_blank: true }, class: 'select-parent' %>
 </div>
 <div class="field">
-  <% sub_categories = @book.main_category.try(:sub_categories) || [] %>
+  <% sub_categories = @budget_plan.main_category.try(:sub_categories) || [] %>
   <% sub_category_options = sub_categories.map { |c| [c.name, c.id] } %>
   <%= f.select :sub_category_id, sub_category_options, { include_blank: true }, class: 'select-children' %>
-</div>
-<div class="field">
-  <%= f.label :introduction %>
-  <%= f.text_field :introduction %>
 </div>
 <div class="field">
   <%= f.label :amount %>

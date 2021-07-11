@@ -1,0 +1,26 @@
+<h1>家計簿一覧</h1>
+<%= link_to "新規登録", new_budget_plan_path, class: "btn btn-lg btn-primary" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>SubCategory</th>
+      <th>amount</th>
+      <th>date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @budget_plans.each do |bp| %>
+    <tr>
+      <td><%= bp.main_category.name %></td>
+      <td><%= bp.sub_category.name %></td>
+      <td><%= bp.amount %></td>
+      <td><%= bp.date %></td>
+      <td><%= link_to 'Show', budget_plan_path(bp) %></td>
+      <td><%= link_to 'Edit', edit_budget_path(bp) %></td>
+      <td><%= link_to 'Destroy', book_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
