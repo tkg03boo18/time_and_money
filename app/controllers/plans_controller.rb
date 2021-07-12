@@ -4,6 +4,7 @@ class PlansController < ApplicationController
 
   def index
     @plans = current_user.plans
+    @tasks = current_user.tasks
   end
 
 
@@ -45,9 +46,11 @@ class PlansController < ApplicationController
       if @plan.update(plan_params)
         format.html { redirect_to @plan }
         format.json { render :show, status: :ok, location: @plan }
+        format.js { @status = "success" }
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @plan.errors, status: :unprocessable_entity }
+        format.js { @status = "fail" }
       end
     end
   end

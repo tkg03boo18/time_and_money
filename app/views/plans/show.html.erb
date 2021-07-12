@@ -1,33 +1,33 @@
 
-<p>
-  <strong>Title:</strong>
-  <%= @plan.title %>
-</p>
+        <p>
+          <strong>Title:</strong>
+          <%= @plan.title %>
+        </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @plan.description %>
-</p>
-<% if @plan.allday == false %>
-<p>
-  <strong>Start date:</strong>
-  <%= @plan.start_date %>
-</p>
+        <p>
+          <strong>Description:</strong>
+          <%= @plan.description %>
+        </p>
+        <% if @plan.allday == false %>
+        <p>
+          <strong>Start date:</strong>
+          <%= @plan.start_date %>
+        </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @plan.end_date %>
-</p>
+        <p>
+          <strong>End date:</strong>
+          <%= @plan.end_date %>
+        </p>
 
-<% else %>
-<p>
-  <strong>Allday:</strong>
-  <%= @plan.allday %>
-</p>
-<% end %>
+        <% else %>
+        <p>
+          <strong>Allday:</strong>
+          <%= @plan.allday %>
+        </p>
+        <% end %>
 
-<%= link_to '編集する', edit_plan_path(@plan) %>
-<div data-turbolinks='false'>
-  <%= link_to '予定一覧へ', plans_path %>
-</div>
+        <%= link_to '編集する', edit_plan_path(@plan) %>
+        <div data-turbolinks='false'>
+          <%= link_to '予定一覧へ', plans_path %>
+        </div>
 

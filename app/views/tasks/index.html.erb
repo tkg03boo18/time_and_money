@@ -1,126 +1,68 @@
+
 <h1>タスク一覧</h1>
 <%= link_to "新規登録", new_task_path, class: "btn btn-lg btn-primary" %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <h5 class="text-center">仕事（優先度：高）</h4>
+      <div class="list-group">
+        <% @tasks.each do |task| %>
+          <% if task.genre == "仕事" and task.importance == "高い" %>
+            <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+            <div class="d-flex w-100 justify-content-between">
+              <label class="mb-1"><%= task.title %></label>
+              <small>期限：<%= task.deadline %></small>
+            </div>
+            <p class="mb-1"><%= task.body %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h5 class="text-center">仕事（優先度：低）</h4>
+      <div class="list-group">
+        <% @tasks.each do |task| %>
+          <% if task.genre == "仕事" and task.importance == "低い" %>
+            <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+              <%= task.title %>
+              <%= task.body %>
+              <%= task.deadline %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h5 class="text-center">プライベート（優先度：高）</h4>
+      <div class="list-group">
+        <% @tasks.each do |task| %>
+          <% if task.genre == "プライベート" and task.importance == "高い" %>
+            <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+              <%= task.title %>
+              <%= task.body %>
+              <%= task.deadline %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <h5 class="text-center">プライベート（優先度：低）</h4>
+      <div class="list-group">
+        <% @tasks.each do |task| %>
+          <% if task.genre == "プライベート" and task.importance == "低い" %>
+            <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+              <%= task.title %>
+              <%= task.body %>
+              <%= task.deadline %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
 
-<h4>仕事（優先度：高い）</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>importance</th>
-      <th>genre</th>
-      <th>Deadline</th>
-      <th>fin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-    <% if task.genre == "仕事" and task.importance == "高い" %>
-    <tr>
-      <td><%= task.title %></td>
-      <td><%= task.body %></td>
-      <td><%= task.importance %></td>
-      <td><%= task.genre %></td>
-      <td><%= task.deadline %></td>
-      <td><%= task.fin %></td>
-      <td><%= link_to 'Show', task_path(task) %></td>
-      <td><%= link_to 'Edit', edit_task_path(task) %></td>
-      <td><%= link_to 'Destroy', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
 
-<h4>仕事（優先度：低い）</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>importance</th>
-      <th>genre</th>
-      <th>Deadline</th>
-      <th>fin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-    <% if task.genre == "仕事" and task.importance == "低い" %>
-    <tr>
-      <td><%= task.title %></td>
-      <td><%= task.body %></td>
-      <td><%= task.importance %></td>
-      <td><%= task.genre %></td>
-      <td><%= task.deadline %></td>
-      <td><%= task.fin %></td>
-      <td><%= link_to 'Show', task_path(task) %></td>
-      <td><%= link_to 'Edit', edit_task_path(task) %></td>
-      <td><%= link_to 'Destroy', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
 
-<h4>プライベート（優先度：低い）</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>importance</th>
-      <th>genre</th>
-      <th>Deadline</th>
-      <th>fin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-    <% if task.genre == "プライベート" and task.importance == "高い" %>
-    <tr>
-      <td><%= task.title %></td>
-      <td><%= task.body %></td>
-      <td><%= task.importance %></td>
-      <td><%= task.genre %></td>
-      <td><%= task.deadline %></td>
-      <td><%= task.fin %></td>
-      <td><%= link_to 'Show', task_path(task) %></td>
-      <td><%= link_to 'Edit', edit_task_path(task) %></td>
-      <td><%= link_to 'Destroy', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
 
-<h4>プライベート（優先度：低い）</h4>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Body</th>
-      <th>importance</th>
-      <th>genre</th>
-      <th>Deadline</th>
-      <th>fin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
-    <% if task.genre == "プライベート" and task.importance == "低い" %>
-    <tr>
-      <td><%= task.title %></td>
-      <td><%= task.body %></td>
-      <td><%= task.importance %></td>
-      <td><%= task.genre %></td>
-      <td><%= task.deadline %></td>
-      <td><%= task.fin %></td>
-      <td><%= link_to 'Show', task_path(task) %></td>
-      <td><%= link_to 'Edit', edit_task_path(task) %></td>
-      <td><%= link_to 'Destroy', task_path(task), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-    <% end %>
-    <% end %>
-  </tbody>
-</table>
+

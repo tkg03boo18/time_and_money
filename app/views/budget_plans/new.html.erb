@@ -17,7 +17,7 @@
 </div>
 <div class="field">
   <%= f.label :date %>
-  <%= f.date_field :date %>
+  <%= f.date_select :date, {discard_day: true} %>
 </div>
 
 <div class="action">

@@ -11,11 +11,11 @@
 </div>
 <div class="field">
   <%= f.label :importance %>
-  <%= f.select :importance, {高い: "高い", 低い: "低い"} %>
+  <%= f.select :importance, Task.importances.keys, {prompt: "選択してください"}, class: "form-control" %>
 </div>
 <div class="field">
   <%= f.label :genre %>
-  <%= f.select :genre, {仕事: "仕事", プライベート: "プライベート"} %>
+  <%= f.select :genre, Task.genres.keys,{prompt: "選択してください"}, class: "form-control" %>
 </div>
 <div class="field">
   <%= f.label :deadline %>

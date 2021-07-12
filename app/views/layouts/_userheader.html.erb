@@ -1,46 +1,44 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-w">
-  <div class="container">
-    <%= link_to users_mypage_path, class: "navbar-brand" do %>
-     <%= image_tag('img/tmlogo7.001.png', size: '60x60') %>
-    <% end %>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-   </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-     <ul class="navbar-nav ml-auto">
-      <li class="d-flex align-items-center">
-        ようこそ、<%= current_user.name %> さん！
-      </li>
-      <li>
-        <%= link_to users_mypage_path do %>
-        <button type="button" class="btn btn-outline-secondary m-2">マイページ</button>
-       <% end %>
-      </li>
-      <div data-turbolinks='false'>
-        <li>
-          <%= link_to plans_path do %>
-          <button type="button" class="btn btn-outline-secondary m-2">スケジュール</button>
-          <% end %>
-        </li>
+ <%= link_to users_mypage_path, class: "navbar-brand" do %>
+ <%= image_tag('img/tmlogo.001.png', size: '60x60') %>
+ <% end %>
+ <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+ </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+   <ul class="navbar-nav ml-auto">
+    <li class="d-flex align-items-center">
+      ようこそ、<%= current_user.name %> さん！
+    </li>
+    <li>
+      <%= link_to users_mypage_path do %>
+      <button type="button" class="btn btn-outline-secondary">マイページ</button>
+     <% end %>
+    </li>
+    <li class="nav-item dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Time
+      </button>
+    　<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "スケジュール", plans_path, class: "dropdown-item", data: { "turbolinks": false } %>
+        <%= link_to "ToDoリスト", tasks_path, class: "dropdown-item" %>
       </div>
-      <li>
-        <%= link_to tasks_path do %>
-        <button type="button" class="btn btn-outline-secondary m-2">ToDoリスト</button>
-        <% end %>
-      </li>
-      <div data-turbolinks='false'>
-        <li>
-          <%= link_to books_path do %>
-          <button type="button" class="btn btn-outline-secondary m-2">家計簿</button>
-          <% end %>
-        </li>
+    </li>
+    <li class="nav-item dropdown">
+      <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Money
+      </button>
+    　<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "家計簿", books_path, class: "dropdown-item", data: { "turbolinks": false } %>
+        <%= link_to "収支計画", budget_plans_path, class: "dropdown-item", data: { "turbolinks": false } %>
+        <%= link_to "欲しいものリスト", lists_path, class: "dropdown-item" %>
       </div>
-      <li>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-        <button type="button" class="btn btn-outline-secondary m-2">ログアウト</button>
-        <% end %>
-      </li>
-     </ul>
-    </div>
+    </li>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+      <button type="button" class="btn btn-outline-secondary">ログアウト</button>
+      <% end %>
+    </li>
+   </ul>
   </div>
 </nav>

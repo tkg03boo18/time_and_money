@@ -8,7 +8,7 @@
     <!--<link href='lib/main.css' rel='stylesheet' />-->
     <!--<script src='lib/main.js'></script>-->
 
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
@@ -26,53 +26,5 @@
        <%= yield %>
     </main>
   </body>
-  <script>
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        console.log("calendarEl")
-        console.log(calendarEl !== null)
-        console.log("calendarEl")
-        if (calendarEl !== null) {
-           var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-          },
-          locale: 'ja',
-          navLinks: true,
-          businessHours: true,
-          editable: true,
-          selectable: true,
-
-          events: '/plans.json'
-        });
-        console.log("calendar")
-        console.log(calendar)
-        console.log("calendar")
-        calendar.render();
-        }
-
-      });
-      function reloadcalendar()
-      { var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth',
-          headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-          },
-          locale: 'ja',
-          navLinks: true,
-          businessHours: true,
-          editable: true,
-          selectable: true,
-
-          events: '/plans.json'
-        });
-        calendar.render();}
-    </script>
 </html>
