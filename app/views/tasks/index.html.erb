@@ -3,7 +3,7 @@
 <%= link_to "新規登録", new_task_path, class: "btn btn-lg btn-primary" %>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 bg-danger py-3">
       <h5 class="text-center">仕事（優先度：高）</h4>
       <div class="list-group">
         <% @tasks.each do |task| %>
@@ -19,21 +19,7 @@
         <% end %>
       </div>
     </div>
-    <div class="col-sm-6">
-      <h5 class="text-center">仕事（優先度：低）</h4>
-      <div class="list-group">
-        <% @tasks.each do |task| %>
-          <% if task.genre == "仕事" and task.importance == "低い" %>
-            <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
-              <%= task.title %>
-              <%= task.body %>
-              <%= task.deadline %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 bg-warning py-3">
       <h5 class="text-center">プライベート（優先度：高）</h4>
       <div class="list-group">
         <% @tasks.each do |task| %>
@@ -47,7 +33,21 @@
         <% end %>
       </div>
     </div>
-    <div class="col-sm-6">
+     <div class="col-sm-6 bg-info py-3">
+      <h5 class="text-center">仕事（優先度：低）</h4>
+      <div class="list-group">
+        <% @tasks.each do |task| %>
+          <% if task.genre == "仕事" and task.importance == "低い" %>
+            <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+              <%= task.title %>
+              <%= task.body %>
+              <%= task.deadline %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-sm-6 bg-success py-3">
       <h5 class="text-center">プライベート（優先度：低）</h4>
       <div class="list-group">
         <% @tasks.each do |task| %>

@@ -1,3 +1,23 @@
-<h1>My page</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <h4 class="text-center">My Page</h4>
+    </div>
+    <div class="col-sm-6">
+      <h6 class="text-center">今日の予定</h6>
+    </div>
+    <div class="col-sm-6">
+      <h6 class="text-center">Todoリスト</h6>
+    </div>
+    <div class="col-sm-6">
+      <h6 class="text-center">今月の予算</h6>
+    </div>
+    <div class="col-sm-6">
+      <h6 class="text-center">今月の支出</h6>
+    </div>
+  </div>
+</div>
+
+<%= Date.current.strftime('%Y年%m月%d日') %>
 
 <%= link_to "My Menuへ", users_mymenu_path %>

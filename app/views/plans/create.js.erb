@@ -1,6 +1,6 @@
 <% if @status == 'success' %>
 $("#plan-tbody").append("<%= j(render("tr", plan: @plan)) %>");
-reloadcalendar();
+
 <% elsif @status == 'fail' %>
 alert('error!');
 <% end %>
