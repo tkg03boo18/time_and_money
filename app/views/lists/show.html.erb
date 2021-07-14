@@ -1,21 +1,27 @@
-<h1>タスク詳細</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1 my-4">
+      <h4 class="text-center">欲しいものリスト詳細</h4>
+    </div>
+    <table class="table col-sm-6 offset-sm-3">
+      <tr>
+        <th>Name</th>
+        <td><%= @list.name %></td>
+      </tr>
+      <tr>
+        <th>Date</th>
+        <td><%= @list.date %></td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td><%= @list.price %></td>
+      </tr>
+      <tr>
+        <th>Purchased</th>
+        <td><%= @list.purchased %></td>
+      </tr>
+    </table>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <td><%= @list.name %></td>
-  </tr>
-  <tr>
-    <th>Date</th>
-    <td><%= @list.date %></td>
-  </tr>
-  <tr>
-    <th>Price</th>
-    <td><%= @list.price %></td>
-  </tr>
-  <tr>
-    <th>Purchased</th>
-    <td><%= @list.purchased %></td>
-  </tr>
-</table>
 <%= link_to "一覧へ", lists_path %>
+<%= link_to "編集する", edit_list_path(@list) %>
+<%= link_to 'Destroy', list_path(@list), method: :delete, data: { confirm: 'Are you sure?' } %>

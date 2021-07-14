@@ -26,9 +26,13 @@ class BudgetPlansController < ApplicationController
   end
 
   def edit
+    @budget_plan = BudgetPlan.find(params[:id])
   end
 
   def update
+    @budget_plan = BudgetPlan.find(params[:id])
+    @budget_plan.update(budget_plan_params)
+    redirect_to budget_plans_path
   end
 
   def destroy
