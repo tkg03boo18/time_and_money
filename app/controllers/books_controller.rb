@@ -3,26 +3,60 @@ class BooksController < ApplicationController
 
   def index
 
-
     # @time = Time.current
-
 
     @user = current_user
     if params[:next_month]
       @books = @user.books.where(date: Time.current.next_month.beginning_of_month..Time.current.next_month.end_of_month)
       @fixed = @books.where(main_category_id: 2)
+      @fixed_total_amount = 0
+      @fixed.each do |fixed|
+        @fixed_total_amount += fixed.amount
+      end
       @variable = @books.where(main_category_id: 3)
+      @variable_total_amount = 0
+      @variable.each do |variable|
+        @variable_total_amount += variable.amount
+      end
       @investment = @books.where(main_category_id: 4)
+      @investment_total_amount = 0
+      @investment.each do |investment|
+        @investment_total_amount += investment.amount
+      end
     elsif params[:prev_month]
       @books = @user.books.where(date: Time.current.prev_month.beginning_of_month..Time.current.prev_month.end_of_month)
       @fixed = @books.where(main_category_id: 2)
+      @fixed_total_amount = 0
+      @fixed.each do |fixed|
+        @fixed_total_amount += fixed.amount
+      end
       @variable = @books.where(main_category_id: 3)
+      @variable_total_amount = 0
+      @variable.each do |variable|
+        @variable_total_amount += variable.amount
+      end
       @investment = @books.where(main_category_id: 4)
+      @investment_total_amount = 0
+      @investment.each do |investment|
+        @investment_total_amount += investment.amount
+      end
     else
       @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
       @fixed = @books.where(main_category_id: 2)
+      @fixed_total_amount = 0
+      @fixed.each do |fixed|
+        @fixed_total_amount += fixed.amount
+      end
       @variable = @books.where(main_category_id: 3)
+      @variable_total_amount = 0
+      @variable.each do |variable|
+        @variable_total_amount += variable.amount
+      end
       @investment = @books.where(main_category_id: 4)
+      @investment_total_amount = 0
+      @investment.each do |investment|
+        @investment_total_amount += investment.amount
+      end
     end
 
     # @time = @time.next

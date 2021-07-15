@@ -9,95 +9,121 @@
       <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
     </div>
     <div class="col-sm-5">
-      <h4 class="text-center">固定費支出</h4>
-       <table class="table">
-        <thead>
-          <tr>
-            <th>date</th>
-            <th>SubCategory</th>
-            <th>Body</th>
-            <th>amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @books.each do |book| %>
-          <% if book.main_category_id == 2 %>
-          <tr>
-            <td><%= book.date %></td>
-            <td><%= book.sub_category.name %></td>
-            <td><%= book.introduction %></td>
-            <td><%= book.amount %></td>
-            <td><%= link_to 'Show', book_path(book) %></td>
-            <td><%= link_to 'Edit', edit_book_path(book) %></td>
-            <td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="card">
+        <div class="card-header">
+          固定費支出
+        </div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>SubCategory</th>
+                <th>Body</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @books.each do |book| %>
+              <% if book.main_category_id == 2 %>
+              <tr>
+                <td><%= book.date.strftime('%m/%d') %></td>
+                <td><%= book.sub_category.name %></td>
+                <td><%= book.introduction %></td>
+                <td><%= book.amount %></td>
+                <td><%= link_to 'Show', book_path(book) %></td>
+                <td><%= link_to 'Edit', edit_book_path(book) %></td>
+                <td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+          <%= @fixed_total_amount %>
+        </div>
+      </div>
     </div>
-
     <div class="col-sm-5">
       <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
     </div>
-    <div class="col-sm-5">
-      <h4 class="text-center">変動費支出</h4>
-       <table class="table col-sm-5">
-        <thead>
-          <tr>
-            <th>date</th>
-            <th>SubCategory</th>
-            <th>Body</th>
-            <th>amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @books.each do |book| %>
-          <% if book.main_category_id == 3 %>
-          <tr>
-            <td><%= book.date %></td>
-            <td><%= book.sub_category.name %></td>
-            <td><%= book.introduction %></td>
-            <td><%= book.amount %></td>
-            <td><%= link_to 'Show', book_path(book) %></td>
-            <td><%= link_to 'Edit', edit_book_path(book) %></td>
-            <td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <% end %>
-        </tbody>
-      </table>
+        <div class="col-sm-5">
+      <div class="card">
+        <div class="card-header">
+          変動費支出
+        </div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>SubCategory</th>
+                <th>Body</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @books.each do |book| %>
+              <% if book.main_category_id == 3 %>
+              <tr>
+                <td><%= book.date.strftime('%m/%d') %></td>
+                <td><%= book.sub_category.name %></td>
+                <td><%= book.introduction %></td>
+                <td><%= book.amount %></td>
+                <td><%= link_to 'Show', book_path(book) %></td>
+                <td><%= link_to 'Edit', edit_book_path(book) %></td>
+                <td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+          <%= @variable_total_amount %>
+        </div>
+      </div>
     </div>
     <div class="col-sm-5">
       <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
     </div>
     <div class="col-sm-5">
-      <h4 class="text-center">貯蓄・投資</h4>
-       <table class="table col-sm-5">
-        <thead>
-          <tr>
-            <th>date</th>
-            <th>SubCategory</th>
-            <th>Body</th>
-            <th>amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @books.each do |book| %>
-          <% if book.main_category_id == 4 %>
-          <tr>
-            <td><%= book.date %></td>
-            <td><%= book.sub_category.name %></td>
-            <td><%= book.introduction %></td>
-            <td><%= book.amount %></td>
-            <td><%= link_to 'Show', book_path(book) %></td>
-            <td><%= link_to 'Edit', edit_book_path(book) %></td>
-            <td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <% end %>
-        </tbody>
-      </table>
+      <div class="card">
+        <div class="card-header">
+          貯蓄・投資
+        </div>
+        <div class="card-body">
+          <table class="table table-sm">
+            <thead>
+              <tr>
+                <th>date</th>
+                <th>SubCategory</th>
+                <th>Body</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @books.each do |book| %>
+              <% if book.main_category_id == 3 %>
+              <tr>
+                <td><%= book.date.strftime('%m/%d') %></td>
+                <td><%= book.sub_category.name %></td>
+                <td><%= book.introduction %></td>
+                <td><%= book.amount %></td>
+                <td><%= link_to 'Show', book_path(book) %></td>
+                <td><%= link_to 'Edit', edit_book_path(book) %></td>
+                <td><%= link_to 'Destroy', book_path(book), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer">
+          <%= @investment_total_amount %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
