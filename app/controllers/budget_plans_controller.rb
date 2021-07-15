@@ -3,7 +3,22 @@ class BudgetPlansController < ApplicationController
 
   def index
     @user = current_user
-    @budget_plans = @user.budget_plans
+    if params[:next_month]
+      @budget_plans = @user.budget_plans.where(date: Time.current.next_month.beginning_of_month..Time.current.next_month.end_of_month)
+      @fixed = @budget_plans.where(main_category_id: 2)
+      @variable = @budget_plans.where(main_category_id: 3)
+      @investment = @books.where(main_category_id: 4)
+    elsif params[:prev_month]
+      @budget_plans = @user.budget_plans.where(date: Time.current.prev_month.beginning_of_month..Time.current.prev_month.end_of_month)
+      @fixed = @budget_plans.where(main_category_id: 2)
+      @variable = @budget_plans.where(main_category_id: 3)
+      @investment = @books.where(main_category_id: 4)
+    else
+      @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+      @fixed = @budget_plans.where(main_category_id: 2)
+      @variable = @budget_plans.where(main_category_id: 3)
+      @investment = @books.where(main_category_id: 4)
+    end
   end
 
   def new
