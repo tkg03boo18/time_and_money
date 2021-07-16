@@ -30,7 +30,10 @@
         </div>
 
         <div class="action">
-          <%= f.submit class: "btn btn-primary" %>
+          <%= f.submit class: "btn btn-success" %>
+          <%= link_to book_path(@book) do %>
+          <button type="button" class="btn btn-primary">詳細に戻る</button>
+          <% end %>
         </div>
         <% end %>
       </div>

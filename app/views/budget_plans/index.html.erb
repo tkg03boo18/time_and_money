@@ -1,90 +1,99 @@
-<h1>収支計画一覧</h1>
-<%= link_to "新規登録", new_budget_plan_path, class: "btn btn-lg btn-primary", data: { "turbolinks": false } %>
-<%= link_to "前月", budget_plans_path(prev_month: Time.current.prev_month), data: { "turbolinks": false } %>
-<%= Time.current.beginning_of_month.strftime('%Y年%m月') %>
-<%= link_to "翌月", budget_plans_path(next_month: Time.current.next_month), data: { "turbolinks": false } %>
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-5">
-      <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
+    <div class="budget_plan-sidebar col-sm-2">
+      <h2 class="text-center">収支計画一覧</h2>
+      <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+      <%= link_to "新規登録", new_budget_plan_path, class: "btn btn-lg btn-primary", data: { "turbolinks": false } %>
     </div>
-    <div class="col-sm-5">
-      <h4 class="text-center">固定費計画</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>SubCategory</th>
-            <th>amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @budget_plans.each do |bp| %>
-          <% if bp.main_category_id == 2 %>
-          <tr>
-            <td><%= bp.sub_category.name %></td>
-            <td><%= bp.amount %></td>
-            <td><%= link_to 'Show', budget_plan_path(bp) %></td>
-            <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
-            <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-sm-5">
-      <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
-    </div>
-    <div class="col-sm-5">
-      <h4 class="text-center">変動費計画</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>SubCategory</th>
-            <th>amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @budget_plans.each do |bp| %>
-          <% if bp.main_category_id == 3 %>
-          <tr>
-            <td><%= bp.sub_category.name %></td>
-            <td><%= bp.amount %></td>
-            <td><%= link_to 'Show', budget_plan_path(bp) %></td>
-            <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
-            <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-    <div class="col-sm-5">
-      <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
-    </div>
-    <div class="col-sm-5">
-      <h4 class="text-center">貯蓄・投資計画</h4>
-      <table class="table">
-        <thead>
-          <tr>
-            <th>SubCategory</th>
-            <th>amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @budget_plans.each do |bp| %>
-          <% if bp.main_category_id == 4 %>
-          <tr>
-            <td><%= bp.sub_category.name %></td>
-            <td><%= bp.amount %></td>
-            <td><%= link_to 'Show', budget_plan_path(bp) %></td>
-            <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
-            <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
-          <% end %>
-        </tbody>
-      </table>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-10 d-flex justify-content-center">
+          <div class="p-2"><%= link_to "前月", budget_plans_path(prev_month: Time.current.prev_month), data: { "turbolinks": false } %></div>
+          <div class="p-2"><h3><%= Time.current.beginning_of_month.strftime('%Y年%m月') %></h3></div>
+          <div class="p-2"><%= link_to "翌月", budget_plans_path(next_month: Time.current.next_month), data: { "turbolinks": false } %></div>
+        </div>
+        <div class="col-sm-5">
+          <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
+        </div>
+        <div class="col-sm-5">
+          <h4 class="text-center">固定費計画</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>SubCategory</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @budget_plans.each do |bp| %>
+              <% if bp.main_category_id == 2 %>
+              <tr>
+                <td><%= bp.sub_category.name %></td>
+                <td><%= bp.amount %></td>
+                <td><%= link_to 'Show', budget_plan_path(bp) %></td>
+                <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
+                <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-5">
+          <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
+        </div>
+        <div class="col-sm-5">
+          <h4 class="text-center">変動費計画</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>SubCategory</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @budget_plans.each do |bp| %>
+              <% if bp.main_category_id == 3 %>
+              <tr>
+                <td><%= bp.sub_category.name %></td>
+                <td><%= bp.amount %></td>
+                <td><%= link_to 'Show', budget_plan_path(bp) %></td>
+                <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
+                <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-5">
+          <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount) %>
+        </div>
+        <div class="col-sm-5">
+          <h4 class="text-center">貯蓄・投資計画</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>SubCategory</th>
+                <th>amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @budget_plans.each do |bp| %>
+              <% if bp.main_category_id == 4 %>
+              <tr>
+                <td><%= bp.sub_category.name %></td>
+                <td><%= bp.amount %></td>
+                <td><%= link_to 'Show', budget_plan_path(bp) %></td>
+                <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
+                <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+              <% end %>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>
