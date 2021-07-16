@@ -2,36 +2,44 @@
 <%= link_to "新規登録", new_list_path, class: "btn btn-lg btn-primary" %>
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 bg-danger py-3">
-      <h6 class="text-center">未購入の欲しいものリスト</h6>
-      <div class="list-group">
-        <% @lists.each do |list| %>
-          <% if list.purchased == false %>
-            <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
-            <div class="d-flex w-100 justify-content-between">
-              <label class="mb-1"><%= list.name %></label>
-              <small>購入希望期限：<%= list.date %></small>
-            </div>
-            <p class="mb-1">金額：<%= list.price %></p>
+    <div class="col-sm-6 py-3">
+      <div class="list-card card">
+        <div class="card-header bg-danger">未購入の欲しいものリスト</div>
+        <div class="card-body">
+          <div class="list-group">
+            <% @lists.each do |list| %>
+              <% if list.purchased == false %>
+                <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                <div class="d-flex w-100 justify-content-between">
+                  <label class="mb-1"><%= list.name %></label>
+                  <small>購入希望期限：<%= list.date %></small>
+                </div>
+                <p class="mb-1">金額：<%= list.price %></p>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-sm-6 bg-info py-3">
-      <h6 class="text-center">購入済の欲しいものリスト</h6>
-      <div class="list-group">
-        <% @lists.each do |list| %>
-          <% if list.purchased == true %>
-            <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
-            <div class="d-flex w-100 justify-content-between">
-              <label class="mb-1"><%= list.name %></label>
-              <small>購入希望期限：<%= list.date %></small>
-            </div>
-            <p class="mb-1">金額：<%= list.price %></p>
+    <div class="col-sm-6 py-3">
+      <div class="list-card card">
+        <div class="card-header bg-info">購入済の欲しいものリスト</div>
+        <div class="card-body">
+          <div class="list-group">
+            <% @lists.each do |list| %>
+              <% if list.purchased == true %>
+                <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                <div class="d-flex w-100 justify-content-between">
+                  <label class="mb-1"><%= list.name %></label>
+                  <small>購入希望期限：<%= list.date %></small>
+                </div>
+                <p class="mb-1">金額：<%= list.price %></p>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   </div>

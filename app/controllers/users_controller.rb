@@ -4,6 +4,38 @@ class UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    @fixed = @books.where(main_category_id: 2)
+    @fixed_total_amount = 0
+    @fixed.each do |fixed|
+      @fixed_total_amount += fixed.amount
+    end
+    @variable = @books.where(main_category_id: 3)
+    @variable_total_amount = 0
+    @variable.each do |variable|
+      @variable_total_amount += variable.amount
+    end
+    @investment = @books.where(main_category_id: 4)
+    @investment_total_amount = 0
+    @investment.each do |investment|
+      @investment_total_amount += investment.amount
+    end
+    @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    @fixed_plans = @budget_plans.where(main_category_id: 2)
+    @fixed_plans_total_amount = 0
+    @fixed_plans.each do |fp|
+      @fixed_plans_total_amount += fp.amount
+    end
+    @variable_plans = @budget_plans.where(main_category_id: 3)
+    @variable_plans_total_amount = 0
+    @variable_plans.each do |vp|
+      @variable_plans_total_amount += vp.amount
+    end
+    @investment_plans = @budget_plans.where(main_category_id: 4)
+    @investment_plans_total_amount = 0
+    @investment_plans.each do |ip|
+      @investment_plans_total_amount += ip.amount
+    end
   end
 
   def mymenu

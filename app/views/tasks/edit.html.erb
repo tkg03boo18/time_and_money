@@ -1,31 +1,39 @@
-<h1>タスク編集</h1>
-<%= form_with model: @task, local: true do |f| %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<div class="field">
-  <%= f.label :title %>
-  <%= f.text_field :title %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 offset-sm-1 my-4">
+      <h4 class="text-center">タスク編集</h4>
+    </div>
+    <div class="col-sm-6 offset-sm-3">
+      <%= form_with model: @task, local: true do |f| %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <div class="form-group field">
+        <%= f.label :title, class: "form-control-label" %>
+        <%= f.text_field :title, class: "form-control"  %>
+      </div>
+      <div class="field">
+        <%= f.label :body, class: "form-control-label" %>
+        <%= f.text_field :body, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :importance %>
+        <%= f.select :importance, Task.importances.keys, {prompt: "選択してください"}, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :genre %>
+        <%= f.select :genre, Task.genres.keys,{prompt: "選択してください"}, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :deadline, class: "form-control-label" %>
+        <%= f.datetime_field :deadline, class: "form-control" %>
+      </div>
+      <div class="field">
+        <%= f.label :fin %>
+        <%= f.check_box :fin %>
+      </div>
+      <div class="actions">
+        <%= f.submit class: "btn btn-primary" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-<div class="field">
-  <%= f.label :body %>
-  <%= f.text_field :body %>
-</div>
-<div class="field">
-  <%= f.label :importance %>
-  <%= f.select :importance, {高い: "高い", 低い: "低い"} %>
-</div>
-<div class="field">
-  <%= f.label :genre %>
-  <%= f.select :genre, {仕事: "仕事", プライベート: "プライベート"} %>
-</div>
-<div class="field">
-  <%= f.label :deadline %>
-  <%= f.datetime_field :deadline %>
-</div>
-<div class="field">
-  <%= f.label :fin %>
-  <%= f.check_box :fin %>
-</div>
-<div class="actions">
-  <%= f.submit %>
-</div>
-<% end %>

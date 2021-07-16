@@ -1,23 +1,64 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12">
-      <h4 class="text-center">My Page</h4>
+    <div class="mypage-sidebar col-sm-2">
+      <h2 class="text-center">My Page</h2>
+      <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+      <p><%= link_to "My Menuへ", users_mymenu_path %></p>
     </div>
-    <div class="col-sm-6">
-      <h6 class="text-center">今日の予定</h6>
-    </div>
-    <div class="col-sm-6">
-      <h6 class="text-center">Todoリスト</h6>
-    </div>
-    <div class="col-sm-6">
-      <h6 class="text-center">今月の予算</h6>
-    </div>
-    <div class="col-sm-6">
-      <h6 class="text-center">今月の支出</h6>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-6 mt-4">
+          <div class="mypage-card card">
+            <div class="card-header">今日の予定</div>
+            <div class="card-body">
+            </div>
+            <div class="card-footer">
+              <%= link_to "カレンダー", plans_path, data: { "turbolinks": false } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-4">
+          <div class="mypage-card card">
+            <div class="card-header">Todoリスト</div>
+            <div class="card-body">
+
+            </div>
+            <div class="card-footer">
+              <%= link_to "Todoリスト", tasks_path, data: { "turbolinks": false } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-4">
+          <div class="mypage-card card">
+            <div class="card-header">今月の予算</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">固定費：<%= @fixed_plans_total_amount %></li>
+                <li class="list-group-item">変動費：<%= @variable_plans_total_amount %></li>
+                <li class="list-group-item">貯蓄・投資：<%= @investment_plans_total_amount %></li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <%= link_to "収支計画ページ", budget_plans_path, data: { "turbolinks": false } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 mt-4">
+          <div class="mypage-card card">
+            <div class="card-header">今月の支出</div>
+            <div class="card-body">
+              <ul class="list-group">
+                <li class="list-group-item">固定費：<%= @fixed_total_amount %></li>
+                <li class="list-group-item">変動費：<%= @variable_total_amount %></li>
+                <li class="list-group-item">貯蓄・投資：<%= @investment_total_amount %></li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <%= link_to "家計簿ページ", books_path, data: { "turbolinks": false } %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<%= Date.current.strftime('%Y年%m月%d日') %>
-
-<%= link_to "My Menuへ", users_mymenu_path %>
