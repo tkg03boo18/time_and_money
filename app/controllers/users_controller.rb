@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def mypage
     @user = current_user
+    @plans = @user.plans.where(start_date: Time.current.beginning_of_week..Time.current.end_of_week)
     @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
     @fixed = @books.where(main_category_id: 2)
     @fixed_total_amount = 0
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
     @investment_plans.each do |ip|
       @investment_plans_total_amount += ip.amount
     end
+    @tasks = @user.tasks
   end
 
   def mymenu

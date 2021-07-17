@@ -41,7 +41,7 @@
         eventDrop: function(info) {
 
           $.ajax({
-            url: "/plans/" + info.event.id,
+            url: "/plans/" + info.event.id + "/calendarupdate",
             type: "PATCH",
             data: {
               plan: {
@@ -64,11 +64,7 @@
             color: '#007bff',    // an option!
             textColor: 'white'  // an option!
           },
-          {
-            url: '/tasks.json',
-            color: 'yellow',
-            textColor: 'black'
-          }
+         
         ]
       });
 

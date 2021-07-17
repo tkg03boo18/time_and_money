@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:show, :edit, :update, :destroy, :calendarupdate]
 
 
   def index
@@ -25,23 +25,19 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-
-    respond_to do |format|
-      if @plan.save
-        format.html { redirect_to @plan }
-        format.json { render :show, status: :created, location: @plan }
-        format.js { @status = "success" }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @plan.errors, status: :unprocessable_entity }
-        format.js { @status = "fail" }
-      end
-
-    end
+    @plan.save
+    redirect_to plans_path
   end
 
 
   def update
+
+    @plan.update(plan_params)
+    redirect_to plans_path
+  end
+
+  def calendarupdate
+
     respond_to do |format|
       if @plan.update(plan_params)
         # format.html { redirect_to plans_path }
@@ -58,10 +54,7 @@ class PlansController < ApplicationController
 
   def destroy
     @plan.destroy
-    respond_to do |format|
-      format.html { redirect_to plans_url }
-      format.json { head :no_content }
-    end
+    redirect_to plans_path
   end
 
   private

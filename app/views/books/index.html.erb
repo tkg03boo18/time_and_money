@@ -8,9 +8,9 @@
     <div class="col-sm-10">
       <div class="row">
         <div class="col-sm-10 d-flex justify-content-center">
-          <div class="p-2"><%= link_to "前月", books_path(prev_month: Time.current.prev_month), data: { "turbolinks": false } %></div>
-          <div class="p-2"><h3><%= Time.current.beginning_of_month.strftime('%Y年%m月') %></h3></div>
-          <div class="p-2"><%= link_to "翌月", books_path(next_month: Time.current.next_month), data: { "turbolinks": false } %></div>
+          <div class="p-2"><%= link_to "前月", books_path(month: params[:month].to_i - 1), data: { "turbolinks": false } %></div>
+          <div class="p-2"><h3><%= Time.current.beginning_of_day.since(params[:month].to_i.months).strftime('%Y年%m月') %></h3></div>
+          <div class="p-2"><%= link_to "翌月", books_path(month: params[:month].to_i + 1), data: { "turbolinks": false } %></div>
         </div>
         <div class="col-sm-5">
           <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount) %>

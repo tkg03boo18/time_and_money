@@ -9,8 +9,14 @@
       <div class="row">
         <div class="col-sm-6 mt-4">
           <div class="mypage-card card">
-            <div class="card-header">今日の予定</div>
+            <div class="card-header">
+              <%= Time.current.beginning_of_week.strftime('%m月%d日') %>〜<%= Time.current.end_of_week.strftime('%m月%d日') %>の予定
+            </div>
             <div class="card-body">
+
+              <% @plans.each do |plan| %>
+              <%= plan.title %>
+              <% end %>
             </div>
             <div class="card-footer">
               <%= link_to "スケジュール", plans_path, data: { "turbolinks": false } %>
@@ -19,9 +25,21 @@
         </div>
         <div class="col-sm-6 mt-4">
           <div class="mypage-card card">
-            <div class="card-header">Todoリスト</div>
+            <div class="card-header">優先度の高いTodoリスト</div>
             <div class="card-body">
-
+              <div class="list-group">
+                <% @tasks.each do |task| %>
+                  <% if task.importance == "高い" %>
+                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <label class="mb-1"><%= task.title %></label>
+                      <small>期限：<%= task.deadline %></small>
+                    </div>
+                    <p class="mb-1"><%= task.body %></p>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
             <div class="card-footer">
               <%= link_to "Todoリスト", tasks_path, data: { "turbolinks": false } %>
