@@ -6,7 +6,7 @@
     </div>
     <div class="col-sm-10">
       <div class="row">
-        <div class="col-sm-10 offset-sm-1 mt-4">
+        <div class="col-sm-10 offset-sm-1 mt-3">
           <div class="card-group">
             <div class="card">
               <div class="card-body">
@@ -25,27 +25,47 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-5 offset-sm-1 mt-2">
+        <div class="col-sm-5 offset-sm-1 mt-3">
           <div class="card">
             <div class="card-header">
               今月の収支
             </div>
             <div class="card-body">
-              <h4 class="card-title">Special title treatment</h4>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <h5 class="card-title">今月の支出内訳</h5>
+              <%= pie_chart @outcomes.joins(:main_category).group("main_categories.name").sum(:amount), height: "35vh" %>
+              <table class="table table-sm mt-4">
+                <tr>
+                  <th>収入</th>
+                  <td><%= @incomes_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>固定費支出</th>
+                  <td><%= @fixed_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>変動費支出</th>
+                  <td><%= @variable_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>収支計</th>
+                  <td><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
+                </tr>
+              </table>
             </div>
             <div class="card-footer">
-              2 days ago
+              <%= link_to "家計簿一覧へ", plans_path, data: { "turbolinks": false } %>
             </div>
           </div>
         </div>
-        <div class="col-sm-5 mt-2">
+        <div class="col-sm-5 mt-3">
           <div class="card">
             <div class="card-header">
               今月の支出計画
             </div>
             <div class="card-body">
-              <table class="table table-sm">
+              <h5 class="card-title">今月の支出計画内訳</h5>
+              <%= pie_chart @outcomes_plans.joins(:main_category).group("main_categories.name").sum(:amount), height: "35vh" %>
+              <table class="table table-sm mt-4">
                 <thead>
                   <tr>
                     <th></th>
@@ -55,12 +75,12 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <th>固定費</th>
+                    <th>固定費計画</th>
                     <td><%= @fixed_plans_total_amount %></td>
                     <td><%= @fixed_plans_total_amount - @fixed_total_amount %></td>
                   </tr>
                   <tr>
-                    <th>変動費</th>
+                    <th>変動費計画</th>
                     <td><%= @variable_plans_total_amount %></td>
                     <td><%= @variable_plans_total_amount - @variable_total_amount %></td>
                   </tr>
@@ -72,6 +92,13 @@
                 </tbody>
               </table>
             </div>
+            <div class="card-footer">
+              <%= link_to "収支計画一覧へ", budget_plans_path, data: { "turbolinks": false } %>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 offset-sm-1 mt-3">
+          <div class="card">
             <div class="card-header">
               今月の貯蓄・投資計画
             </div>
@@ -80,6 +107,10 @@
                 <tr>
                   <th>目標額</th>
                   <td><%= @investment_plans_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>貯蓄・投資額</th>
+                  <td><%= @investment_total_amount %></td>
                 </tr>
                 <tr>
                   <th>目標達成率</th>
@@ -92,7 +123,8 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-10 offset-sm-1 mt-2">
+
+        <div class="col-sm-5 mt-3">
           <div class="card">
             <div class="card-header">
               欲しいものリスト

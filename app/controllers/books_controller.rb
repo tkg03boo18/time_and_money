@@ -5,6 +5,7 @@ class BooksController < ApplicationController
     @user = current_user
     if params[:month]
       @books = Book.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
+      @outcomes = @books.where(main_category_id: [2, 3])
       @fixed = @books.where(main_category_id: 2)
       @fixed_total_amount = 0
       @fixed.each do |fixed|
@@ -22,6 +23,7 @@ class BooksController < ApplicationController
       end
     else
       @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+      @outcomes = @books.where(main_category_id: [2, 3])
       @fixed = @books.where(main_category_id: 2)
       @fixed_total_amount = 0
       @fixed.each do |fixed|
@@ -38,6 +40,9 @@ class BooksController < ApplicationController
         @investment_total_amount += investment.amount
       end
     end
+
+    # @bookdata = Book.where(created_at: Time.current.beginning_of_month..Time.current.end_of_month).group_by { |book| book.date.strftime('%Y%m') }
+    # @bookdatas = Book.all.group_by { |book| book.date.strftime('%Y%m') }
   end
 
   def mypage
@@ -66,6 +71,7 @@ class BooksController < ApplicationController
     end
 
     @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    @outcomes = @books.where(main_category_id: [2, 3])
     @incomes = @books.where(main_category_id: 1)
     @incomes_total_amount = 0
     @incomes.each do |income|
@@ -88,6 +94,7 @@ class BooksController < ApplicationController
     end
 
     @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    @outcomes_plans = @budget_plans.where(main_category_id: [2, 3])
     @fixed_plans = @budget_plans.where(main_category_id: 2)
     @fixed_plans_total_amount = 0
     @fixed_plans.each do |fp|
