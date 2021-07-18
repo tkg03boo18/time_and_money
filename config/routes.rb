@@ -18,7 +18,7 @@ Rails.application.routes.draw do
  get 'users/unsubscribe'
  patch 'users/withdraw' => 'users#withdraw'
  patch 'plans/:id/calendarupdate' => 'plans#calendarupdate'
- 
+ get 'books/mypage' => 'books#mypage'
  resources :books
  resources :budget_plans
  resources :main_categories, only: [] do

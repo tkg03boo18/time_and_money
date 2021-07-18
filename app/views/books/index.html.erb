@@ -111,7 +111,7 @@
                 </thead>
                 <tbody>
                   <% @books.each do |book| %>
-                  <% if book.main_category_id == 3 %>
+                  <% if book.main_category_id == 4 %>
                   <tr>
                     <td><%= book.date.strftime('%m/%d') %></td>
                     <td><%= book.sub_category.name %></td>

@@ -50,11 +50,24 @@
           <div class="mypage-card card">
             <div class="card-header">今月の予算</div>
             <div class="card-body">
-              <ul class="list-group">
-                <li class="list-group-item">固定費：<%= @fixed_plans_total_amount %></li>
-                <li class="list-group-item">変動費：<%= @variable_plans_total_amount %></li>
-                <li class="list-group-item">貯蓄・投資：<%= @investment_plans_total_amount %></li>
-              </ul>
+              <table class="table table-sm">
+                <tr>
+                  <th>固定費</th>
+                  <td><%= @fixed_plans_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>変動費</th>
+                  <td><%= @variable_plans_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>貯蓄・投資</th>
+                  <td><%= @investment_plans_total_amount %></td>
+                </tr>
+                <tr class="table-info">
+                  <th>合計</th>
+                  <td><%= @fixed_plans_total_amount + @variable_plans_total_amount + @investment_plans_total_amount %></td>
+                </tr>
+              </table>
             </div>
             <div class="card-footer">
               <%= link_to "収支計画ページ", budget_plans_path, data: { "turbolinks": false } %>
@@ -63,13 +76,30 @@
         </div>
         <div class="col-sm-6 mt-4">
           <div class="mypage-card card">
-            <div class="card-header">今月の支出</div>
+            <div class="card-header">今月の収支</div>
             <div class="card-body">
-              <ul class="list-group">
-                <li class="list-group-item">固定費：<%= @fixed_total_amount %></li>
-                <li class="list-group-item">変動費：<%= @variable_total_amount %></li>
-                <li class="list-group-item">貯蓄・投資：<%= @investment_total_amount %></li>
-              </ul>
+              <table class="table table-sm">
+                <tr>
+                  <th>収入</th>
+                  <td><%= @incomes_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>固定費</th>
+                  <td><%= @fixed_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>変動費</th>
+                  <td><%= @variable_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>貯蓄・投資</th>
+                  <td><%= @investment_total_amount %></td>
+                </tr>
+                <tr class="table-info">
+                  <th>収支合計</th>
+                  <td><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount - @investment_total_amount %></td>
+                </tr>
+              </table>
             </div>
             <div class="card-footer">
               <%= link_to "家計簿ページ", books_path, data: { "turbolinks": false } %>

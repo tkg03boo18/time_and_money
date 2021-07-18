@@ -29,6 +29,7 @@
         Money
       </button>
     　<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    　   <%= link_to "収支管理", books_mypage_path, class: "dropdown-item", data: { "turbolinks": false } %>
         <%= link_to "家計簿", books_path, class: "dropdown-item", data: { "turbolinks": false } %>
         <%= link_to "収支計画", budget_plans_path, class: "dropdown-item", data: { "turbolinks": false } %>
         <%= link_to "欲しいものリスト", lists_path, class: "dropdown-item" %>

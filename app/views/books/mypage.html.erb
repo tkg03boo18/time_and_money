@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="book_sidebar col-sm-2">
+      <h2 class="text-center">収支管理</h2>
+      <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+    </div>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-10 offset-sm-1 mt-4">
+          <div class="card-group">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-center">総収入額：<%= @totalincomes_total_amount %></h5>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-center">総支出額：<%= @totalfixed_total_amount + @totalvariable_total_amount %></h5>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title text-center">総貯蓄・投資額：<%= @totalinvestment_total_amount %></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 offset-sm-1 mt-2">
+          <div class="card">
+            <div class="card-header">
+              今月の収支
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Special title treatment</h4>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+              2 days ago
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-5 mt-2">
+          <div class="card">
+            <div class="card-header">
+              今月の支出計画
+            </div>
+            <div class="card-body">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>予算額</th>
+                    <th>予算残額</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>固定費</th>
+                    <td><%= @fixed_plans_total_amount %></td>
+                    <td><%= @fixed_plans_total_amount - @fixed_total_amount %></td>
+                  </tr>
+                  <tr>
+                    <th>変動費</th>
+                    <td><%= @variable_plans_total_amount %></td>
+                    <td><%= @variable_plans_total_amount - @variable_total_amount %></td>
+                  </tr>
+                  <tr>
+                    <th>合計</th>
+                    <td><%= @fixed_plans_total_amount + @variable_plans_total_amount %></td>
+                    <td><%= (@fixed_plans_total_amount - @fixed_total_amount) + (@variable_plans_total_amount - @variable_total_amount) %></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-header">
+              今月の貯蓄・投資計画
+            </div>
+            <div class="card-body">
+              <table class="table table-sm">
+                <tr>
+                  <th>目標額</th>
+                  <td><%= @investment_plans_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>目標達成率</th>
+                  <td><%= number_to_percentage(@investment_per * 100) %></td>
+                </tr>
+              </table>
+            </div>
+            <div class="card-footer">
+              2 days ago
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-10 offset-sm-1 mt-2">
+          <div class="card">
+            <div class="card-header">
+              欲しいものリスト
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Special title treatment</h4>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+            <div class="card-footer">
+              2 days ago
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,8 +4,17 @@ class UsersController < ApplicationController
 
   def mypage
     @user = current_user
+
     @plans = @user.plans.where(start_date: Time.current.beginning_of_week..Time.current.end_of_week)
+
+    @tasks = @user.tasks
+
     @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    @incomes = @books.where(main_category_id: 1)
+    @incomes_total_amount = 0
+    @incomes.each do |income|
+      @incomes_total_amount += income.amount
+    end
     @fixed = @books.where(main_category_id: 2)
     @fixed_total_amount = 0
     @fixed.each do |fixed|
@@ -21,6 +30,7 @@ class UsersController < ApplicationController
     @investment.each do |investment|
       @investment_total_amount += investment.amount
     end
+
     @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
     @fixed_plans = @budget_plans.where(main_category_id: 2)
     @fixed_plans_total_amount = 0
@@ -37,7 +47,7 @@ class UsersController < ApplicationController
     @investment_plans.each do |ip|
       @investment_plans_total_amount += ip.amount
     end
-    @tasks = @user.tasks
+
   end
 
   def mymenu
