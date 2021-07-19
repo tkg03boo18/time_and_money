@@ -16,14 +16,38 @@
           <%= pie_chart @outcomes.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "35vh" %>
         </div>
         <div class="col-sm-6">
-
-        </div>
-        <div class="col-sm-4">
           <div class="card">
+            <div class="card-header">
+              今月の家計簿内訳
+            </div>
+            <div class="card-body">
+              <table class="table">
+                <tr>
+                  <th>収入</th>
+                  <td><%= @incomes_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>固定費支出</th>
+                  <td><%= @fixed_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>変動費支出</th>
+                  <td><%= @variable_total_amount %></td>
+                </tr>
+                <tr>
+                  <th>貯蓄・投資</th>
+                  <td><%= @investment_total_amount %></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 mt-4">
+          <div class="book-card card">
             <div class="card-header">
               固定費支出
             </div>
-            <div class="card-body">
+            <div class="book-card-body card-body">
               <table class="table table-sm">
                 <thead>
                   <tr class="small">
@@ -54,12 +78,12 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="card">
+        <div class="col-sm-4 mt-4">
+          <div class="book-card card">
             <div class="card-header">
               変動費支出
             </div>
-            <div class="card-body">
+            <div class="book-card-body card-body">
               <table class="table table-sm">
                 <thead>
                   <tr class="small">
@@ -90,12 +114,12 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
-          <div class="card">
+        <div class="col-sm-4 mt-4">
+          <div class="book-card card">
             <div class="card-header">
               貯蓄・投資
             </div>
-            <div class="card-body">
+            <div class="book-card-body card-body">
               <table class="table table-sm">
                 <thead>
                   <tr class="small">
