@@ -9,36 +9,66 @@
         <div class="col-sm-6 mt-3">
           <div class="card">
             <div class="card-header">
-              今月の収支
+              今月の収支（前月比較）
             </div>
             <div class="card-body">
-              <h6 class="card-title">今月の支出内訳</h6>
-
+              <div class="card">
+                <div class="card-body">
+                  <div class="card-deck">
+                    <div class="card border-0">
+                      <div class="card-body pt-0">
+                        <h5 class="card-title text-center"><%= Time.current.prev_month.strftime('%m月') %></h5>
+                        <h4 class="card-text text-center"><%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></h4>
+                      </div>
+                    </div>
+                    <p class="d-flex align-self-center">→</p>
+                    <div class="card border-0">
+                      <div class="card-body pt-0">
+                        <h5 class="card-title text-center"><%= Time.current.strftime('%m月') %></h5>
+                        <h4 class="card-text text-center"><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></h4>
+                      </div>
+                    </div>
+                  </div>
+                  <h5 class="text-center">増減</h5>
+                  <h4 class="text-center"><%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></h4>
+                </div>
+              </div>
               <table class="table table-sm mt-4">
-                <tr>
-                  <th>収入</th>
-                  <td><%= @incomes_total_amount %></td>
-                  <td><%= @prev_incomes_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>固定費支出</th>
-                  <td><%= @fixed_total_amount %></td>
-                  <td><%= @prev_fixed_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>変動費支出</th>
-                  <td><%= @variable_total_amount %></td>
-                  <td><%= @prev_variable_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>収支計</th>
-                  <td><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
-                  <td><%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></td>
-                </tr>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th><%= Time.current.prev_month.strftime('%m月') %></th>
+                    <th><%= Time.current.strftime('%m月') %></th>
+                    <th>増減</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>収入</th>
+                    <td><%= @prev_incomes_total_amount %></td>
+                    <td><%= @incomes_total_amount %></td>
+                    <td><%= @incomes_total_amount - @prev_incomes_total_amount %></td>
+                  </tr>
+                  <tr>
+                    <th>固定費支出</th>
+                    <td><%= @prev_fixed_total_amount %></td>
+                    <td><%= @fixed_total_amount %></td>
+                    <td><%= @fixed_total_amount - @prev_fixed_total_amount %></td>
+                  </tr>
+                  <tr>
+                    <th>変動費支出</th>
+                    <td><%= @prev_variable_total_amount %></td>
+                    <td><%= @variable_total_amount %></td>
+                    <td><%= @variable_total_amount - @prev_variable_total_amount %></td>
+                  </tr>
+                  <tr>
+                    <th>収支計</th>
+                    <td><%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></td>
+                    <td><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
+                    <td><%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></td>
+                  </tr>
+                </tbody>
               </table>
-            </div>
-            <div class="card-footer">
-              <%= link_to "家計簿一覧へ", plans_path, data: { "turbolinks": false } %>
             </div>
           </div>
         </div>
@@ -52,13 +82,13 @@
                 <div class="card border-0">
                   <div class="card-body pt-0 px-0">
                     <h6 class="card-title">今月の支出内訳</h6>
-                    <%= pie_chart @outcomes.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
+                    <%= column_chart @outcomes.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
                   </div>
                 </div>
                 <div class="card border-0">
                   <div class="card-body pt-0 px-0">
                     <h6 class="card-title">今月の支出計画内訳</h6>
-                    <%= pie_chart @outcomes_plans.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
+                    <%= column_chart @outcomes_plans.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
                   </div>
                 </div>
               </div>
@@ -93,9 +123,6 @@
                 </tbody>
               </table>
             </div>
-            <div class="card-footer">
-              <%= link_to "収支計画一覧へ", budget_plans_path, data: { "turbolinks": false } %>
-            </div>
           </div>
         </div>
         <div class="col-sm-6 mt-3">
@@ -119,9 +146,6 @@
                 </tr>
               </table>
             </div>
-            <div class="card-footer">
-              2 days ago
-            </div>
           </div>
         </div>
 
@@ -133,9 +157,6 @@
             <div class="card-body">
               <h4 class="card-title">Special title treatment</h4>
               <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            </div>
-            <div class="card-footer">
-              2 days ago
             </div>
           </div>
         </div>
