@@ -3,4 +3,5 @@ class Task < ApplicationRecord
 
   enum importance: {高い: 0, 低い: 1}
   enum genre: {仕事: 0, プライベート: 1}
+
 end

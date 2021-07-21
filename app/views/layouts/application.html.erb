@@ -64,7 +64,7 @@
             color: '#007bff',    // an option!
             textColor: 'white'  // an option!
           },
-         
+
         ]
       });
 
@@ -103,7 +103,7 @@
   <body>
     <header class="border">
       <% if user_signed_in? %>
-       <%= render 'layouts/userheader' %>
+       <%= render 'layouts/userheader', user: @user %>
       <% else %>
        <%= render 'layouts/header' %>
       <% end %>

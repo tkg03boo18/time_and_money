@@ -3,6 +3,25 @@
     <div class="book_sidebar col-sm-2">
       <h2 class="text-center">収支管理</h2>
       <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+      <div class="card">
+        <div class="card-header">
+          現在までの収支内訳
+        </div>
+        <div class="card-body">
+          <h6>総収入</h6>
+          <h5 class="text-center">¥<%= @totalincomes_total_amount %></h5>
+          <h6>総支出</h6>
+          <h5 class="text-center">¥<%= @totalfixed_total_amount + @totalvariable_total_amount %></h5>
+          <h6>総貯蓄・投資</h6>
+          <h5 class="text-center">¥<%= @totalinvestment_total_amount %></h5>
+        </div>
+      </div>
+      <nav class="nav d-flex flex-column">
+        <%= link_to "収支管理", books_mypage_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
+        <%= link_to "家計簿", books_path, class: "nav-link d-flex justify-content-center border-top p-2", data: { "turbolinks": false } %>
+        <%= link_to "収支計画", budget_plans_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
+        <%= link_to "欲しいものリスト", lists_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
+      </nav>
     </div>
     <div class="col-sm-10">
       <div class="row">

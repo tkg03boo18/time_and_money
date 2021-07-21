@@ -1,9 +1,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="book-sidebar col-sm-2">
-      <h2 class="text-center">家計簿一覧</h2>
+      <h2 class="text-center">家計簿</h2>
       <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
-      <%= link_to "新規登録", new_book_path, class: "btn btn-lg btn-primary", data: { "turbolinks": false } %>
+      <%= link_to "新規登録", new_book_path, class: "btn btn-block btn-primary", data: { "turbolinks": false } %>
+      <nav class="nav d-flex flex-column">
+        <%= link_to "収支管理", books_mypage_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
+        <%= link_to "家計簿", books_path, class: "nav-link d-flex justify-content-center border-top p-2", data: { "turbolinks": false } %>
+        <%= link_to "収支計画", budget_plans_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
+        <%= link_to "欲しいものリスト", lists_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
+      </nav>
     </div>
     <div class="col-sm-10">
       <div class="row">

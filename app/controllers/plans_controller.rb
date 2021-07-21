@@ -3,8 +3,9 @@ class PlansController < ApplicationController
 
 
   def index
-    @plans = current_user.plans
-    @tasks = current_user.tasks
+    @user = current_user
+    @plans = @user.plans
+    @tasks = @user.tasks
   end
 
 
