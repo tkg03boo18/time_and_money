@@ -4,7 +4,13 @@ class BudgetPlansController < ApplicationController
   def index
     @user = current_user
     if params[:month]
-      @budget_plans = BudgetPlan.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
+      @budget_plans = @user.budget_plans.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
+      @outcomes = @budget_plans.where(main_category_id: [2, 3])
+      @incomes = @budget_plans.where(main_category_id: 1)
+      @incomes_total_amount = 0
+      @incomes.each do |income|
+        @incomes_total_amount += income.amount
+      end
       @fixed = @budget_plans.where(main_category_id: 2)
       @fixed_total_amount = 0
       @fixed.each do |fixed|
@@ -22,6 +28,12 @@ class BudgetPlansController < ApplicationController
       end
     else
       @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+      @outcomes = @budget_plans.where(main_category_id: [2, 3])
+      @incomes = @budget_plans.where(main_category_id: 1)
+      @incomes_total_amount = 0
+      @incomes.each do |income|
+        @incomes_total_amount += income.amount
+      end
       @fixed = @budget_plans.where(main_category_id: 2)
       @fixed_total_amount = 0
       @fixed.each do |fixed|

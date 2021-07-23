@@ -1,19 +1,31 @@
 <div class="container-fluid">
   <div class="row">
     <div class="mypage-sidebar col-sm-2">
-      <h2 class="text-center">My Page</h2>
-      <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
-      <%= attachment_image_tag @user, :image, class: "d-block mx-auto rounded w-50" %>
-      <p><%= link_to "My Menuへ", users_mymenu_path %></p>
-      <ul class="user-sidebar">
-        <li class="user-side-menu"><%= link_to "ユーザー詳細", users_show_path %></li>
-        <li class="user-side-menu"><%= link_to "スケジュール", plans_path, data: { "turbolinks": false } %></li>
-        <li class="user-side-menu"><%= link_to "収支管理", books_mypage_path %></li>
-      </ul>
+      <h3><i class="far fa-user-circle"></i> My Page</h3>
+      <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+
       <nav class="nav d-flex flex-column">
-        <%= link_to "ユーザー詳細", users_show_path, class: "user-side-menu nav-link", data: { "turbolinks": false } %>
-        <%= link_to "スケジュール", plans_path, class: "user-side-menu nav-link", data: { "turbolinks": false } %>
-        <%= link_to "収支管理", books_mypage_path, class: "user-side-menu nav-link", data: { "turbolinks": false } %>
+        <%= link_to users_show_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-id-card"></i> ユーザー詳細
+        <% end %>
+        <%= link_to plans_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calendar-alt"></i> スケジュール
+        <% end %>
+        <%= link_to tasks_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-tasks"></i> Todoリスト
+        <% end %>
+        <%= link_to books_mypage_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="far fa-chart-bar"></i> 収支管理
+        <% end %>
+        <%= link_to books_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calculator"></i> 家計簿
+        <% end %>
+        <%= link_to budget_plans_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-file-alt"></i> 収支計画
+        <% end %>
+        <%= link_to lists_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-shopping-cart"></i> Wishリスト
+        <% end %>
       </nav>
     </div>
     <div class="col-sm-10">

@@ -49,10 +49,9 @@ class UsersController < ApplicationController
     end
 
   end
-
-  def mymenu
-  end
-
+  
+  
+  
   def show
     @user = current_user
   end

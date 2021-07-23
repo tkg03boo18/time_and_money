@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="book_sidebar col-sm-2">
-      <h2 class="text-center">収支管理</h2>
-      <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+      <h3><i class="far fa-chart-bar"></i> 収支管理</h3>
+      <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
       <div class="card">
         <div class="card-header">
           現在までの収支内訳
@@ -17,10 +17,18 @@
         </div>
       </div>
       <nav class="nav d-flex flex-column">
-        <%= link_to "収支管理", books_mypage_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
-        <%= link_to "家計簿", books_path, class: "nav-link d-flex justify-content-center border-top p-2", data: { "turbolinks": false } %>
-        <%= link_to "収支計画", budget_plans_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
-        <%= link_to "欲しいものリスト", lists_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
+        <%= link_to books_mypage_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="far fa-chart-bar"></i> 収支管理
+        <% end %>
+        <%= link_to books_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calculator"></i> 家計簿
+        <% end %>
+        <%= link_to budget_plans_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-file-alt"></i> 収支計画
+        <% end %>
+        <%= link_to lists_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-shopping-cart"></i> Wishリスト
+        <% end %>
       </nav>
     </div>
     <div class="col-sm-10">
@@ -177,7 +185,7 @@
         <div class="col-sm-6 mt-3">
           <div class="card">
             <div class="card-header">
-              欲しいものリスト
+              Wishリスト
             </div>
             <div class="card-body">
               <div class="card-group">

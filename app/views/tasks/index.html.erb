@@ -1,9 +1,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="task-sidebar col-sm-2">
-      <h2 class="text-center">Todoリスト</h2>
-      <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
-      <%= link_to "新規登録", new_task_path, class: "btn btn-block btn-primary" %>
+      <h3><i class="fas fa-tasks"></i> Todoリスト</h3>
+      <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+      <%= link_to new_task_path, class: "btn btn-block btn-primary" do %>
+      <i class="fas fa-plus"></i> 作成
+      <% end %>
+      <nav class="nav d-flex flex-column mt-2">
+        <%= link_to plans_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calendar-alt"></i> スケジュール
+        <% end %>
+        <%= link_to tasks_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-tasks"></i> Todoリスト
+        <% end %>
+      </nav>
       <div class=" card">
         <div class="card-header">
           タスク達成率
@@ -12,13 +22,6 @@
           <h4 class="text-center"><%= number_to_percentage(@task_per * 100) %></h4>
         </div>
       </div>
-      <nav class="nav d-flex flex-column">
-        <h5 class="text-center">
-        - Time Menu -
-        </h5>
-        <%= link_to "スケジュール", plans_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
-        <%= link_to "Todoリスト", tasks_path, class: "nav-link d-flex justify-content-center border-top p-2", data: { "turbolinks": false } %>
-      </nav>
       <div class="card">
         <div class="card-header">
           達成済のTodoリスト
