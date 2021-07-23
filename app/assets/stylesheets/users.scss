@@ -137,3 +137,39 @@ body {
 .mypage-card {
   height: 40vh;
 }
+
+.user-sidebar {
+  padding: 0;
+  position: relative;
+}
+
+.user-side-menu {
+  color: black;
+  border-left: solid 8px orange;/*左側の線*/
+  background: whitesmoke;/*背景色*/
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
+  padding: 0.5em;
+  list-style-type: none!important;
+  transition: .4s;
+}
+.btn-partial-line {
+  // position: relative;
+  // display: inline-block;
+  // font-weight: bold;
+  // padding: 0.25em 0.5em;
+  // text-decoration: none;
+  // border-bottom: solid 3px #668ad8;
+  // border-left: solid 3px #668ad8;
+  // color: #668ad8;
+  // transition: .4s;
+}
+.user-side-menu:hover {
+  padding-left: 2em;
+}
+
+// .btn-partial-line:hover {
+//   padding-left: 0.7em;
+//   padding-right: 0.3em;
+// }

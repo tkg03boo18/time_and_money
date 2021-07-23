@@ -3,6 +3,28 @@ class BooksController < ApplicationController
 
   def index
     @user = current_user
+    @totalbooks = @user.books
+    @totalincomes = @totalbooks.where(main_category_id: 1)
+    @totalincomes_total_amount = 0
+    @totalincomes.each do |ti|
+      @totalincomes_total_amount += ti.amount
+    end
+    @totalfixed = @totalbooks.where(main_category_id: 2)
+    @totalfixed_total_amount = 0
+    @totalfixed.each do |tf|
+      @totalfixed_total_amount += tf.amount
+    end
+    @totalvariable = @totalbooks.where(main_category_id: 3)
+    @totalvariable_total_amount = 0
+    @totalvariable.each do |tv|
+      @totalvariable_total_amount += tv.amount
+    end
+    @totalinvestment = @totalbooks.where(main_category_id: 4)
+    @totalinvestment_total_amount = 0
+    @totalinvestment.each do |t_inv|
+      @totalinvestment_total_amount += t_inv.amount
+    end
+    
     if params[:month]
       @books = Book.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
       @outcomes = @books.where(main_category_id: [2, 3])
@@ -143,6 +165,19 @@ class BooksController < ApplicationController
       @investment_plans_total_amount += ip.amount
     end
     @investment_per = @investment_total_amount.to_f / @investment_plans_total_amount.to_f
+
+    @lists = @user.lists
+    @purchased_lists = @lists.where(purchased: true)
+    @purchased_lists_total_price = 0
+    @purchased_lists.each do |pl|
+      @purchased_lists_total_price += pi.price
+    end
+    @not_purchased_lists = @lists.where(purchased: false)
+    @not_purchased_lists_total_price = 0
+    @not_purchased_lists.each do |npl|
+      @not_purchased_lists_total_price += npl.price
+    end
+
 
   end
 

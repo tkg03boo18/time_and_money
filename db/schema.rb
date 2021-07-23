@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_15_153337) do
+ActiveRecord::Schema.define(version: 2021_07_21_145947) do
 
   create_table "books", force: :cascade do |t|
     t.integer "user_id"
@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_07_15_153337) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 
   create_table "lists", force: :cascade do |t|
     t.integer "user_id"
@@ -73,7 +72,7 @@ ActiveRecord::Schema.define(version: 2021_07_15_153337) do
     t.string "title"
     t.text "body"
     t.integer "importance", default: 0
-    t.integer "genre", default: 0
+    t.integer "urgency", default: 0
     t.datetime "deadline"
     t.boolean "fin", default: false, null: false
     t.datetime "created_at", null: false

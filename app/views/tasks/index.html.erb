@@ -13,6 +13,9 @@
         </div>
       </div>
       <nav class="nav d-flex flex-column">
+        <h5 class="text-center">
+        - Time Menu -
+        </h5>
         <%= link_to "スケジュール", plans_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
         <%= link_to "Todoリスト", tasks_path, class: "nav-link d-flex justify-content-center border-top p-2", data: { "turbolinks": false } %>
       </nav>
@@ -20,14 +23,14 @@
         <div class="card-header">
           達成済のTodoリスト
         </div>
-        <div class="card-body">
+        <div class="card-body p-2">
           <div class="list-group">
             <% @tasks.each do |task| %>
               <% if task.fin == true %>
-                <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
-                <div>
-                  <label class="small"><%= task.title %></label>
-                  <label class="small">期限：<%= task.deadline.strftime("%m/%d %H:%M") %></label>
+                <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start p-1" do %>
+                <div class="d-flex w-100 justify-content-between">
+                  <small><%= task.title %></small>
+                  <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
                 </div>
                 <% end %>
               <% end %>
@@ -40,15 +43,15 @@
       <div class="row">
         <div class="col-sm-6 mt-4">
           <div class="task-card card">
-            <h6 class="card-header bg-danger text-center">仕事（優先度：高）</h6>
+            <h6 class="card-header bg-danger text-center">緊急 × 重要</h6>
             <div class="card-body">
               <div class="list-group">
                 <% @tasks.each do |task| %>
-                  <% if task.genre == "仕事" and task.importance == "高い" and task.fin == false %>
+                  <% if task.urgency == "緊急" and task.importance == "重要" and task.fin == false %>
                     <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= task.title %></label>
-                      <small>期限：<%= task.deadline %></small>
+                      <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
                     </div>
                     <p class="mb-1"><%= task.body %></p>
                     <% end %>
@@ -60,15 +63,17 @@
         </div>
         <div class="col-sm-6 mt-4">
           <div class="task-card card">
-            <h6 class="card-header bg-info text-center">仕事（優先度：低）</h6>
+            <h6 class="card-header bg-info text-center">緊急でない × 重要</h6>
             <div class="card-body">
               <div class="list-group">
                 <% @tasks.each do |task| %>
-                  <% if task.genre == "仕事" and task.importance == "低い" and task.fin == false %>
+                  <% if task.urgency == "緊急でない" and task.importance == "重要" and task.fin == false %>
                     <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
-                      <%= task.title %>
-                      <%= task.body %>
-                      <%= task.deadline %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <label class="mb-1"><%= task.title %></label>
+                      <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
+                    </div>
+                    <p class="mb-1"><%= task.body %></p>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -78,15 +83,17 @@
         </div>
         <div class="col-sm-6 mt-4">
           <div class="task-card card">
-            <h6 class="card-header bg-warning text-center">プライベート（優先度：高）</h6>
+            <h6 class="card-header bg-warning text-center">緊急 × 重要でない</h6>
             <div class="card-body">
               <div class="list-group">
                 <% @tasks.each do |task| %>
-                  <% if task.genre == "プライベート" and task.importance == "高い" and task.fin == false %>
+                  <% if task.urgency == "緊急" and task.importance == "重要でない" and task.fin == false %>
                     <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
-                      <%= task.title %>
-                      <%= task.body %>
-                      <%= task.deadline %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <label class="mb-1"><%= task.title %></label>
+                      <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
+                    </div>
+                    <p class="mb-1"><%= task.body %></p>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -96,15 +103,17 @@
         </div>
         <div class="col-sm-6 mt-4">
           <div class="task-card card">
-            <h6 class="card-header bg-success text-center">プライベート（優先度：低）</h6>
+            <h6 class="card-header bg-success text-center">緊急でない × 重要でない</h6>
             <div class="card-body">
               <div class="list-group">
                 <% @tasks.each do |task| %>
-                  <% if task.genre == "プライベート" and task.importance == "低い" and task.fin == false %>
+                  <% if task.urgency == "緊急でない" and task.importance == "重要でない" and task.fin == false %>
                     <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
-                      <%= task.title %>
-                      <%= task.body %>
-                      <%= task.deadline %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <label class="mb-1"><%= task.title %></label>
+                      <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
+                    </div>
+                    <p class="mb-1"><%= task.body %></p>
                     <% end %>
                   <% end %>
                 <% end %>

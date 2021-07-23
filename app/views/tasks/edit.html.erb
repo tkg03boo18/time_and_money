@@ -19,8 +19,8 @@
         <%= f.select :importance, Task.importances.keys, {prompt: "選択してください"}, class: "form-control" %>
       </div>
       <div class="field">
-        <%= f.label :genre %>
-        <%= f.select :genre, Task.genres.keys,{prompt: "選択してください"}, class: "form-control" %>
+        <%= f.label :urgency %>
+        <%= f.select :urgency, Task.urgencies.keys,{prompt: "選択してください"}, class: "form-control" %>
       </div>
       <div class="field">
         <%= f.label :deadline, class: "form-control-label" %>

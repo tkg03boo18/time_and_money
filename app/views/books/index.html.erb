@@ -4,6 +4,21 @@
       <h2 class="text-center">家計簿</h2>
       <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
       <%= link_to "新規登録", new_book_path, class: "btn btn-block btn-primary", data: { "turbolinks": false } %>
+      <div class="card">
+        <div class="card-header">
+          今月の家計簿内訳
+        </div>
+        <div class="card-body">
+          <h6>収入</h6>
+          <h5 class="text-center">¥<%= @incomes_total_amount %></h5>
+          <h6>固定費</h6>
+          <h5 class="text-center">¥<%= @fixed_total_amount %></h5>
+          <h6>変動費</h6>
+          <h5 class="text-center">¥<%= @variable_total_amount %></h5>
+          <h6>貯蓄・投資</h6>
+          <h5 class="text-center">¥<%= @investment_total_amount %></h5>
+        </div>
+      </div>
       <nav class="nav d-flex flex-column">
         <%= link_to "収支管理", books_mypage_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
         <%= link_to "家計簿", books_path, class: "nav-link d-flex justify-content-center border-top p-2", data: { "turbolinks": false } %>
@@ -21,161 +36,112 @@
         <div class="col-sm-4">
           <div class="card">
             <div class="card-header">
-              今月の家計簿内訳
-            </div>
-            <div class="card-body">
-              <table class="table">
-                <tr>
-                  <th>収入</th>
-                  <td><%= @incomes_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>固定費支出</th>
-                  <td><%= @fixed_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>変動費支出</th>
-                  <td><%= @variable_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>貯蓄・投資</th>
-                  <td><%= @investment_total_amount %></td>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">
-
-            </div>
-            <div class="card-body">
-
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-8">
-          <div class="card">
-            <div class="card-header">
               固定費
             </div>
             <div class="card-body">
-              <div class="card-group">
-                <div class="book-card card">
-                  <div class="book-card card-body">
-                    <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-                  </div>
-                </div>
-                <div class="book-card card">
-                  <div class="book-card-body card-body">
-                    <table class="table table-sm">
-                      <thead>
-                        <tr class="small">
-                          <th>日付</th>
-                          <th>カテゴリ</th>
-                          <th>内容</th>
-                          <th>金額</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% @books.each do |book| %>
-                        <% if book.main_category_id == 2 %>
-                        <tr class="small">
-                          <td><%= book.date.strftime('%m/%d') %></td>
-                          <td><%= book.sub_category.name %></td>
-                          <td><%= book.introduction %></td>
-                          <td><%= book.amount %></td>
-                          <td><%= link_to 'Show', book_path(book) %></td>
-                        </tr>
-                        <% end %>
-                        <% end %>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <div class="card">
-          <div class="card-header">
-            変動費
-          </div>
-          <div class="card-body">
-            <div class="card-group">
-              <div class="book-card card">
+              <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
+              <div class="book-card card mt-2">
                 <div class="book-card-body card-body">
-                  <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-                </div>
-              </div>
-              <div class="book-card card">
-                  <div class="book-card-body card-body">
-                    <table class="table table-sm">
-                      <thead>
-                        <tr class="small">
-                          <th>日付</th>
-                          <th>カテゴリ</th>
-                          <th>内容</th>
-                          <th>金額</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% @books.each do |book| %>
-                        <% if book.main_category_id == 3 %>
-                        <tr class="small">
-                          <td><%= book.date.strftime('%m/%d') %></td>
-                          <td><%= book.sub_category.name %></td>
-                          <td><%= book.introduction %></td>
-                          <td><%= book.amount %></td>
-                          <td><%= link_to 'Show', book_path(book) %></td>
-                        </tr>
-                        <% end %>
-                        <% end %>
-                      </tbody>
-                    </table>
-                  </div>
+                  <table class="table table-sm">
+                    <thead>
+                      <tr class="small">
+                        <th>日付</th>
+                        <th>カテゴリ</th>
+                        <th>内容</th>
+                        <th>金額</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @books.each do |book| %>
+                      <% if book.main_category_id == 2 %>
+                      <tr class="small">
+                        <td><%= book.date.strftime('%m/%d') %></td>
+                        <td><%= book.sub_category.name %></td>
+                        <td><%= book.introduction %></td>
+                        <td><%= book.amount %></td>
+                        <td><%= link_to 'Show', book_path(book) %></td>
+                      </tr>
+                      <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card">
+            <div class="card-header">
+              変動費
+            </div>
+            <div class="card-body">
+              <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
+              <div class="book-card card mt-2">
+                <div class="book-card-body card-body">
+                  <table class="table table-sm">
+                    <thead>
+                      <tr class="small">
+                        <th>日付</th>
+                        <th>カテゴリ</th>
+                        <th>内容</th>
+                        <th>金額</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @books.each do |book| %>
+                      <% if book.main_category_id == 3 %>
+                      <tr class="small">
+                        <td><%= book.date.strftime('%m/%d') %></td>
+                        <td><%= book.sub_category.name %></td>
+                        <td><%= book.introduction %></td>
+                        <td><%= book.amount %></td>
+                        <td><%= link_to 'Show', book_path(book) %></td>
+                      </tr>
+                      <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
           <div class="card">
             <div class="card-header">
               貯蓄・投資
             </div>
             <div class="card-body">
-              <div class="card-group">
-                <div class="book-card card">
-                  <div class="book-card card-body">
-                    <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-                  </div>
-                </div>
-                <div class="book-card card">
-                  <div class="book-card-body card-body">
-                    <table class="table table-sm">
-                      <thead>
-                        <tr class="small">
-                          <th>日付</th>
-                          <th>カテゴリ</th>
-                          <th>内容</th>
-                          <th>金額</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <% @books.each do |book| %>
-                        <% if book.main_category_id == 4 %>
-                        <tr class="small">
-                          <td><%= book.date.strftime('%m/%d') %></td>
-                          <td><%= book.sub_category.name %></td>
-                          <td><%= book.introduction %></td>
-                          <td><%= book.amount %></td>
-                          <td><%= link_to 'Show', book_path(book) %></td>
-                        </tr>
-                        <% end %>
-                        <% end %>
-                      </tbody>
-                    </table>
-                  </div>
+              <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
+              <div class="book-card card mt-2">
+                <div class="book-card-body card-body">
+                  <table class="table table-sm">
+                    <thead>
+                      <tr class="small">
+                        <th>日付</th>
+                        <th>カテゴリ</th>
+                        <th>内容</th>
+                        <th>金額</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @books.each do |book| %>
+                      <% if book.main_category_id == 4 %>
+                      <tr class="small">
+                        <td><%= book.date.strftime('%m/%d') %></td>
+                        <td><%= book.sub_category.name %></td>
+                        <td><%= book.introduction %></td>
+                        <td><%= book.amount %></td>
+                        <td><%= link_to 'Show', book_path(book) %></td>
+                      </tr>
+                      <% end %>
+                      <% end %>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

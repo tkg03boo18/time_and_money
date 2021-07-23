@@ -8,100 +8,84 @@
     <!--<link href='lib/main.css' rel='stylesheet' />-->
     <!--<script src='lib/main.js'></script>-->
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var calendarEl = document.getElementById('calendar');
-      if (calendarEl !== null) {
-         var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        locale: 'ja',
-        navLinks: true,
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-        },
-        businessHours: {
-          daysOfWeek: [ 1, 2, 3, 4, 5 ],
-          startTime: '00:00',
-          endTime: '24:00'
-        },
-        editable: true,
-        selectable: true,
-        eventClick: function(info){
-
-          $.ajax({
-            url: "/plans/" + info.event.id +"/edit.js",
-            type: "GET",
-          })
-            .done(function (data, textStatus, jqXHR) {
-            })
-            .fail(function() {
-            });
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        if (calendarEl !== null) {
+           var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          locale: 'ja',
+          navLinks: true,
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
           },
-        eventDrop: function(info) {
+          businessHours: {
+            daysOfWeek: [ 1, 2, 3, 4, 5 ],
+            startTime: '00:00',
+            endTime: '24:00'
+          },
+          editable: true,
+          selectable: true,
+          eventClick: function(info){
 
-          $.ajax({
-            url: "/plans/" + info.event.id + "/calendarupdate",
-            type: "PATCH",
-            data: {
-              plan: {
-                title: info.event.title,
-                start_date: info.event.start,
-                end_date: info.event.end
+            $.ajax({
+              url: "/plans/" + info.event.id +"/edit.js",
+              type: "GET",
+            })
+              .done(function (data, textStatus, jqXHR) {
+              })
+              .fail(function() {
+              });
+            },
+          eventDrop: function(info) {
+
+            $.ajax({
+              url: "/plans/" + info.event.id + "/calendarupdate",
+              type: "PATCH",
+              data: {
+                plan: {
+                  title: info.event.title,
+                  start_date: info.event.start,
+                  end_date: info.event.end
+                }
               }
-            }
-          })
-            .done(function (data, textStatus, jqXHR) {
             })
-            .fail(function() {
-            });
-          },
-        // },
+              .done(function (data, textStatus, jqXHR) {
+              })
+              .fail(function() {
+              });
+            },
+          // },
 
-        eventSources: [
-          {
-            url: '/plans.json', // use the `url` property
-            color: '#007bff',    // an option!
-            textColor: 'white'  // an option!
-          },
+          eventSources: [
+            {
+              url: '/plans.json', // use the `url` property
+              color: '#007bff',    // an option!
+              textColor: 'white'  // an option!
+            },
 
-        ]
+          ]
+        });
+
+        calendar.render();
+        }
+
       });
 
-      calendar.render();
-      }
-
-    });
-    // function reloadcalendar()
-    // { var calendarEl = document.getElementById('calendar');
-    //   var calendar = new FullCalendar.Calendar(calendarEl, {
-    //     initialView: 'dayGridMonth',
-    //     headerToolbar: {
-    //       left: 'prev,next today',
-    //       center: 'title',
-    //       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-    //     },
-    //     locale: 'ja',
-    //     navLinks: true,
-    //     businessHours: true,
-    //     editable: true,
-    //     selectable: true,
-
-
-    //     events: '/plans.json'
-    //   });
-    //   calendar.render();}
-  </script>
+    </script>
 
 
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;300;400&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <header class="border">
+    <header>
       <% if user_signed_in? %>
        <%= render 'layouts/userheader', user: @user %>
       <% else %>

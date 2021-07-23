@@ -5,10 +5,15 @@
       <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
       <%= attachment_image_tag @user, :image, class: "d-block mx-auto rounded w-50" %>
       <p><%= link_to "My Menuへ", users_mymenu_path %></p>
+      <ul class="user-sidebar">
+        <li class="user-side-menu"><%= link_to "ユーザー詳細", users_show_path %></li>
+        <li class="user-side-menu"><%= link_to "スケジュール", plans_path, data: { "turbolinks": false } %></li>
+        <li class="user-side-menu"><%= link_to "収支管理", books_mypage_path %></li>
+      </ul>
       <nav class="nav d-flex flex-column">
-        <a class="nav-link d-flex justify-content-center border-top p-2">Active</a>
-        <a class="nav-link d-flex justify-content-center border-top p-2" href="#!">Link</a>
-        <a class="nav-link d-flex justify-content-center border-top p-2" href="#!">Link</a>
+        <%= link_to "ユーザー詳細", users_show_path, class: "user-side-menu nav-link", data: { "turbolinks": false } %>
+        <%= link_to "スケジュール", plans_path, class: "user-side-menu nav-link", data: { "turbolinks": false } %>
+        <%= link_to "収支管理", books_mypage_path, class: "user-side-menu nav-link", data: { "turbolinks": false } %>
       </nav>
     </div>
     <div class="col-sm-10">
@@ -37,11 +42,11 @@
         </div>
         <div class="col-sm-6 mt-4">
           <div class="mypage-card card">
-            <div class="card-header">優先度の高いTodoリスト</div>
+            <div class="card-header">未達成のTodoリスト（緊急 × 重要）</div>
             <div class="card-body">
               <div class="list-group">
                 <% @tasks.each do |task| %>
-                  <% if task.importance == "高い" %>
+                  <% if task.importance == "重要" and task.urgency == "緊急" and task.fin == false %>
                     <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= task.title %></label>

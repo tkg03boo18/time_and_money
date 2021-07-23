@@ -100,13 +100,13 @@
               <div class="card-group">
                 <div class="card border-0">
                   <div class="card-body pt-0 px-0">
-                    <h6 class="card-title">今月の支出内訳</h6>
+                    <h6 class="card-title">支出内訳</h6>
                     <%= column_chart @outcomes.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
                   </div>
                 </div>
                 <div class="card border-0">
                   <div class="card-body pt-0 px-0">
-                    <h6 class="card-title">今月の支出計画内訳</h6>
+                    <h6 class="card-title">計画内訳</h6>
                     <%= column_chart @outcomes_plans.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
                   </div>
                 </div>
@@ -150,20 +150,26 @@
               今月の貯蓄・投資計画
             </div>
             <div class="card-body">
-              <table class="table table-sm">
-                <tr>
-                  <th>目標額</th>
-                  <td><%= @investment_plans_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>貯蓄・投資額</th>
-                  <td><%= @investment_total_amount %></td>
-                </tr>
-                <tr>
-                  <th>目標達成率</th>
-                  <td><%= number_to_percentage(@investment_per * 100) %></td>
-                </tr>
-              </table>
+              <div class="card-group">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">目標額</h5>
+                    <h4 class="card-text">¥<%= @investment_plans_total_amount %></h4>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">達成額</h5>
+                    <h4 class="card-text">¥<%= @investment_total_amount %></h4>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">達成率</h5>
+                    <h4 class="card-text"><%= number_to_percentage(@investment_per * 100) %></h4>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -174,8 +180,20 @@
               欲しいものリスト
             </div>
             <div class="card-body">
-              <h4 class="card-title">Special title treatment</h4>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              <div class="card-group">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">未購入合計</h5>
+                    <h4 class="card-text">¥<%= @not_purchased_lists_total_price %><small>（<%= @not_purchased_lists.count %>件）</small></h4>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">購入済合計</h5>
+                    <h4 class="card-text">¥<%= @purchased_lists_total_price %><small>（<%= @purchased_lists.count %>件）</small></h4>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

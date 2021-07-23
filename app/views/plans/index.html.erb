@@ -1,19 +1,19 @@
 <div class="container-fluid">
   <div class="row">
     <div class="plan-sidebar col-sm-2">
-      <h2 class="text-center">スケジュール</h2>
+      <h3 class="plan-title">スケジュール</h3>
       <h5 class="text-center"><%= Date.current.strftime('%Y年%m月%d日') %></h5>
       <%= link_to 'New Plan', new_plan_path, remote: true, class: "btn btn-block btn-primary" %>
       <div id="plan-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
       <div id="editplan-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
       <div class="card">
         <div class="card-header">
-          未達成のTodoリスト（優先度：高）
+          未達成のTodoリスト（緊急 × 重要）
         </div>
         <div class="card-body">
           <div class="list-group">
             <% @tasks.each do |task| %>
-              <% if task.fin == false and task.importance == "高い" %>
+              <% if task.fin == false and task.importance == "重要" and task.urgency == "緊急" %>
                 <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
                 <div>
                   <label class="small"><%= task.title %></label>
@@ -26,9 +26,19 @@
         </div>
       </div>
       <nav class="nav d-flex flex-column">
+        <h5 class="text-center">- Time Menu -</h5>
         <%= link_to "スケジュール", plans_path, class: "nav-link d-flex justify-content-center border-top p-2 active", data: { "turbolinks": false } %>
         <%= link_to "Todoリスト", tasks_path, class: "nav-link d-flex justify-content-center border-top p-2", data: { "turbolinks": false } %>
       </nav>
+      <nav class="nav d-flex flex-column">
+        <a href="#" class="btn-partial-line nav-link">
+          <i class="fa fa-caret-right"></i> BUTTON
+        </a>
+        <a href="#" class="btn-partial-line nav-link">
+          <i class="fa fa-caret-right"></i> BUTTON
+        </a>
+      </nav>
+
     </div>
     <div class="col-sm-10">
       <div id="calendar"></div>
