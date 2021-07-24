@@ -6,7 +6,11 @@
 // }
 
 .mypage-card {
-  height: 40vh;
+  height: 43vh;
+}
+
+.mypage-card-body {
+  overflow-y: scroll;
 }
 
 .side-menu {

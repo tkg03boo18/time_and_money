@@ -63,13 +63,13 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card">
+          <div class="bp-card card">
             <div class="card-header">
               固定費
             </div>
-            <div class="card-body">
+            <div class="card-body py-2">
               <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <div class="bp-list list-group mt-2">
+              <div class="list-group mt-2">
                 <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 2 %>
                     <%= link_to budget_plan_path(bp), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
@@ -85,13 +85,13 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card">
+          <div class="bp-card card">
             <div class="card-header">
               変動費
             </div>
-            <div class="card-body">
+            <div class="bp-card-body card-body py-2">
               <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <div class="bp-list list-group mt-2">
+              <div class="list-group mt-2">
                 <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 3 %>
                     <%= link_to budget_plan_path(bp), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
@@ -107,13 +107,13 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="card">
+          <div class="bp-card card">
             <div class="card-header">
               貯蓄・投資
             </div>
-            <div class="card-body">
+            <div class="bp-card-body card-body py-2">
               <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <div class="bp-list list-group mt-2">
+              <div class="list-group mt-2">
                 <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 4 %>
                     <%= link_to budget_plan_path(bp), class: "list-group-item list-group-item-action flex-column align-items-start" do %>

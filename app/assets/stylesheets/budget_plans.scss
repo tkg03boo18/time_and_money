@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.bp-list {
-    height: 40vh;
+.bp-card {
+  height: 83vh;
+}
+.bp-card-body {
+  overflow-y: scroll;
 }

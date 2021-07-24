@@ -184,7 +184,7 @@ class BooksController < ApplicationController
     @purchased_lists = @lists.where(purchased: true)
     @purchased_lists_total_price = 0
     @purchased_lists.each do |pl|
-      @purchased_lists_total_price += pi.price
+      @purchased_lists_total_price += pl.price
     end
     @not_purchased_lists = @lists.where(purchased: false)
     @not_purchased_lists_total_price = 0

@@ -3,6 +3,18 @@ class ListsController < ApplicationController
   def index
     @user = current_user
     @lists = @user.lists
+    @not_purchased= @lists.where(purchased: false)
+    @not_purchased_total_price = 0
+    @not_purchased.each do |np|
+     @not_purchased_total_price += np.price
+    end
+    @books = @user.books
+    @my_savings = @books.where(sub_category_id: 24)
+    @my_savings_total_amount = 0
+    @my_savings.each do |ms|
+      @my_savings_total_amount += ms.amount
+    end
+
   end
 
   def new

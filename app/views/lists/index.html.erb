@@ -20,13 +20,26 @@
         <i class="fas fa-shopping-cart"></i> Wishリスト
         <% end %>
       </nav>
+      <div class="card">
+        <div class="card-header">
+          必要資金
+        </div>
+        <div class="card-body">
+          <h6>必要資金</h6>
+          <h6><%= @not_purchased_total_price %></h6>
+          <h6>My貯金</h6>
+          <h6><%= @my_savings_total_amount %></h6>
+          <h6>不足金額</h6>
+          <h6><%= @not_purchased_total_price - @my_savings_total_amount %></h6>
+        </div>
+      </div>
     </div>
     <div class="col-sm-10">
       <div class="row">
         <div class="col-sm-6 py-3">
           <div class="list-card card">
             <div class="card-header bg-danger">未購入のWishリスト</div>
-            <div class="card-body">
+            <div class="list-card-body card-body">
               <div class="list-group">
                 <% @lists.each do |list| %>
                   <% if list.purchased == false %>
@@ -46,7 +59,7 @@
         <div class="col-sm-6 py-3">
           <div class="list-card card">
             <div class="card-header bg-info">購入済のWishリスト</div>
-            <div class="card-body">
+            <div class="card-body list-card-body">
               <div class="list-group">
                 <% @lists.each do |list| %>
                   <% if list.purchased == true %>
