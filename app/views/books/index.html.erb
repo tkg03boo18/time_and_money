@@ -26,7 +26,7 @@
           <h6 class="text-center">家計簿内訳</h6>
         </div>
         <div class="card-body">
-          <table class="table table-sm">
+          <table class="table table-sm table-borderless">
             <tr class="small">
               <th>収入</th>
               <td>¥<%= @incomes_total_amount %></td>
@@ -50,9 +50,17 @@
     <div class="col-sm-10">
       <div class="row">
         <div class="col-sm-12 d-flex justify-content-center">
-          <div class="p-2"><%= link_to "前月", books_path(month: params[:month].to_i - 1), data: { "turbolinks": false } %></div>
+          <div class="p-2">
+            <%= link_to books_path(month: params[:month].to_i - 1), data: { "turbolinks": false } do %>
+            <i class="fas fa-angle-left fa-2x"></i>
+            <% end %>
+          </div>
           <div class="p-2"><h3><%= Time.current.beginning_of_day.since(params[:month].to_i.months).strftime('%Y年%m月') %></h3></div>
-          <div class="p-2"><%= link_to "翌月", books_path(month: params[:month].to_i + 1), data: { "turbolinks": false } %></div>
+          <div class="p-2">
+            <%= link_to books_path(month: params[:month].to_i + 1), data: { "turbolinks": false } do %>
+            <i class="fas fa-angle-right fa-2x"></i>
+            <% end %>
+          </div>
         </div>
         <div class="col-sm-4">
           <div class="card">
@@ -81,7 +89,11 @@
                         <td><%= book.sub_category.name %></td>
                         <td><%= book.introduction %></td>
                         <td><%= book.amount %></td>
-                        <td><%= link_to 'Show', book_path(book) %></td>
+                        <td>
+                          <%= link_to book_path(book) do %>
+                          <i class="fas fa-search-plus"></i>
+                          <% end %>
+                        </td>
                       </tr>
                       <% end %>
                       <% end %>
@@ -119,7 +131,11 @@
                         <td><%= book.sub_category.name %></td>
                         <td><%= book.introduction %></td>
                         <td><%= book.amount %></td>
-                        <td><%= link_to 'Show', book_path(book) %></td>
+                        <td>
+                          <%= link_to book_path(book) do %>
+                          <i class="fas fa-search-plus"></i>
+                          <% end %>
+                        </td>
                       </tr>
                       <% end %>
                       <% end %>
@@ -157,7 +173,11 @@
                         <td><%= book.sub_category.name %></td>
                         <td><%= book.introduction %></td>
                         <td><%= book.amount %></td>
-                        <td><%= link_to 'Show', book_path(book) %></td>
+                        <td>
+                          <%= link_to book_path(book) do %>
+                          <i class="fas fa-search-plus"></i>
+                          <% end %>
+                        </td>
                       </tr>
                       <% end %>
                       <% end %>

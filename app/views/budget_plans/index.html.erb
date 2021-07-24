@@ -26,7 +26,7 @@
           <h6 class="text-center">収支計画内訳</h6>
         </div>
         <div class="card-body">
-          <table class="table table-sm">
+          <table class="table table-sm table-borderless">
             <tr class="small">
               <th>収入</th>
               <td>¥<%= @incomes_total_amount %></td>
@@ -50,9 +50,17 @@
     <div class="col-sm-10">
       <div class="row">
         <div class="col-sm-12 d-flex justify-content-center">
-          <div class="p-2"><%= link_to "前月", budget_plans_path(month: params[:month].to_i - 1), data: { "turbolinks": false } %></div>
+          <div class="p-2">
+            <%= link_to budget_plans_path(month: params[:month].to_i - 1), data: { "turbolinks": false } do %>
+            <i class="fas fa-angle-left fa-2x"></i>
+            <% end %>
+          </div>
           <div class="p-2"><h3><%= Time.current.beginning_of_month.since(params[:month].to_i.months).strftime('%Y年%m月') %></h3></div>
-          <div class="p-2"><%= link_to "翌月", budget_plans_path(month: params[:month].to_i + 1), data: { "turbolinks": false } %></div>
+          <div class="p-2">
+            <%= link_to budget_plans_path(month: params[:month].to_i + 1), data: { "turbolinks": false } do %>
+            <i class="fas fa-angle-right fa-2x"></i>
+            <% end %>
+          </div>
         </div>
         <div class="col-sm-4">
           <div class="card">
@@ -61,27 +69,18 @@
             </div>
             <div class="card-body">
               <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th>カテゴリー</th>
-                    <th>金額</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @budget_plans.each do |bp| %>
+              <div class="bp-list list-group mt-2">
+                <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 2 %>
-                  <tr>
-                    <td><%= bp.sub_category.name %></td>
-                    <td><%= bp.amount %></td>
-                    <td><%= link_to 'Show', budget_plan_path(bp) %></td>
-                    <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
-                    <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                    <%= link_to budget_plan_path(bp), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <label class="mb-1"><%= bp.sub_category.name %></label>
+                      <label class="mb-1">¥<%= bp.amount %></small>
+                    </div>
+                    <% end %>
                   <% end %>
-                  <% end %>
-                </tbody>
-              </table>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -92,27 +91,18 @@
             </div>
             <div class="card-body">
               <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th>カテゴリー</th>
-                    <th>金額</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @budget_plans.each do |bp| %>
+              <div class="bp-list list-group mt-2">
+                <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 3 %>
-                  <tr>
-                    <td><%= bp.sub_category.name %></td>
-                    <td><%= bp.amount %></td>
-                    <td><%= link_to 'Show', budget_plan_path(bp) %></td>
-                    <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
-                    <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                    <%= link_to budget_plan_path(bp), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <label class="mb-1"><%= bp.sub_category.name %></label>
+                      <label class="mb-1">¥<%= bp.amount %></small>
+                    </div>
+                    <% end %>
                   <% end %>
-                  <% end %>
-                </tbody>
-              </table>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
@@ -123,27 +113,18 @@
             </div>
             <div class="card-body">
               <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <th>カテゴリー</th>
-                    <th>金額</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @budget_plans.each do |bp| %>
+              <div class="bp-list list-group mt-2">
+                <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 4 %>
-                  <tr>
-                    <td><%= bp.sub_category.name %></td>
-                    <td><%= bp.amount %></td>
-                    <td><%= link_to 'Show', budget_plan_path(bp) %></td>
-                    <td><%= link_to 'Edit', edit_budget_plan_path(bp) %></td>
-                    <td><%= link_to 'Destroy', budget_plan_path(bp), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  </tr>
+                    <%= link_to budget_plan_path(bp), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <label class="mb-1"><%= bp.sub_category.name %></label>
+                      <label class="mb-1">¥<%= bp.amount %></small>
+                    </div>
+                    <% end %>
                   <% end %>
-                  <% end %>
-                </tbody>
-              </table>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>

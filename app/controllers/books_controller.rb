@@ -24,7 +24,7 @@ class BooksController < ApplicationController
     @totalinvestment.each do |t_inv|
       @totalinvestment_total_amount += t_inv.amount
     end
-    
+
     if params[:month]
       @books = @user.books.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
       @outcomes = @books.where(main_category_id: [2, 3])
@@ -103,7 +103,12 @@ class BooksController < ApplicationController
     end
 
     @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
-    @outcomes = @books.where(main_category_id: [2, 3, 4])
+    @not_incomes = @books.where(main_category_id: [2, 3, 4])
+    @outcomes = @books.where(main_category_id: [2, 3])
+    @outcomes_total_amount = 0
+    @outcomes.each do |outcome|
+      @outcomes_total_amount += outcome.amount
+    end
     @incomes = @books.where(main_category_id: 1)
     @incomes_total_amount = 0
     @incomes.each do |income|
@@ -130,7 +135,8 @@ class BooksController < ApplicationController
     @prev_incomes.each do |income|
       @prev_incomes_total_amount += income.amount
     end
-    @prev_outcomes = @prev_books.where(main_category_id: [2, 3, 4])
+    @prev_outcomes = @prev_books.where(main_category_id: [2, 3])
+    @prev_not_incomes = @prev_books.where(main_category_id: [2, 3, 4])
     @prev_fixed = @prev_books.where(main_category_id: 2)
     @prev_fixed_total_amount = 0
     @prev_fixed.each do |fixed|
@@ -148,7 +154,12 @@ class BooksController < ApplicationController
     end
 
     @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
-    @outcomes_plans = @budget_plans.where(main_category_id: [2, 3, 4])
+    @not_incomes_plans = @budget_plans.where(main_category_id: [2, 3, 4])
+    @outcomes_plans = @budget_plans.where(main_category_id: [2, 3])
+    @outcomes_plans_total_amount = 0
+    @outcomes_plans.each do |op|
+      @outcomes_plans_total_amount += op.amount
+    end
     @fixed_plans = @budget_plans.where(main_category_id: 2)
     @fixed_plans_total_amount = 0
     @fixed_plans.each do |fp|
@@ -164,6 +175,9 @@ class BooksController < ApplicationController
     @investment_plans.each do |ip|
       @investment_plans_total_amount += ip.amount
     end
+    @outcomes_per = @outcomes_total_amount.to_f / @outcomes_plans_total_amount.to_f
+    @fixed_per = @fixed_total_amount.to_f / @fixed_plans_total_amount.to_f
+    @variable_per = @variable_total_amount.to_f / @variable_plans_total_amount.to_f
     @investment_per = @investment_total_amount.to_f / @investment_plans_total_amount.to_f
 
     @lists = @user.lists

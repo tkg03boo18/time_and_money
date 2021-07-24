@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @incomes.each do |income|
       @incomes_total_amount += income.amount
     end
+    @not_incomes = @books.where(main_category_id: [2, 3, 4])
     @fixed = @books.where(main_category_id: 2)
     @fixed_total_amount = 0
     @fixed.each do |fixed|
@@ -32,6 +33,7 @@ class UsersController < ApplicationController
     end
 
     @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    @not_incomes_plans = @budget_plans.where(main_category_id: [2, 3, 4])
     @fixed_plans = @budget_plans.where(main_category_id: 2)
     @fixed_plans_total_amount = 0
     @fixed_plans.each do |fp|
@@ -49,9 +51,9 @@ class UsersController < ApplicationController
     end
 
   end
-  
-  
-  
+
+
+
   def show
     @user = current_user
   end
