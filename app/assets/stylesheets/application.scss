@@ -17,6 +17,10 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+main {
+ padding-top: 65px;
+}
+
 .user-nav:hover {
  color: white;
  background-color: #007bff;

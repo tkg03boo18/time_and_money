@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="plan-sidebar col-sm-2">
+    <div class="plan-sidebar col-sm-2 mt-2">
       <h3><i class="fas fa-calendar-alt"></i> スケジュール</h3>
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
       <%= link_to new_plan_path, remote: true, class: "btn btn-block btn-primary" do %>
@@ -28,7 +28,7 @@
       <!--</nav>-->
 
     </div>
-    <div class="col-sm-10">
+    <div class="col-sm-10 mt-2">
       <div id="calendar"></div>
     </div>
   </div>

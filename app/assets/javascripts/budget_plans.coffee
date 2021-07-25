@@ -24,7 +24,7 @@ $ ->
             console.log("textStatus: #{textStatus}")
             console.log("errorThrown: #{errorThrown}")
       else
+
         replaceSelectOptions($selectChildren, [])
 
-    $('.select-parent').on
-      'change': replaceChildrenOptions
+    $(document).on 'change', '.select-parent', replaceChildrenOptions

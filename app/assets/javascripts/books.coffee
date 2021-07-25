@@ -11,7 +11,6 @@ $ ->
 
     replaceChildrenOptions = ->
       childrenPath = $(@).find('option:selected').data().childrenPath
-      console.log(childrenPath)
       $selectChildren = $(@).closest('form').find('.select-children')
       if childrenPath?
         $.ajax
@@ -25,8 +24,7 @@ $ ->
             console.log("textStatus: #{textStatus}")
             console.log("errorThrown: #{errorThrown}")
       else
-        console.log("aaa")
+        
         replaceSelectOptions($selectChildren, [])
 
-    $('.select-parent').on
-      'change': replaceChildrenOptions
+    $(document).on 'change', '.select-parent', replaceChildrenOptions

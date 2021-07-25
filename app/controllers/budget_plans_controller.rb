@@ -58,13 +58,8 @@ class BudgetPlansController < ApplicationController
 
   def create
     @budget_plan = BudgetPlan.new(budget_plan_params)
-    respond_to do |format|
-      if @budget_plan.save
-        format.html { redirect_to budget_plans_path }
-      else
-        format.html { render :new }
-      end
-    end
+    @budget_plan.save
+    redirect_to budget_plans_path
   end
 
   def show

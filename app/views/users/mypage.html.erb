@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="mypage-sidebar col-sm-2">
+    <div class="mypage-sidebar col-sm-2 mt-2">
       <h3><i class="far fa-user-circle"></i> My Page</h3>
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
 
@@ -30,7 +30,7 @@
     </div>
     <div class="col-sm-10">
       <div class="row">
-        <div class="col-sm-6 mt-3">
+        <div class="col-sm-6 mt-2">
           <div class="mypage-card card">
             <div class="card-header">
               <%= Time.current.beginning_of_week.strftime('%m月%d日') %>〜<%= Time.current.end_of_week.strftime('%m月%d日') %>の予定
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-3">
+        <div class="col-sm-6 mt-2">
           <div class="mypage-card card">
             <div class="card-header">未達成のTodoリスト</div>
             <div class="mypage-card-body card-body">
@@ -95,7 +95,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-3">
+        <div class="col-sm-6 mt-2">
           <div class="mypage-card card">
             <div class="card-header">今月の収支計画</div>
             <div class="card-body">
@@ -134,7 +134,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-3">
+        <div class="col-sm-6 mt-2">
           <div class="mypage-card card">
             <div class="card-header">今月の収支</div>
             <div class="card-body">

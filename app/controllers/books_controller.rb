@@ -201,13 +201,8 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    respond_to do |format|
-      if @book.save
-        format.html { redirect_to books_path }
-      else
-        format.html { render :new }
-      end
-    end
+    @book.save
+    redirect_to books_path
   end
 
   def show

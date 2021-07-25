@@ -1,0 +1,64 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+
+  <%= form_with(model: @budget_plan, local: true) do |f| %>
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+  <div class="modal-header">
+    <h5 class="modal-title">New Budget Plan</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group field">
+            <%= f.label :main_category, class: "form-control-label" %>
+            <% main_category_options = MainCategory.order(:id).map { |c| [c.name, c.id, data: { children_path: main_category_sub_categories_path(c) }] } %>
+            <%= f.select :main_category_id, main_category_options, { include_blank: true }, class: 'select-parent form-control' %>
+          </div>
+
+          <div class="form-group field">
+            <%= f.label :sub_category, class: "form-control-label" %>
+            <% sub_categories = @budget_plan.main_category.try(:sub_categories) || [] %>
+            <% sub_category_options = sub_categories.map { |c| [c.name, c.id] } %>
+            <%= f.select :sub_category_id, sub_category_options, { include_blank: true }, class: 'select-children form-control' %>
+          </div>
+
+          <div class="form-group field">
+            <%= f.label :amount, class: "form-control-label" %>
+            <%= f.text_field :amount, class: "form-control" %>
+          </div>
+
+          <div class="form-group field">
+            <%= f.label :date %>
+            <%= f.date_select :date, {discard_day: true}, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <h6 class="text-center">主な固定費予算目安</h6>
+          <ul class="list-group small">
+            <li class="list-group-item">住宅：収入の30％</li>
+            <li class="list-group-item">水道・光熱費：収入の5％</li>
+            <li class="list-group-item">通信費：収入の5％</li>
+          </ul>
+          <h6 class="text-center mt-2">主な変動費予算目安</h6>
+          <ul class="list-group small">
+            <li class="list-group-item">食費：収入の15％</li>
+            <li class="list-group-item">日用品：収入の1〜2％</li>
+            <li class="list-group-item">交際費：収入の10％</li>
+            <li class="list-group-item">趣味・娯楽：収入の5％</li>
+            <li class="list-group-item">衣服・美容：収入の5％</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+  <% end %>
+  </div>
+</div>
