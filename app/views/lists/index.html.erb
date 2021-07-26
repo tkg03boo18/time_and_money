@@ -21,19 +21,23 @@
         <i class="fas fa-shopping-cart"></i> Wishリスト
         <% end %>
       </nav>
-      <div class="card">
-        <div class="card-header">
+      <ul class="list-group">
+        <li class="list-group-item list-group-item-primary">
+          <h6 class="text-center">必要資金</h6>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
           必要資金
-        </div>
-        <div class="card-body">
-          <h6>必要資金</h6>
-          <h6><%= @not_purchased_total_price %></h6>
-          <h6>My貯金</h6>
-          <h6><%= @my_savings_total_amount %></h6>
-          <h6>不足金額</h6>
-          <h6><%= @not_purchased_total_price - @my_savings_total_amount %></h6>
-        </div>
-      </div>
+          <span>¥<%= @not_purchased_total_price %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          My貯金
+          <span>¥<%= @my_savings_total_amount %></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          不足額
+          <span>¥<%= @not_purchased_total_price - @my_savings_total_amount %></span>
+        </li>
+      </ul>
     </div>
     <div class="col-sm-10">
       <div class="row">
@@ -47,7 +51,7 @@
                     <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= list.name %></label>
-                      <small>購入希望期限：<%= list.date %></small>
+                      <small>購入希望期限：<%= list.date.strftime('%Y/%m/%d') %></small>
                     </div>
                     <p class="mb-1">金額：<%= list.price %></p>
                     <% end %>
@@ -67,9 +71,8 @@
                     <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= list.name %></label>
-                      <small>購入希望期限：<%= list.date %></small>
+                      <small>金額：<%= list.price %></small>
                     </div>
-                    <p class="mb-1">金額：<%= list.price %></p>
                     <% end %>
                   <% end %>
                 <% end %>

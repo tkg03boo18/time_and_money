@@ -34,6 +34,11 @@ class UsersController < ApplicationController
 
     @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
     @not_incomes_plans = @budget_plans.where(main_category_id: [2, 3, 4])
+    @incomes_plans = @budget_plans.where(main_category_id: 1)
+    @incomes_plans_total_amount = 0
+    @incomes_plans.each do |ip|
+      @incomes_plans_total_amount += ip.amount
+    end
     @fixed_plans = @budget_plans.where(main_category_id: 2)
     @fixed_plans_total_amount = 0
     @fixed_plans.each do |fp|

@@ -1,38 +1,80 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-10 offset-sm-1 my-4">
-      <h4 class="text-center">ユーザー情報詳細</h4>
+    <div class="mypage-sidebar col-sm-2 mt-2">
+      <h3><i class="far fa-user-circle"></i> My Page</h3>
+      <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+
+      <nav class="nav d-flex flex-column">
+        <%= link_to users_mypage_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <i class="far fa-user-circle"></i> My Page
+        <% end %>
+        <%= link_to users_show_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-id-card"></i> ユーザー詳細
+        <% end %>
+        <%= link_to plans_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calendar-alt"></i> スケジュール
+        <% end %>
+        <%= link_to tasks_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-tasks"></i> Todoリスト
+        <% end %>
+        <%= link_to books_mypage_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="far fa-chart-bar"></i> 収支管理
+        <% end %>
+        <%= link_to books_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calculator"></i> 家計簿
+        <% end %>
+        <%= link_to budget_plans_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-file-alt"></i> 収支計画
+        <% end %>
+        <%= link_to lists_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-shopping-cart"></i> Wishリスト
+        <% end %>
+      </nav>
     </div>
-    <div class="col-sm-2 offset-sm-5 my-4">
-       <%= attachment_image_tag @user, :image, class: "img-fluid rounded" %>
-    </div>
-	  <table class="table col-sm-6 offset-sm-3">
-	    <tr>
-	      <th class="col-sm-2">ユーザー名</th>
-	      <td class="col-sm-4"><%= @user.name %></td>
-	    </tr>
-	    <tr>
-	      <th class="col-sm-2">メールアドレス</th>
-	      <td class="col-sm-4"><%= @user.email %></td>
-	    </tr>
-	    <tr>
-	      <th class="col-sm-2">地域</th>
-	      <td class="col-sm-4"><%= @user.area %></td>
-	    </tr>
-	    <tr>
-	      <th class="col-sm-2">職業</th>
-	      <td class="col-sm-4"><%= @user.job %></td>
-	    </tr>
-    </table>
-    <div class="col-sm-2 offset-sm-5 mt-4">
-      <%= link_to users_edit_path(@user) do %>
-      <button type="button" class="btn btn-success">編集する</button>
-      <% end %>
-    </div>
-    <div class="col-sm-2 mt-4">
-      <%= link_to  users_unsubscribe_path do %>
-      <button type="button" class="btn btn-danger">退会する</button>
-      <% end %>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-4 offset-sm-4 my-2">
+          <div class="card">
+            <div class="card-header text-center font-weight-bold">
+              User Info
+            </div>
+            <div class="card-body">
+              <div class="text-center">
+                <%= attachment_image_tag @user, :image, class: "img-fluid rounded w-50" %>
+              </div>
+              <table class="table mt-2">
+          	    <tr>
+          	      <th>ユーザー名</th>
+          	      <td><%= @user.name %></td>
+          	    </tr>
+          	    <tr>
+          	      <th>メールアドレス</th>
+          	      <td><%= @user.email %></td>
+          	    </tr>
+          	    <tr>
+          	      <th>地域</th>
+          	      <td><%= @user.area %></td>
+          	    </tr>
+          	    <tr>
+          	      <th>職業</th>
+          	      <td><%= @user.job %></td>
+          	    </tr>
+              </table>
+            </div>
+            <div class="card-footer text-center">
+              <%= link_to users_mypage_path do %>
+              <button type="button" class="btn btn-primary">My Pageへ</button>
+              <% end %>
+              <%= link_to users_edit_path(@user) do %>
+              <button type="button" class="btn btn-success">編集する</button>
+              <% end %>
+              <%= link_to  users_unsubscribe_path do %>
+              <button type="button" class="btn btn-danger">退会する</button>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

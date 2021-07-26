@@ -17,16 +17,41 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
+header {
+ font-family: 'M PLUS 1p', sans-serif;
+}
+
 main {
  padding-top: 65px;
+ font-family: 'M PLUS 1p', sans-serif;
 }
 
-.user-nav:hover {
+.user-nav1:hover {
+ color: white;
+ background-color: #25F500;
+}
+
+.userheader-item1:hover {
+ color: white;
+ background-color: #25F500;
+}
+
+.user-nav2:hover {
  color: white;
  background-color: #007bff;
 }
 
-.userheader-item:hover {
+.userheader-item2:hover {
  color: white;
  background-color: #007bff;
+}
+
+.user-nav3:hover {
+ color: white;
+ background-color: #FA7E00;
+}
+
+.userheader-item3:hover {
+ color: white;
+ background-color: #FA7E00;
 }

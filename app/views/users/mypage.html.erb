@@ -5,35 +5,38 @@
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
 
       <nav class="nav d-flex flex-column">
-        <%= link_to users_show_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to users_mypage_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <i class="far fa-user-circle"></i> My Page
+        <% end %>
+        <%= link_to users_show_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-id-card"></i> ユーザー詳細
         <% end %>
-        <%= link_to plans_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to plans_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-calendar-alt"></i> スケジュール
         <% end %>
-        <%= link_to tasks_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to tasks_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-tasks"></i> Todoリスト
         <% end %>
-        <%= link_to books_mypage_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to books_mypage_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="far fa-chart-bar"></i> 収支管理
         <% end %>
-        <%= link_to books_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to books_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-calculator"></i> 家計簿
         <% end %>
-        <%= link_to budget_plans_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to budget_plans_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-file-alt"></i> 収支計画
         <% end %>
-        <%= link_to lists_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to lists_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-shopping-cart"></i> Wishリスト
         <% end %>
       </nav>
     </div>
     <div class="col-sm-10">
       <div class="row">
-        <div class="col-sm-6 mt-2">
+        <div class="col-sm-6 my-2">
           <div class="mypage-card card">
             <div class="card-header">
-              <%= Time.current.beginning_of_week.strftime('%m月%d日') %>〜<%= Time.current.end_of_week.strftime('%m月%d日') %>の予定
+              <%= Time.current.beginning_of_week.strftime('%m月%d日') %>(月)〜<%= Time.current.end_of_week.strftime('%m月%d日') %>(日)の予定
             </div>
             <div class="mypage-card-body card-body">
               <div class="list-group">
@@ -41,7 +44,7 @@
                 <div class="list-group-item">
                   <div class="d-flex w-100 justify-content-between">
                     <label class="mb-1"><%= plan.title %></label>
-                    <small><%= plan.start_date.strftime("%m/%d %H:%M") %>~<%= plan.end_date.strftime("%m/%d %H:%M") %></small>
+                    <small><%= plan.start_date.strftime("%m/%d %H:%M") %>〜<%= plan.end_date.strftime("%m/%d %H:%M") %></small>
                   </div>
                 </div>
                 <% end %>
@@ -52,7 +55,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-2">
+        <div class="col-sm-6 my-2">
           <div class="mypage-card card">
             <div class="card-header">未達成のTodoリスト</div>
             <div class="mypage-card-body card-body">
@@ -95,10 +98,10 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-2">
+        <div class="col-sm-6 my-2">
           <div class="mypage-card card">
             <div class="card-header">今月の収支計画</div>
-            <div class="card-body">
+            <div class="mypage-card-body card-body">
               <div class="card-group">
                 <div class="card">
                   <div class="card-body p-0">
@@ -106,24 +109,25 @@
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-body p-0">
+                  <div class="card-body">
                     <table class="table table-sm table-borderless">
                       <tr>
+                        <th>収入</th>
+                        <td>¥<%= @incomes_plans_total_amount %></td>
+                      </tr>
+                      <tr>
                         <th>固定費</th>
-                        <td><%= @fixed_plans_total_amount %></td>
+                        <td>¥<%= @fixed_plans_total_amount %></td>
                       </tr>
                       <tr>
                         <th>変動費</th>
-                        <td><%= @variable_plans_total_amount %></td>
+                        <td>¥<%= @variable_plans_total_amount %></td>
                       </tr>
                       <tr>
                         <th>貯蓄・投資</th>
-                        <td><%= @investment_plans_total_amount %></td>
+                        <td>¥<%= @investment_plans_total_amount %></td>
                       </tr>
-                      <tr class="table-info">
-                        <th>合計</th>
-                        <td><%= @fixed_plans_total_amount + @variable_plans_total_amount + @investment_plans_total_amount %></td>
-                      </tr>
+
                     </table>
                   </div>
                 </div>
@@ -134,10 +138,10 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-6 mt-2">
+        <div class="col-sm-6 my-2">
           <div class="mypage-card card">
             <div class="card-header">今月の収支</div>
-            <div class="card-body">
+            <div class="mypage-card-body card-body">
               <div class="card-group">
                 <div class="card">
                   <div class="card-body p-0">
@@ -145,28 +149,25 @@
                   </div>
                 </div>
                 <div class="card">
-                  <div class="card-body p-0">
+                  <div class="card-body">
                     <table class="table table-sm table-borderless">
                       <tr>
                         <th>収入</th>
-                        <td><%= @incomes_total_amount %></td>
+                        <td>¥<%= @incomes_total_amount %></td>
                       </tr>
                       <tr>
                         <th>固定費</th>
-                        <td><%= @fixed_total_amount %></td>
+                        <td>¥<%= @fixed_total_amount %></td>
                       </tr>
                       <tr>
                         <th>変動費</th>
-                        <td><%= @variable_total_amount %></td>
+                        <td>¥<%= @variable_total_amount %></td>
                       </tr>
                       <tr>
                         <th>貯蓄・投資</th>
-                        <td><%= @investment_total_amount %></td>
+                        <td>¥<%= @investment_total_amount %></td>
                       </tr>
-                      <tr class="table-info">
-                        <th>収支合計</th>
-                        <td><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount - @investment_total_amount %></td>
-                      </tr>
+
                     </table>
                   </div>
                 </div>
