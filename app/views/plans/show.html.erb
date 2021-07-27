@@ -8,7 +8,6 @@
           <strong>Description:</strong>
           <%= @plan.description %>
         </p>
-        <% if @plan.allday == false %>
         <p>
           <strong>Start date:</strong>
           <%= @plan.start_date %>
@@ -19,12 +18,6 @@
           <%= @plan.end_date %>
         </p>
 
-        <% else %>
-        <p>
-          <strong>Allday:</strong>
-          <%= @plan.allday %>
-        </p>
-        <% end %>
 
         <%= link_to '編集する', edit_plan_path(@plan) %>
         <div data-turbolinks='false'>

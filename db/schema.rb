@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 2021_07_21_145947) do
     t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "allday", default: false, null: false
   end
 
   create_table "sub_categories", force: :cascade do |t|
@@ -71,8 +70,8 @@ ActiveRecord::Schema.define(version: 2021_07_21_145947) do
     t.string "user_id"
     t.string "title"
     t.text "body"
-    t.integer "importance", default: 0
-    t.integer "urgency", default: 0
+    t.integer "importance"
+    t.integer "urgency"
     t.datetime "deadline"
     t.boolean "fin", default: false, null: false
     t.datetime "created_at", null: false

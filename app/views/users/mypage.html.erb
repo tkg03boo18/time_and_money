@@ -62,28 +62,28 @@
               <div class="list-group">
                 <% @tasks.each do |task| %>
                   <% if task.fin == false and task.urgency == "緊急" and task.importance == "重要" %>
-                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start bg-danger" do %>
+                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start border-danger" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
                     </div>
                     <% end %>
                   <% elsif task.fin == false and task.urgency == "緊急でない" and task.importance == "重要" %>
-                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start bg-warning" do %>
+                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start border-warning" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
                     </div>
                     <% end %>
                   <% elsif task.fin == false and task.urgency == "緊急でない" and task.importance == "重要でない" %>
-                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start bg-success" do %>
+                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start border-success" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
                     </div>
                     <% end %>
                   <% elsif task.fin == false and task.urgency == "緊急" and task.importance == "重要でない" %>
-                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start bg-info" do %>
+                    <%= link_to task_path(task), class: "list-group-item list-group-item-action flex-column align-items-start border-info" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>

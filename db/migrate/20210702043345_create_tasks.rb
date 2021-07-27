@@ -4,8 +4,8 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.string :user_id
       t.string :title
       t.text :body
-      t.integer :importance, default: 0
-      t.integer :genre, default: 0
+      t.integer :importance
+      t.integer :urgency
       t.datetime :deadline
       t.boolean :fin, default: false, null: false
 

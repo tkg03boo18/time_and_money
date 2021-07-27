@@ -60,6 +60,6 @@ class PlansController < ApplicationController
 
 
     def plan_params
-      params.require(:plan).permit(:user_id, :title, :description, :start_date, :end_date, :allday)
+      params.require(:plan).permit(:user_id, :title, :description, :start_date, :end_date)
     end
 end

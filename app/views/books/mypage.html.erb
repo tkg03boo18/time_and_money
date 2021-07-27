@@ -4,16 +4,16 @@
       <h3><i class="far fa-chart-bar"></i> 収支管理</h3>
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
       <nav class="nav d-flex flex-column">
-        <%= link_to books_mypage_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to books_mypage_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="far fa-chart-bar"></i> 収支管理
         <% end %>
-        <%= link_to books_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to books_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-calculator"></i> 家計簿
         <% end %>
-        <%= link_to budget_plans_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to budget_plans_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-file-alt"></i> 収支計画
         <% end %>
-        <%= link_to lists_path, class: "side-menu nav-link", data: { "turbolinks": false } do %>
+        <%= link_to lists_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-shopping-cart"></i> Wishリスト
         <% end %>
       </nav>
@@ -49,23 +49,23 @@
                     <div class="card border-0">
                       <div class="card-body pt-0">
                         <h5 class="card-title text-center"><%= Time.current.prev_month.strftime('%m月') %></h5>
-                        <h4 class="card-text text-center"><%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></h4>
+                        <h4 class="card-text text-center">¥<%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></h4>
                       </div>
                     </div>
                     <p class="d-flex align-self-center">→</p>
                     <div class="card border-0">
                       <div class="card-body pt-0">
                         <h5 class="card-title text-center"><%= Time.current.strftime('%m月') %></h5>
-                        <h4 class="card-text text-center"><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></h4>
+                        <h4 class="card-text text-center">¥<%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></h4>
                       </div>
                     </div>
                   </div>
                   <h5 class="text-center">増減</h5>
-                  <h4 class="text-center"><%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></h4>
+                  <h4 class="text-center">¥<%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></h4>
                 </div>
               </div>
-              <table class="table table-sm mt-4">
-                <thead>
+              <table class="books-mypage-booktable table table-sm mt-4">
+                <thead class="books-mypage-bookthead">
                   <tr>
                     <th></th>
                     <th><%= Time.current.prev_month.strftime('%m月') %></th>
@@ -76,27 +76,27 @@
                 <tbody>
                   <tr>
                     <th>収入</th>
-                    <td><%= @prev_incomes_total_amount %></td>
-                    <td><%= @incomes_total_amount %></td>
-                    <td><%= @incomes_total_amount - @prev_incomes_total_amount %></td>
+                    <td>¥<%= @prev_incomes_total_amount %></td>
+                    <td>¥<%= @incomes_total_amount %></td>
+                    <td class="books-mypage-booktd">¥<%= @incomes_total_amount - @prev_incomes_total_amount %></td>
                   </tr>
                   <tr>
                     <th>固定費支出</th>
-                    <td><%= @prev_fixed_total_amount %></td>
-                    <td><%= @fixed_total_amount %></td>
-                    <td><%= @fixed_total_amount - @prev_fixed_total_amount %></td>
+                    <td>¥<%= @prev_fixed_total_amount %></td>
+                    <td>¥<%= @fixed_total_amount %></td>
+                    <td class="books-mypage-booktd">¥<%= @fixed_total_amount - @prev_fixed_total_amount %></td>
                   </tr>
                   <tr>
                     <th>変動費支出</th>
-                    <td><%= @prev_variable_total_amount %></td>
-                    <td><%= @variable_total_amount %></td>
-                    <td><%= @variable_total_amount - @prev_variable_total_amount %></td>
+                    <td>¥<%= @prev_variable_total_amount %></td>
+                    <td>¥<%= @variable_total_amount %></td>
+                    <td class="books-mypage-booktd">¥<%= @variable_total_amount - @prev_variable_total_amount %></td>
                   </tr>
                   <tr>
                     <th>収支計</th>
-                    <td><%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></td>
-                    <td><%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
-                    <td><%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></td>
+                    <td>¥<%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></td>
+                    <td>¥<%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
+                    <td class="books-mypage-booktd">¥<%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></td>
                   </tr>
                 </tbody>
               </table>
