@@ -17,8 +17,8 @@
         <i class="fas fa-shopping-cart"></i> Wishリスト
         <% end %>
       </nav>
-      <ul class="list-group">
-        <li class="list-group-item list-group-item-primary text-center">
+      <ul class="list-group mt-2">
+        <li class="money-side-list-group-item list-group-item text-center">
           現在までの総収支
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -38,8 +38,8 @@
     <div class="col-sm-10">
       <div class="row">
         <div class="col-sm-6 mt-2">
-          <div class="card">
-            <div class="card-header">
+          <div class="books-mypage-card card">
+            <div class="books-mypage-card-header card-header">
               今月の収支（前月比較）
             </div>
             <div class="card-body">
@@ -66,7 +66,7 @@
               </div>
               <table class="books-mypage-booktable table table-sm mt-4">
                 <thead class="books-mypage-bookthead">
-                  <tr>
+                  <tr class="text-center">
                     <th></th>
                     <th><%= Time.current.prev_month.strftime('%m月') %></th>
                     <th><%= Time.current.strftime('%m月') %></th>
@@ -76,27 +76,27 @@
                 <tbody>
                   <tr>
                     <th>収入</th>
-                    <td>¥<%= @prev_incomes_total_amount %></td>
-                    <td>¥<%= @incomes_total_amount %></td>
-                    <td class="books-mypage-booktd">¥<%= @incomes_total_amount - @prev_incomes_total_amount %></td>
+                    <td class="text-center">¥<%= @prev_incomes_total_amount %></td>
+                    <td class="text-center">¥<%= @incomes_total_amount %></td>
+                    <td class="books-mypage-booktd text-center">¥<%= @incomes_total_amount - @prev_incomes_total_amount %></td>
                   </tr>
                   <tr>
                     <th>固定費支出</th>
-                    <td>¥<%= @prev_fixed_total_amount %></td>
-                    <td>¥<%= @fixed_total_amount %></td>
-                    <td class="books-mypage-booktd">¥<%= @fixed_total_amount - @prev_fixed_total_amount %></td>
+                    <td class="text-center">¥<%= @prev_fixed_total_amount %></td>
+                    <td class="text-center">¥<%= @fixed_total_amount %></td>
+                    <td class="books-mypage-booktd text-center">¥<%= @fixed_total_amount - @prev_fixed_total_amount %></td>
                   </tr>
                   <tr>
                     <th>変動費支出</th>
-                    <td>¥<%= @prev_variable_total_amount %></td>
-                    <td>¥<%= @variable_total_amount %></td>
-                    <td class="books-mypage-booktd">¥<%= @variable_total_amount - @prev_variable_total_amount %></td>
+                    <td class="text-center">¥<%= @prev_variable_total_amount %></td>
+                    <td class="text-center">¥<%= @variable_total_amount %></td>
+                    <td class="books-mypage-booktd text-center">¥<%= @variable_total_amount - @prev_variable_total_amount %></td>
                   </tr>
                   <tr>
                     <th>収支計</th>
-                    <td>¥<%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></td>
-                    <td>¥<%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
-                    <td class="books-mypage-booktd">¥<%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></td>
+                    <td class="text-center">¥<%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></td>
+                    <td class="text-center">¥<%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
+                    <td class="books-mypage-booktd text-center">¥<%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></td>
                   </tr>
                 </tbody>
               </table>
@@ -104,8 +104,8 @@
           </div>
         </div>
         <div class="col-sm-6 mt-2">
-          <div class="card">
-            <div class="card-header">
+          <div class="books-mypage-card card">
+            <div class="books-mypage-card-header card-header">
               今月の支出計画
             </div>
             <div class="card-body">
@@ -125,7 +125,7 @@
               </div>
               <table class="table table-sm mt-2">
                 <thead>
-                  <tr>
+                  <tr class="text-center">
                     <th></th>
                     <th>支出</th>
                     <th>予算</th>
@@ -135,21 +135,21 @@
                 <tbody>
                   <tr>
                     <th>固定費</th>
-                    <td>¥<%= @fixed_total_amount %></td>
-                    <td>¥<%= @fixed_plans_total_amount %></td>
-                    <td>¥<%= @fixed_plans_total_amount - @fixed_total_amount %> (<%= number_to_percentage(@fixed_per * 100) %>)</td>
+                    <td class="text-center">¥<%= @fixed_total_amount %></td>
+                    <td class="text-center">¥<%= @fixed_plans_total_amount %></td>
+                    <td class="text-center">¥<%= @fixed_plans_total_amount - @fixed_total_amount %> (<%= number_to_percentage(@fixed_per * 100) %>)</td>
                   </tr>
                   <tr>
                     <th>変動費</th>
-                    <td>¥<%= @variable_total_amount %></td>
-                    <td>¥<%= @variable_plans_total_amount %></td>
-                    <td>¥<%= @variable_plans_total_amount - @variable_total_amount %> (<%= number_to_percentage(@variable_per * 100) %>)</td>
+                    <td class="text-center">¥<%= @variable_total_amount %></td>
+                    <td class="text-center">¥<%= @variable_plans_total_amount %></td>
+                    <td class="text-center">¥<%= @variable_plans_total_amount - @variable_total_amount %> (<%= number_to_percentage(@variable_per * 100) %>)</td>
                   </tr>
                   <tr>
                     <th>合計</th>
-                    <td>¥<%= @outcomes_total_amount %></td>
-                    <td>¥<%= @outcomes_plans_total_amount %></td>
-                    <td>¥<%= @outcomes_plans_total_amount - @outcomes_total_amount %> (<%= number_to_percentage(@outcomes_per * 100) %>)</td>
+                    <td class="text-center">¥<%= @outcomes_total_amount %></td>
+                    <td class="text-center">¥<%= @outcomes_plans_total_amount %></td>
+                    <td class="text-center">¥<%= @outcomes_plans_total_amount - @outcomes_total_amount %> (<%= number_to_percentage(@outcomes_per * 100) %>)</td>
                   </tr>
                 </tbody>
               </table>
@@ -157,8 +157,8 @@
           </div>
         </div>
         <div class="col-sm-6 mt-2">
-          <div class="card">
-            <div class="card-header">
+          <div class="books-mypage-card card">
+            <div class="books-mypage-card-header card-header">
               今月の貯蓄・投資計画
             </div>
             <div class="card-body">
@@ -187,8 +187,8 @@
         </div>
 
         <div class="col-sm-6 mt-2">
-          <div class="card">
-            <div class="card-header">
+          <div class="books-mypage-card card">
+            <div class="books-mypage-card-header card-header">
               Wishリスト
             </div>
             <div class="card-body">

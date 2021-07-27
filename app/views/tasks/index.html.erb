@@ -3,7 +3,7 @@
     <div class="task-sidebar col-sm-2 mt-2">
       <h3><i class="fas fa-tasks"></i> Todoリスト</h3>
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
-      <%= link_to new_task_path, remote: true, class: "btn btn-block btn-primary" do %>
+      <%= link_to new_task_path, remote: true, class: "btn btn-block btn-time-new" do %>
       <i class="fas fa-plus"></i> 作成
       <% end %>
       <div id="task-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
@@ -16,15 +16,15 @@
         <% end %>
       </nav>
       <div class="card mt-2">
-        <div class="card-header">
-          タスク達成率
+        <div class="time-side-card-header card-header text-center">
+          達成率
         </div>
         <div class="card-body">
           <h4 class="text-center"><%= number_to_percentage(@task_per * 100) %></h4>
         </div>
       </div>
       <div class="fin-task-card card mt-2">
-        <div class="card-header">
+        <div class="time-side-card-header card-header text-center">
           達成済のTodoリスト
         </div>
         <div class="fin-task-card-body card-body p-2">
