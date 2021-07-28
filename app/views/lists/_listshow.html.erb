@@ -1,0 +1,48 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <h5 class="modal-title">Wish List show</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="list-group">
+        <div class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <label>Name</label>
+            <label><%= @list.name %></label>
+          </div>
+        </div>
+        <div class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <label>Price</label>
+            <label>¥<%= @list.price %></label>
+          </div>
+        </div>
+        <div class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <label>Date</label>
+            <label><%= @list.date.strftime("%Y/%m/%d") %></label>
+          </div>
+        </div>
+        <div class="list-group-item">
+          <div class="d-flex w-100 justify-content-between">
+            <label>Purchased</label>
+            <label><%= @list.purchased %></label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer actions">
+      <%= link_to edit_list_path(@list), remote: true do %>
+      <button type="button" class="btn btn-success">編集する</button>
+      <% end %>
+      <div id="editlist-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+      <%= link_to list_path(@list), method: :delete, data: { confirm: 'Are you sure?' } do %>
+      <button type="button" class="btn btn-danger">削除する</button>
+      <% end %>
+    </div>
+  </div>
+</div>

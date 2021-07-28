@@ -48,7 +48,7 @@
               <div class="list-group">
                 <% @lists.each do |list| %>
                   <% if list.purchased == false %>
-                    <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                    <%= link_to list_path(list), remote: true, class: "list-group-item list-group-item-action flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= list.name %></label>
                       <small>購入希望期限：<%= list.date.strftime('%Y/%m/%d') %></small>
@@ -58,6 +58,7 @@
                   <% end %>
                 <% end %>
               </div>
+              <div id="list-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
             </div>
           </div>
         </div>
@@ -68,7 +69,7 @@
               <div class="list-group">
                 <% @lists.each do |list| %>
                   <% if list.purchased == true %>
-                    <%= link_to list_path(list), class: "list-group-item list-group-item-action flex-column align-items-start" do %>
+                    <%= link_to list_path(list), remote: true, class: "list-group-item list-group-item-action flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= list.name %></label>
                       <small>金額：<%= list.price %></small>
@@ -77,6 +78,7 @@
                   <% end %>
                 <% end %>
               </div>
+              <div id="list-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
             </div>
           </div>
         </div>
