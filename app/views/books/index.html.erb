@@ -87,9 +87,10 @@
                         <td><%= book.introduction %></td>
                         <td><%= book.amount %></td>
                         <td>
-                          <%= link_to book_path(book) do %>
+                          <%= link_to book_path(book), remote: true do %>
                           <i class="fas fa-search-plus"></i>
                           <% end %>
+                          <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
                         </td>
                       </tr>
                       <% end %>
@@ -129,9 +130,10 @@
                         <td><%= book.introduction %></td>
                         <td><%= book.amount %></td>
                         <td>
-                          <%= link_to book_path(book) do %>
+                          <%= link_to book_path(book), remote: true do %>
                           <i class="fas fa-search-plus"></i>
                           <% end %>
+                          <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
                         </td>
                       </tr>
                       <% end %>
@@ -171,9 +173,10 @@
                         <td><%= book.introduction %></td>
                         <td><%= book.amount %></td>
                         <td>
-                          <%= link_to book_path(book) do %>
+                          <%= link_to book_path(book), remote: true do %>
                           <i class="fas fa-search-plus"></i>
                           <% end %>
+                          <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
                         </td>
                       </tr>
                       <% end %>
