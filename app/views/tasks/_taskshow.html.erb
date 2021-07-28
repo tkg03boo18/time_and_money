@@ -1,0 +1,60 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+
+  <div class="modal-header">
+    <h5 class="modal-title">Task Show</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="list-group">
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <label>Title</label>
+          <label><%= @task.title %></label>
+        </div>
+      </div>
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <label>Body</label>
+          <label><%= @task.body %></label>
+        </div>
+      </div>
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <label>Importance</label>
+          <label><%= @task.importance %></label>
+        </div>
+      </div>
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <label>Urgency</label>
+          <label><%= @task.urgency %></label>
+        </div>
+      </div>
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <label>Deadline</label>
+          <label><%= @task.deadline.strftime("%m/%d %H:%M")%></label>
+        </div>
+      </div>
+      <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+          <label>Fin</label>
+          <label><%= @task.fin %></label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer actions">
+    <%= link_to edit_task_path(@task), remote: true do %>
+    <button type="button" class="btn btn-success">編集する</button>
+    <% end %>
+    <div id="edittask-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+    <%= link_to task_path(@task), method: :delete, data: { confirm: 'Are you sure?' } do %>
+    <button type="button" class="btn btn-danger">削除する</button>
+    <% end %>
+  </div>
+</div>
+</div>
