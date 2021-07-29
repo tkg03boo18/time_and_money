@@ -15,7 +15,7 @@
         <i class="fas fa-tasks"></i> Todoリスト
         <% end %>
       </nav>
-      <div class="card mt-2">
+      <div class="card border-primary mt-2">
         <div class="time-side-card-header card-header text-center">
           達成率
         </div>
@@ -23,7 +23,7 @@
           <h4 class="text-center"><%= number_to_percentage(@task_per * 100) %></h4>
         </div>
       </div>
-      <div class="fin-task-card card mt-2">
+      <div class="fin-task-card border-primary card mt-2">
         <div class="time-side-card-header card-header text-center">
           達成済のTodoリスト
         </div>
@@ -55,7 +55,7 @@
               <div class="list-group">
                 <% @tasks.each do |task| %>
                   <% if task.urgency == "緊急" and task.importance == "重要" and task.fin == false %>
-                    <%= link_to task_path(task), remote: true, class: "list-group-item list-group-item-action flex-column align-items-start border-danger" do %>
+                    <%= link_to task_path(task), remote: true, class: "tasklist1 list-group-item list-group-item-action flex-column align-items-start border-danger" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
@@ -78,7 +78,7 @@
               <div class="list-group">
                 <% @tasks.each do |task| %>
                   <% if task.urgency == "緊急でない" and task.importance == "重要" and task.fin == false %>
-                    <%= link_to task_path(task), remote: true, class: "list-group-item list-group-item-action border-warning flex-column align-items-start" do %>
+                    <%= link_to task_path(task), remote: true, class: "tasklist2 list-group-item list-group-item-action border-warning flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
@@ -101,7 +101,7 @@
               <div class="list-group">
                 <% @tasks.each do |task| %>
                   <% if task.urgency == "緊急" and task.importance == "重要でない" and task.fin == false %>
-                    <%= link_to task_path(task), remote: true, class: "list-group-item list-group-item-action border-info flex-column align-items-start" do %>
+                    <%= link_to task_path(task), remote: true, class: "tasklist3 list-group-item list-group-item-action border-info flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>
@@ -124,7 +124,7 @@
               <div class="list-group">
                 <% @tasks.each do |task| %>
                   <% if task.urgency == "緊急でない" and task.importance == "重要でない" and task.fin == false %>
-                    <%= link_to task_path(task), remote: true, class: "list-group-item border-success list-group-item-action border-success flex-column align-items-start" do %>
+                    <%= link_to task_path(task), remote: true, class: "tasklist4 list-group-item border-success list-group-item-action border-success flex-column align-items-start" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <small class="mb-1"><%= task.title %></small>
                       <small>期限：<%= task.deadline.strftime("%m/%d %H:%M") %></small>

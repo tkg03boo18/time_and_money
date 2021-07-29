@@ -26,6 +26,16 @@ main {
  font-family: 'M PLUS 1p', sans-serif;
 }
 
+.topbox1 {
+  height: 75vh;
+}
+
+.topbox2 {
+  height: 75vh;
+  background-image: url(img/portfoliomain.002.jpeg);
+  background-size: cover;
+}
+
 .user-nav1:hover {
  color: white;
  background-color: #25F500;
@@ -56,23 +66,32 @@ main {
  background-color: #FA7E00;
 }
 
-.side-menu {
-  color: #007bff;
-  border-left: solid 8px #007bff;/*左側の線*/
-  background: white;/*背景色*/
-  margin-bottom: 5px;/*下のバーとの余白*/
-  line-height: 1.5;
-  border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
-  padding: 0.5em;
-  list-style-type: none!important;
-  transition: .4s;
+.mypage-card {
+  height: 43vh;
 }
 
-.side-menu:hover {
-  color: white;
-  background-color: #007bff;
-  padding-left: 2em;
+.mypage-card1 {
+  height: 43vh;
+  border-color: #007bff;
 }
+
+.mypage-card1-header {
+  background-color: #007bff;
+}
+
+.mypage-card2 {
+  height: 43vh;
+  border-color: #FA7E00;
+}
+
+.mypage-card2-header {
+  background-color: #fa7e00;
+}
+
+.mypage-card-body {
+  overflow-y: scroll;
+}
+
 
 .side-menu1 {
   color: black;
@@ -138,6 +157,22 @@ main {
   background-color: #FA7E00;
 }
 
+.tasklist1 {
+  border-left: solid 8px #dc3545;/*左側の線*/
+}
+
+.tasklist2 {
+  border-left: solid 8px #ffc107;
+}
+
+.tasklist3 {
+  border-left: solid 8px #28a745;
+}
+
+.tasklist4 {
+  border-left: solid 8px #17a2b8;
+}
+
 .books-mypage-card {
   border-color: #FA7E00;
 }
@@ -167,4 +202,12 @@ main {
 .btn-money-new:hover {
   color: white;
   background-color: #FA7E00;
+}
+
+.wishlist1 {
+  border-left: solid 8px #dc3545;
+}
+
+.wishlist2 {
+  border-left: solid 8px #28a745;
 }

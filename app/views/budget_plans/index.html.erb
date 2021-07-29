@@ -21,7 +21,7 @@
         <i class="fas fa-shopping-cart"></i> Wishリスト
         <% end %>
       </nav>
-      <ul class="list-group">
+      <ul class="list-group mt-2">
         <li class="money-side-list-group-item list-group-item text-center">
           <%= Time.current.beginning_of_day.since(params[:month].to_i.months).strftime('%Y年%m月') %><br/>
           収支計画内訳
@@ -60,8 +60,8 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="bp-card card">
-            <div class="card-header">
+          <div class="bp-card card border-primary">
+            <div class="card-header bg-primary text-white">
               固定費
             </div>
             <div class="card-body py-2">
@@ -83,8 +83,8 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="bp-card card">
-            <div class="card-header">
+          <div class="bp-card card border-danger">
+            <div class="card-header bg-danger text-white">
               変動費
             </div>
             <div class="bp-card-body card-body py-2">
@@ -106,8 +106,8 @@
           </div>
         </div>
         <div class="col-sm-4">
-          <div class="bp-card card">
-            <div class="card-header">
+          <div class="bp-card card border-success">
+            <div class="card-header bg-success text-white">
               貯蓄・投資
             </div>
             <div class="bp-card-body card-body py-2">

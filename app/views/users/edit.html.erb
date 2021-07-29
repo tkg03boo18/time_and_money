@@ -1,45 +1,80 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-10 offset-sm-1 my-4">
-      <h4 class="text-center">ユーザー情報編集</h4>
+    <div class="mypage-sidebar col-sm-2 mt-2">
+      <h3><i class="far fa-user-circle"></i> My Page</h3>
+      <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
+      <nav class="nav d-flex flex-column">
+        <%= link_to users_mypage_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <i class="far fa-user-circle"></i> My Page
+        <% end %>
+        <%= link_to users_show_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-id-card"></i> ユーザー詳細
+        <% end %>
+        <%= link_to plans_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calendar-alt"></i> スケジュール
+        <% end %>
+        <%= link_to tasks_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-tasks"></i> Todoリスト
+        <% end %>
+        <%= link_to books_mypage_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="far fa-chart-bar"></i> 収支管理
+        <% end %>
+        <%= link_to books_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-calculator"></i> 家計簿
+        <% end %>
+        <%= link_to budget_plans_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-file-alt"></i> 収支計画
+        <% end %>
+        <%= link_to lists_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
+        <i class="fas fa-shopping-cart"></i> Wishリスト
+        <% end %>
+      </nav>
     </div>
-    <div class="col-sm-8 offset-sm-2">
-    <%= form_with model: @user, url: users_path, local: true do |f| %>
-    <div class="form-group row">
-      <label for="inputimage" class="col-sm-3 offset-sm-2 col-form-label">プロフィール画像</label>
-      <div class="col-sm-4">
-        <%= f.attachment_field :image, class: "form-control-file" %>
+    <div class="col-sm-10">
+      <div class="row">
+        <div class="col-sm-10 offset-sm-1 my-4">
+          <h4 class="text-center">ユーザー情報編集</h4>
+        </div>
+        <div class="col-sm-8 offset-sm-2">
+        <%= form_with model: @user, url: users_path, local: true do |f| %>
+        <div class="form-group row">
+          <label for="inputimage" class="col-sm-3 offset-sm-2 col-form-label">プロフィール画像</label>
+          <div class="col-sm-4">
+            <%= f.attachment_field :image, class: "form-control-file" %>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputName" class="col-sm-3 offset-sm-2 col-form-label">ユーザーネーム</label>
+          <div class="col-sm-4">
+        		<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
+        	</div>
+        </div>
+        <div class="form-group row">
+        	<label for="inputEmail" class="col-sm-3 offset-sm-2 col-form-label">メールアドレス</label>
+        	<div class="col-sm-4">
+        		<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        	</div>
+        </div>
+        <div class="form-group row">
+        	<label for="inputArea" class="col-sm-3 offset-sm-2 col-form-label">地域</label>
+        	<div class="col-sm-4">
+        		<%= f.select :area, User.areas.keys, {prompt: "選択してください"}, class: "form-control" %>
+        	</div>
+        </div>
+        <div class="form-group row">
+          <label for="inputJob" class="col-sm-3 offset-sm-2 col-form-label">職業</label>
+          <div class="col-sm-4">
+            <%= f.select :job, User.jobs.keys, {prompt: "選択してください"}, class: "form-control" %>
+          </div>
+        </div>
+        <div class="form-group row">
+        	<div class="col-sm-2 offset-sm-5">
+           <%= f.submit '編集する', class: "btn btn-success" %>
+          </div>
+        </div>
+        <% end %>
       </div>
     </div>
-    <div class="form-group row">
-      <label for="inputName" class="col-sm-3 offset-sm-2 col-form-label">ユーザーネーム</label>
-      <div class="col-sm-4">
-    		<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
-    	</div>
-    </div>
-    <div class="form-group row">
-    	<label for="inputEmail" class="col-sm-3 offset-sm-2 col-form-label">メールアドレス</label>
-    	<div class="col-sm-4">
-    		<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-    	</div>
-    </div>
-    <div class="form-group row">
-    	<label for="inputArea" class="col-sm-3 offset-sm-2 col-form-label">地域</label>
-    	<div class="col-sm-4">
-    		<%= f.select :area, User.areas.keys, {prompt: "選択してください"}, class: "form-control" %>
-    	</div>
-    </div>
-    <div class="form-group row">
-      <label for="inputJob" class="col-sm-3 offset-sm-2 col-form-label">職業</label>
-      <div class="col-sm-4">
-        <%= f.select :job, User.jobs.keys, {prompt: "選択してください"}, class: "form-control" %>
-      </div>
-    </div>
-    <div class="form-group row">
-    	<div class="col-sm-2 offset-sm-5">
-       <%= f.submit '編集する', class: "btn btn-success" %>
-      </div>
-    </div>
-    <% end %>
   </div>
+</div>
 

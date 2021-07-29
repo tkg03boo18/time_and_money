@@ -1,23 +1,20 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="topbox1 col-sm-6">
-      <h1>1度きりの人生</h1>
-      <h1>計画的に</h1>
-      <h1>楽しもう</h1>
-      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary btn-lg" %>
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-success btn-lg" %>
-    </div>
     <div class="topbox2 col-sm-6 d-flex align-items-center justify-content-center">
       <%= image_tag 'img/logo1.001.png', class: "img-fluid w-50 logo" %>
     </div>
+    <div class="topbox1 d-flex align-items-center col-sm-6">
+      <div>
+        <h1 class="display-4">1度きりの人生を、<br/>
+        計画的に。</h4>
+        <h2 class="display-5 mt-4">さあ、Time and Moneyをはじめよう</h2>
+        <%= link_to new_user_registration_path, class: "btn btn-primary btn-block mt-3" do %>
+        <i class="fas fa-user-plus"></i> 新規登録
+        <% end %>
+        <%= link_to new_user_session_path, class: "btn btn-success btn-block" do %>
+        <i class="fas fa-sign-in-alt"></i> ログイン
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
-<!--<div class="jumbotron jumbotron-fluid">-->
-<!--  <div class="container">-->
-
-<!--    <div>-->
-
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
