@@ -6,13 +6,15 @@
     <div class="topbox1 d-flex align-items-center col-sm-6">
       <div>
         <h1 class="display-4">1度きりの人生を、<br/>
-        計画的に。</h4>
+        計画的に。</h1>
         <h2 class="display-5 mt-4">さあ、Time and Moneyをはじめよう</h2>
-        <%= link_to new_user_registration_path, class: "btn btn-primary btn-block mt-3" do %>
-        <i class="fas fa-user-plus"></i> 新規登録
+        <%= link_to new_user_registration_path, class: "btn1 btn-block mt-3" do %>
+        <span class="btn1-content"><i class="fas fa-user-plus"></i> 新規登録</span>
+        <span class="icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
         <% end %>
-        <%= link_to new_user_session_path, class: "btn btn-success btn-block" do %>
-        <i class="fas fa-sign-in-alt"></i> ログイン
+        <%= link_to new_user_session_path, class: "btn1 btn-block btn1-alt-color" do %>
+        <span class="btn1-content"><i class="fas fa-sign-in-alt"></i> ログイン</span>
+        <span class="icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
         <% end %>
       </div>
     </div>
