@@ -3,10 +3,12 @@
     <div class="book-sidebar col-sm-2 mt-2">
       <h3><i class="fas fa-calculator"></i> 家計簿</h3>
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
-      <%= link_to new_book_path, remote: true, class: "btn btn-block btn-money-new" do %>
-      <i class="fas fa-plus"></i> 作成
-      <% end %>
-      <div id="book-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+      <button class="btn btn-block btn-money-new" data-toggle="modal" data-target="#book-modal">
+        <i class="fas fa-plus"></i> 作成
+      </button>
+      <div id="book-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <%= render partial: "form", locals: { book: @book }%>
+      </div>
       <nav class="nav d-flex flex-column mt-2">
         <%= link_to books_mypage_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="far fa-chart-bar"></i> 収支管理
@@ -85,7 +87,7 @@
                         <td><%= book.date.strftime('%m/%d') %></td>
                         <td><%= book.sub_category.name %></td>
                         <td><%= book.introduction %></td>
-                        <td><%= book.amount %></td>
+                        <td>¥<%= book.amount %></td>
                         <td>
                           <%= link_to book_path(book), remote: true do %>
                           <i class="fas fa-search-plus"></i>
@@ -128,7 +130,7 @@
                         <td><%= book.date.strftime('%m/%d') %></td>
                         <td><%= book.sub_category.name %></td>
                         <td><%= book.introduction %></td>
-                        <td><%= book.amount %></td>
+                        <td>¥<%= book.amount %></td>
                         <td>
                           <%= link_to book_path(book), remote: true do %>
                           <i class="fas fa-search-plus"></i>
@@ -171,7 +173,7 @@
                         <td><%= book.date.strftime('%m/%d') %></td>
                         <td><%= book.sub_category.name %></td>
                         <td><%= book.introduction %></td>
-                        <td><%= book.amount %></td>
+                        <td>¥<%= book.amount %></td>
                         <td>
                           <%= link_to book_path(book), remote: true do %>
                           <i class="fas fa-search-plus"></i>

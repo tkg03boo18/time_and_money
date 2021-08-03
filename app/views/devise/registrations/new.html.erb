@@ -9,27 +9,27 @@
     			<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
           <div class="form-group field">
-          	<%= f.label :name, class: "form-control-label" %>
+          	<%= f.label :name, "ユーザー名", class: "form-control-label" %>
           	<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "aaa" %>
           </div>
           <div class="form-group field">
-          	<%= f.label :email, class: "form-control-label" %>
+          	<%= f.label :email, "メールアドレス", class: "form-control-label" %>
           	<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "sample@example.com" %>
           </div>
           <div class="form-group field">
-          	<%= f.label :area, class: "form-control-label" %>
+          	<%= f.label :area, "地域", class: "form-control-label" %>
           	<%= f.select :area, User.areas.keys, {prompt: "選択してください"}, class: "form-control" %>
           </div>
           <div class="form-group field">
-          	<%= f.label :job, class: "form-control-label" %>
+          	<%= f.label :job, "職業", class: "form-control-label" %>
           	<%= f.select :job, User.jobs.keys, {prompt: "選択してください"}, class: "form-control" %>
           </div>
           <div class="form-group field">
-          	<%= f.label :password, class: "form-control-label" %>
+          	<%= f.label :password, "パスワード", class: "form-control-label" %>
           	<%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "6文字以上" %>
           </div>
           <div class="form-group field">
-          	<%= f.label :password_confirmation, class: "form-control-label" %>
+          	<%= f.label :password_confirmation, "パスワード（確認用）", class: "form-control-label" %>
           	<%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "6文字以上" %>
           </div>
           <div class="action">

@@ -11,31 +11,31 @@
       <div class="list-group">
         <div class="list-group-item">
           <div class="d-flex w-100 justify-content-between">
-            <label>MainCategory</label>
+            <label>メインカテゴリ</label>
             <label><%= @book.main_category.name %></label>
           </div>
         </div>
         <div class="list-group-item">
           <div class="d-flex w-100 justify-content-between">
-            <label>SubCategory</label>
+            <label>サブカテゴリ</label>
             <label><%= @book.sub_category.name %></label>
           </div>
         </div>
         <div class="list-group-item">
           <div class="d-flex w-100 justify-content-between">
-            <label>Introduction</label>
+            <label>詳細</label>
             <label><%= @book.introduction %></label>
           </div>
         </div>
         <div class="list-group-item">
           <div class="d-flex w-100 justify-content-between">
-            <label>Amount</label>
+            <label>金額</label>
             <label>¥<%= @book.amount %></label>
           </div>
         </div>
         <div class="list-group-item">
           <div class="d-flex w-100 justify-content-between">
-            <label>Date</label>
+            <label>日付</label>
             <label><%= @book.date.strftime("%Y/%m/%d") %></label>
           </div>
         </div>
@@ -43,11 +43,11 @@
     </div>
     <div class="modal-footer actions">
       <%= link_to edit_book_path(@book), remote: true do %>
-      <button type="button" class="btn btn-success">編集する</button>
+      <button type="button" class="btn btn-success">編集</button>
       <% end %>
       <div id="editbook-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
       <%= link_to book_path(@book), method: :delete, data: { confirm: 'Are you sure?' } do %>
-      <button type="button" class="btn btn-danger">削除する</button>
+      <button type="button" class="btn btn-danger">削除</button>
       <% end %>
     </div>
   </div>

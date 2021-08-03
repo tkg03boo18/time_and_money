@@ -2,6 +2,7 @@ class ListsController < ApplicationController
 
   def index
     @user = current_user
+    @list = List.new
     @lists = @user.lists
     @not_purchased= @lists.where(purchased: false)
     @not_purchased_total_price = 0
@@ -17,9 +18,6 @@ class ListsController < ApplicationController
 
   end
 
-  def new
-    @list = List.new
-  end
 
   def create
     @list = List.new(list_params)

@@ -116,11 +116,13 @@
           <h2 class="skw-page__heading">さあ、Time and Moneyで、<br/>
           人生を計画的に。</h2>
           <p class="skw-page__description">
-            <%= link_to new_user_registration_path, class: "btn btn-primary btn-block mt-3" do %>
-            <i class="fas fa-user-plus"></i> 新規登録
+            <%= link_to new_user_registration_path, class: "btn1 btn-block mt-3" do %>
+            <span class="btn1-content"><i class="fas fa-user-plus"></i> 新規登録</span>
+            <span class="icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
             <% end %>
-            <%= link_to new_user_session_path, class: "btn btn-success btn-block" do %>
-            <i class="fas fa-sign-in-alt"></i> ログイン
+            <%= link_to new_user_session_path, class: "btn1 btn-block btn1-alt-color" do %>
+            <span class="btn1-content"><i class="fas fa-sign-in-alt"></i> ログイン</span>
+            <span class="icon"><i class="fa fa-arrow-right" aria-hidden="true"></i></span>
             <% end %>
           </p>
         </div>

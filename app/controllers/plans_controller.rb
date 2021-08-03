@@ -4,6 +4,7 @@ class PlansController < ApplicationController
 
   def index
     @user = current_user
+    @plan = Plan.new
     @plans = @user.plans
     @tasks = @user.tasks
   end
@@ -13,10 +14,6 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
   end
 
-
-  def new
-    @plan = Plan.new
-  end
 
 
   def edit

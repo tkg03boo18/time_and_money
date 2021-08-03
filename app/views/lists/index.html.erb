@@ -3,10 +3,12 @@
     <div class="budget_plan-sidebar col-sm-2 mt-2">
       <h3><i class="fas fa-shopping-cart"></i> Wishリスト</h3>
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
-      <%= link_to new_list_path, remote: true, class: "btn btn-block btn-money-new", data: { "turbolinks": false } do %>
-      <i class="fas fa-plus"></i> 作成
-      <% end %>
-      <div id="list-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+      <button class="btn btn-block btn-money-new" data-toggle="modal" data-target="#list-modal">
+        <i class="fas fa-plus"></i> 作成
+      </button>
+      <div id="list-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <%= render partial: "form", locals: { list: @list }%>
+      </div>
       <nav class="nav d-flex flex-column mt-2">
         <%= link_to books_mypage_path, class: "side-menu3 nav-link", data: { "turbolinks": false } do %>
         <i class="far fa-chart-bar"></i> 収支管理
@@ -53,7 +55,7 @@
                       <label class="mb-1"><%= list.name %></label>
                       <small>購入希望期限：<%= list.date.strftime('%Y/%m/%d') %></small>
                     </div>
-                    <p class="mb-1">金額：<%= list.price %></p>
+                    <p class="mb-1">金額：¥<%= list.price %></p>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -72,7 +74,7 @@
                     <%= link_to list_path(list), remote: true, class: "wishlist2 list-group-item list-group-item-action flex-column align-items-start border-info" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= list.name %></label>
-                      <small>金額：<%= list.price %></small>
+                      <small>金額：¥<%= list.price %></small>
                     </div>
                     <% end %>
                   <% end %>

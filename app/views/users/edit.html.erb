@@ -32,47 +32,43 @@
     </div>
     <div class="col-sm-10">
       <div class="row">
-        <div class="col-sm-10 offset-sm-1 my-4">
-          <h4 class="text-center">ユーザー情報編集</h4>
-        </div>
-        <div class="col-sm-8 offset-sm-2">
-        <%= form_with model: @user, url: users_path, local: true do |f| %>
-        <div class="form-group row">
-          <label for="inputimage" class="col-sm-3 offset-sm-2 col-form-label">プロフィール画像</label>
-          <div class="col-sm-4">
-            <%= f.attachment_field :image, class: "form-control-file" %>
+        <div class="col-sm-4 offset-sm-4 my-2">
+          <div class="card">
+            <div class="card-header text-center font-weight-bold">
+              User Edit
+            </div>
+            <div class="card-body">
+              <%= form_with model: @user, url: users_path, local: true do |f| %>
+              <div class="form-group-field">
+                <%= f.label :image, "プロフィール画像", class: "form-control-label" %>
+                <%= f.attachment_field :image, class: "form-control-file" %>
+              </div>
+              <div class="form-group field mt-2">
+              	<%= f.label :name, "ユーザー名", class: "form-control-label" %>
+              	<%= f.text_field :name, class: "form-control" %>
+              </div>
+              <div class="form-group field">
+              	<%= f.label :email, "メールアドレス", class: "form-control-label" %>
+              	<%= f.email_field :email, class: "form-control" %>
+              </div>
+              <div class="form-group field">
+              	<%= f.label :area, "地域", class: "form-control-label" %>
+              	<%= f.select :area, User.areas.keys, {prompt: "選択してください"}, class: "form-control" %>
+              </div>
+              <div class="form-group field">
+              	<%= f.label :job, "職業", class: "form-control-label" %>
+              	<%= f.select :job, User.jobs.keys, {prompt: "選択してください"}, class: "form-control" %>
+              </div>
+              <div class="action">
+          	    <%= f.submit '編集する', class: "btn btn-success btn-block mb-2" %>
+          	    <%= link_to users_show_path do %>
+                <button type="button" class="btn btn-primary btn-block">ユーザー詳細へ</button>
+                <% end %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-        <div class="form-group row">
-          <label for="inputName" class="col-sm-3 offset-sm-2 col-form-label">ユーザーネーム</label>
-          <div class="col-sm-4">
-        		<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
-        	</div>
-        </div>
-        <div class="form-group row">
-        	<label for="inputEmail" class="col-sm-3 offset-sm-2 col-form-label">メールアドレス</label>
-        	<div class="col-sm-4">
-        		<%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-        	</div>
-        </div>
-        <div class="form-group row">
-        	<label for="inputArea" class="col-sm-3 offset-sm-2 col-form-label">地域</label>
-        	<div class="col-sm-4">
-        		<%= f.select :area, User.areas.keys, {prompt: "選択してください"}, class: "form-control" %>
-        	</div>
-        </div>
-        <div class="form-group row">
-          <label for="inputJob" class="col-sm-3 offset-sm-2 col-form-label">職業</label>
-          <div class="col-sm-4">
-            <%= f.select :job, User.jobs.keys, {prompt: "選択してください"}, class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row">
-        	<div class="col-sm-2 offset-sm-5">
-           <%= f.submit '編集する', class: "btn btn-success" %>
-          </div>
-        </div>
-        <% end %>
       </div>
     </div>
   </div>

@@ -3,6 +3,7 @@ class BudgetPlansController < ApplicationController
 
   def index
     @user = current_user
+    @budget_plan = BudgetPlan.new
     if params[:month]
       @budget_plans = @user.budget_plans.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
       @outcomes = @budget_plans.where(main_category_id: [2, 3])
@@ -50,10 +51,6 @@ class BudgetPlansController < ApplicationController
         @investment_total_amount += investment.amount
       end
     end
-  end
-
-  def new
-    @budget_plan = BudgetPlan.new
   end
 
   def create

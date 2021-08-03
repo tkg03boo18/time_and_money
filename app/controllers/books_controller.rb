@@ -3,6 +3,7 @@ class BooksController < ApplicationController
 
   def index
     @user = current_user
+    @book = Book.new
     @totalbooks = @user.books
     @totalincomes = @totalbooks.where(main_category_id: 1)
     @totalincomes_total_amount = 0
@@ -73,8 +74,6 @@ class BooksController < ApplicationController
       end
     end
 
-    # @bookdata = Book.where(created_at: Time.current.beginning_of_month..Time.current.end_of_month).group_by { |book| book.date.strftime('%Y%m') }
-    # @bookdatas = Book.all.group_by { |book| book.date.strftime('%Y%m') }
   end
 
   def mypage
@@ -192,11 +191,6 @@ class BooksController < ApplicationController
       @not_purchased_lists_total_price += npl.price
     end
 
-
-  end
-
-  def new
-    @book = Book.new
   end
 
   def create
