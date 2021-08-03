@@ -61,20 +61,20 @@
             <% end %>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="bp-card card border-primary">
             <div class="card-header bg-primary text-white">
               固定費
             </div>
             <div class="card-body py-2">
-              <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <div class="list-group mt-2">
+              <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "40vh" %>
+              <div class="list-group bp-list-group mt-2">
                 <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 2 %>
-                    <%= link_to budget_plan_path(bp), remote: true, class: "list-group-item list-group-item-action flex-column align-items-start px-3 py-2" do %>
+                    <%= link_to budget_plan_path(bp), remote: true, class: "list-group-item bp-list-group-item list-group-item-action flex-column align-items-start px-3 py-2" do %>
                     <div class="d-flex w-100 justify-content-between">
-                      <label class="mb-1"><%= bp.sub_category.name %></label>
-                      <label class="mb-1">¥<%= bp.amount %></small>
+                      <small class="mb-1"><%= bp.sub_category.name %></small>
+                      <small class="mb-1">¥<%= bp.amount %></small>
                     </div>
                     <% end %>
                   <% end %>
@@ -84,20 +84,20 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
           <div class="bp-card card border-danger">
             <div class="card-header bg-danger text-white">
               変動費
             </div>
             <div class="bp-card-body card-body py-2">
-              <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
-              <div class="list-group mt-2">
+              <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "40vh" %>
+              <div class="list-group bp-list-group mt-2">
                 <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 3 %>
                     <%= link_to budget_plan_path(bp), remote: true, class: "list-group-item list-group-item-action flex-column align-items-start px-3 py-2" do %>
                     <div class="d-flex w-100 justify-content-between">
-                      <label class="mb-1"><%= bp.sub_category.name %></label>
-                      <label class="mb-1">¥<%= bp.amount %></small>
+                      <small class="mb-1"><%= bp.sub_category.name %></small>
+                      <small class="mb-1">¥<%= bp.amount %></small>
                     </div>
                     <% end %>
                   <% end %>
@@ -107,20 +107,43 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
+          <div class="bp-card card border-info">
+            <div class="card-header bg-info text-white">
+              収入
+            </div>
+            <div class="bp-card-body card-body py-2">
+              <%= pie_chart @incomes.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "40vh" %>
+              <div class="list-group mt-2">
+                <% @budget_plans.each do |bp| %>
+                  <% if bp.main_category_id == 1 %>
+                    <%= link_to budget_plan_path(bp), remote: true, class: "list-group-item list-group-item-action flex-column align-items-start px-3 py-2" do %>
+                    <div class="d-flex w-100 justify-content-between">
+                      <small class="mb-1"><%= bp.sub_category.name %></small>
+                      <small class="mb-1">¥<%= bp.amount %></small>
+                    </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+              <div id="budgetplan-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3">
           <div class="bp-card card border-success">
             <div class="card-header bg-success text-white">
               貯蓄・投資
             </div>
             <div class="bp-card-body card-body py-2">
-              <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "25vh" %>
+              <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "40vh" %>
               <div class="list-group mt-2">
                 <% @budget_plans.each do |bp| %>
                   <% if bp.main_category_id == 4 %>
                     <%= link_to budget_plan_path(bp), remote: true, class: "list-group-item list-group-item-action flex-column align-items-start px-3 py-2" do %>
                     <div class="d-flex w-100 justify-content-between">
-                      <label class="mb-1"><%= bp.sub_category.name %></label>
-                      <label class="mb-1">¥<%= bp.amount %></small>
+                      <small class="mb-1"><%= bp.sub_category.name %></small>
+                      <small class="mb-1">¥<%= bp.amount %></small>
                     </div>
                     <% end %>
                   <% end %>

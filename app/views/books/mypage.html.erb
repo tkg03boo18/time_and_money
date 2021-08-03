@@ -113,13 +113,13 @@
                 <div class="card border-0">
                   <div class="card-body pt-0 px-0">
                     <h6 class="card-title">支出内訳</h6>
-                    <%= column_chart @not_incomes.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
+                    <%= column_chart @outcomes.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
                   </div>
                 </div>
                 <div class="card border-0">
                   <div class="card-body pt-0 px-0">
                     <h6 class="card-title">予算内訳</h6>
-                    <%= column_chart @not_incomes_plans.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
+                    <%= column_chart @outcomes_plans.joins(:main_category).group("main_categories.name").sum(:amount), height: "25vh" %>
                   </div>
                 </div>
               </div>
