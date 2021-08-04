@@ -323,3 +323,40 @@ $btn1-alt-color: #28a745;
 .wishlist2 {
   border-left: solid 8px #28a745;
 }
+
+.sticky_table1 thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #17a2b8;
+}
+
+.sticky_table2 thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #007bff;
+}
+
+.sticky_table3 thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #dc3545;
+}
+
+.sticky_table4 thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: #28a745;
+}
+
+.sticky_table_wrapper {
+  overflow: scroll;
+  height: 30vh;
+}

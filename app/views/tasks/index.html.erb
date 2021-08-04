@@ -22,7 +22,7 @@
           達成率
         </div>
         <div class="card-body">
-          <h4 class="text-center"><%= number_to_percentage(@task_per * 100) %></h4>
+          <h4 class="text-center"><%= number_to_percentage(@task_per * 100, precision: 1) %></h4>
         </div>
       </div>
       <div class="fin-task-card border-primary card mt-2">

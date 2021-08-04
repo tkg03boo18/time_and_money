@@ -30,19 +30,19 @@
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           収入
-          <span>¥<%= @incomes_total_amount %></span>
+          <span><%= number_to_currency(@incomes_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           固定費
-          <span>¥<%= @fixed_total_amount %></span>
+          <span><%= number_to_currency(@fixed_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           変動費
-          <span>¥<%= @variable_total_amount %></span>
+          <span><%= number_to_currency(@variable_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           貯蓄・投資
-          <span>¥<%= @investment_total_amount %></span>
+          <span><%= number_to_currency(@investment_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
       </ul>
     </div>
@@ -68,36 +68,34 @@
             </div>
             <div class="card-body py-2">
               <%= pie_chart @fixed.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "30vh" %>
-              <div class="book-card card mt-2 border-0">
-                <div class="book-card-body card-body p-0">
-                  <table class="table table-sm">
-                    <thead>
-                      <tr class="small">
-                        <th>日付</th>
-                        <th>カテゴリ</th>
-                        <th>金額</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% @books.each do |book| %>
-                      <% if book.main_category_id == 2 %>
-                      <tr class="small">
-                        <td><%= book.date.strftime('%m/%d') %></td>
-                        <td><%= book.sub_category.name %></td>
-                        <td>¥<%= book.amount %></td>
-                        <td>
-                          <%= link_to book_path(book), remote: true do %>
-                          <i class="fas fa-search-plus"></i>
-                          <% end %>
-                          <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-                        </td>
-                      </tr>
-                      <% end %>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="sticky_table_wrapper mt-2">
+                <table class="sticky_table2 table table-sm">
+                  <thead class="text-white">
+                    <tr class="small">
+                      <th>日付</th>
+                      <th>カテゴリ</th>
+                      <th>金額</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @books.each do |book| %>
+                    <% if book.main_category_id == 2 %>
+                    <tr class="small">
+                      <td><%= book.date.strftime('%m/%d') %></td>
+                      <td><%= book.sub_category.name %></td>
+                      <td><%= number_to_currency(book.amount, :unit => "¥", precision: 0) %></td>
+                      <td>
+                        <%= link_to book_path(book), remote: true do %>
+                        <i class="fas fa-search-plus"></i>
+                        <% end %>
+                        <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+                      </td>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -109,36 +107,34 @@
             </div>
             <div class="card-body py-2">
               <%= pie_chart @variable.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "30vh" %>
-              <div class="book-card card mt-2 border-0">
-                <div class="book-card-body card-body p-0">
-                  <table class="table table-sm">
-                    <thead>
-                      <tr class="small">
-                        <th>日付</th>
-                        <th>カテゴリ</th>
-                        <th>金額</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% @books.each do |book| %>
-                      <% if book.main_category_id == 3 %>
-                      <tr class="small">
-                        <td><%= book.date.strftime('%m/%d') %></td>
-                        <td><%= book.sub_category.name %></td>
-                        <td>¥<%= book.amount %></td>
-                        <td>
-                          <%= link_to book_path(book), remote: true do %>
-                          <i class="fas fa-search-plus"></i>
-                          <% end %>
-                          <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-                        </td>
-                      </tr>
-                      <% end %>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="sticky_table_wrapper mt-2">
+                <table class="sticky_table3 table table-sm">
+                  <thead class="text-white">
+                    <tr class="small">
+                      <th>日付</th>
+                      <th>カテゴリ</th>
+                      <th>金額</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @books.each do |book| %>
+                    <% if book.main_category_id == 3 %>
+                    <tr class="small">
+                      <td><%= book.date.strftime('%m/%d') %></td>
+                      <td><%= book.sub_category.name %></td>
+                      <td><%= number_to_currency(book.amount, :unit => "¥", precision: 0) %></td>
+                      <td>
+                        <%= link_to book_path(book), remote: true do %>
+                        <i class="fas fa-search-plus"></i>
+                        <% end %>
+                        <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+                      </td>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -150,36 +146,34 @@
             </div>
             <div class="card-body py-2">
               <%= pie_chart @incomes.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "30vh" %>
-              <div class="book-card card mt-2 border-0">
-                <div class="book-card-body card-body p-0">
-                  <table class="table table-sm">
-                    <thead>
-                      <tr class="small">
-                        <th>日付</th>
-                        <th>カテゴリ</th>
-                        <th>金額</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% @books.each do |book| %>
-                      <% if book.main_category_id == 1 %>
-                      <tr class="small">
-                        <td><%= book.date.strftime('%m/%d') %></td>
-                        <td><%= book.sub_category.name %></td>
-                        <td>¥<%= book.amount %></td>
-                        <td>
-                          <%= link_to book_path(book), remote: true do %>
-                          <i class="fas fa-search-plus"></i>
-                          <% end %>
-                          <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-                        </td>
-                      </tr>
-                      <% end %>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="sticky_table_wrapper mt-2">
+                <table class="sticky_table1 table table-sm">
+                  <thead class="text-white">
+                    <tr class="small">
+                      <th>日付</th>
+                      <th>カテゴリ</th>
+                      <th>金額</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @books.each do |book| %>
+                    <% if book.main_category_id == 1 %>
+                    <tr class="small">
+                      <td><%= book.date.strftime('%m/%d') %></td>
+                      <td><%= book.sub_category.name %></td>
+                      <td><%= number_to_currency(book.amount, :unit => "¥", precision: 0) %></td>
+                      <td>
+                        <%= link_to book_path(book), remote: true do %>
+                        <i class="fas fa-search-plus"></i>
+                        <% end %>
+                        <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+                      </td>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -191,36 +185,34 @@
             </div>
             <div class="card-body py-2">
               <%= pie_chart @investment.joins(:sub_category).group("sub_categories.name").sum(:amount), height: "30vh" %>
-              <div class="book-card card mt-2 border-0">
-                <div class="book-card-body card-body p-0">
-                  <table class="table table-sm">
-                    <thead>
-                      <tr class="small">
-                        <th>日付</th>
-                        <th>カテゴリ</th>
-                        <th>金額</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <% @books.each do |book| %>
-                      <% if book.main_category_id == 4 %>
-                      <tr class="small">
-                        <td><%= book.date.strftime('%m/%d') %></td>
-                        <td><%= book.sub_category.name %></td>
-                        <td>¥<%= book.amount %></td>
-                        <td>
-                          <%= link_to book_path(book), remote: true do %>
-                          <i class="fas fa-search-plus"></i>
-                          <% end %>
-                          <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
-                        </td>
-                      </tr>
-                      <% end %>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="sticky_table_wrapper mt-2">
+                <table class="sticky_table4 table table-sm">
+                  <thead class="text-white">
+                    <tr class="small">
+                      <th>日付</th>
+                      <th>カテゴリ</th>
+                      <th>金額</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @books.each do |book| %>
+                    <% if book.main_category_id == 4 %>
+                    <tr class="small">
+                      <td><%= book.date.strftime('%m/%d') %></td>
+                      <td><%= book.sub_category.name %></td>
+                      <td><%= number_to_currency(book.amount, :unit => "¥", precision: 0) %></td>
+                      <td>
+                        <%= link_to book_path(book), remote: true do %>
+                        <i class="fas fa-search-plus"></i>
+                        <% end %>
+                        <div id="book-show-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+                      </td>
+                    </tr>
+                    <% end %>
+                    <% end %>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

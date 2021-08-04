@@ -23,15 +23,15 @@
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small>収入</small>
-          <span>¥<%= @totalincomes_total_amount %></span>
+          <span><%= number_to_currency(@totalincomes_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small>支出</small>
-          <span>¥<%= @totalfixed_total_amount + @totalvariable_total_amount %></span>
+          <span><%= number_to_currency(@totalfixed_total_amount + @totalvariable_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           <small>貯蓄・投資</small>
-          <span>¥<%= @totalinvestment_total_amount %></span>
+          <span><%= number_to_currency(@totalinvestment_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
       </ul>
     </div>
@@ -49,19 +49,19 @@
                     <div class="card border-0">
                       <div class="card-body pt-0">
                         <h5 class="card-title text-center"><%= Time.current.prev_month.strftime('%m月') %></h5>
-                        <h4 class="card-text text-center">¥<%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></h4>
+                        <h4 class="card-text text-center"><%= number_to_currency(@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount, :unit => "¥", precision: 0) %></h4>
                       </div>
                     </div>
                     <p class="d-flex align-self-center">→</p>
                     <div class="card border-0">
                       <div class="card-body pt-0">
                         <h5 class="card-title text-center"><%= Time.current.strftime('%m月') %></h5>
-                        <h4 class="card-text text-center">¥<%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></h4>
+                        <h4 class="card-text text-center"><%= number_to_currency(@incomes_total_amount - @fixed_total_amount - @variable_total_amount, :unit => "¥", precision: 0) %></h4>
                       </div>
                     </div>
                   </div>
                   <h5 class="text-center">増減</h5>
-                  <h4 class="text-center">¥<%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></h4>
+                  <h4 class="text-center"><%= number_to_currency(@incomes_total_amount - @fixed_total_amount - @variable_total_amount - @prev_incomes_total_amount + @prev_fixed_total_amount + @prev_variable_total_amount, :unit => "¥", precision: 0) %></h4>
                 </div>
               </div>
               <table class="books-mypage-booktable table table-sm mt-4">
@@ -76,27 +76,27 @@
                 <tbody>
                   <tr>
                     <th>収入</th>
-                    <td class="text-center">¥<%= @prev_incomes_total_amount %></td>
-                    <td class="text-center">¥<%= @incomes_total_amount %></td>
-                    <td class="books-mypage-booktd text-center">¥<%= @incomes_total_amount - @prev_incomes_total_amount %></td>
+                    <td class="text-center"><%= number_to_currency(@prev_incomes_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@incomes_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="books-mypage-booktd text-center"><%= number_to_currency(@incomes_total_amount - @prev_incomes_total_amount, :unit => "¥", precision: 0) %></td>
                   </tr>
                   <tr>
                     <th>固定費支出</th>
-                    <td class="text-center">¥<%= @prev_fixed_total_amount %></td>
-                    <td class="text-center">¥<%= @fixed_total_amount %></td>
-                    <td class="books-mypage-booktd text-center">¥<%= @fixed_total_amount - @prev_fixed_total_amount %></td>
+                    <td class="text-center"><%= number_to_currency(@prev_fixed_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@fixed_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="books-mypage-booktd text-center"><%=number_to_currency(@fixed_total_amount - @prev_fixed_total_amount, :unit => "¥", precision: 0) %></td>
                   </tr>
                   <tr>
                     <th>変動費支出</th>
-                    <td class="text-center">¥<%= @prev_variable_total_amount %></td>
-                    <td class="text-center">¥<%= @variable_total_amount %></td>
-                    <td class="books-mypage-booktd text-center">¥<%= @variable_total_amount - @prev_variable_total_amount %></td>
+                    <td class="text-center"><%= number_to_currency(@prev_variable_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@variable_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="books-mypage-booktd text-center"><%= number_to_currency(@variable_total_amount - @prev_variable_total_amount, :unit => "¥", precision: 0) %></td>
                   </tr>
                   <tr>
                     <th>収支計</th>
-                    <td class="text-center">¥<%= @prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount %></td>
-                    <td class="text-center">¥<%= @incomes_total_amount - @fixed_total_amount - @variable_total_amount %></td>
-                    <td class="books-mypage-booktd text-center">¥<%= (@incomes_total_amount - @fixed_total_amount - @variable_total_amount) - (@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount) %></td>
+                    <td class="text-center"><%= number_to_currency(@prev_incomes_total_amount - @prev_fixed_total_amount - @prev_variable_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@incomes_total_amount - @fixed_total_amount - @variable_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="books-mypage-booktd text-center"><%= number_to_currency(@incomes_total_amount - @fixed_total_amount - @variable_total_amount - @prev_incomes_total_amount + @prev_fixed_total_amount + @prev_variable_total_amount, :unit => "¥", precision: 0) %></td>
                   </tr>
                 </tbody>
               </table>
@@ -135,21 +135,21 @@
                 <tbody>
                   <tr>
                     <th>固定費</th>
-                    <td class="text-center">¥<%= @fixed_total_amount %></td>
-                    <td class="text-center">¥<%= @fixed_plans_total_amount %></td>
-                    <td class="text-center">¥<%= @fixed_plans_total_amount - @fixed_total_amount %> (<%= number_to_percentage(@fixed_per * 100) %>)</td>
+                    <td class="text-center"><%= number_to_currency(@fixed_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@fixed_plans_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@fixed_plans_total_amount - @fixed_total_amount, :unit => "¥", precision: 0) %> (<%= number_to_percentage(@fixed_per * 100, precision: 1) %>)</td>
                   </tr>
                   <tr>
                     <th>変動費</th>
-                    <td class="text-center">¥<%= @variable_total_amount %></td>
-                    <td class="text-center">¥<%= @variable_plans_total_amount %></td>
-                    <td class="text-center">¥<%= @variable_plans_total_amount - @variable_total_amount %> (<%= number_to_percentage(@variable_per * 100) %>)</td>
+                    <td class="text-center"><%= number_to_currency(@variable_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@variable_plans_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@variable_plans_total_amount - @variable_total_amount, :unit => "¥", precision: 0) %> (<%= number_to_percentage(@variable_per * 100, precision: 1) %>)</td>
                   </tr>
                   <tr>
                     <th>合計</th>
-                    <td class="text-center">¥<%= @outcomes_total_amount %></td>
-                    <td class="text-center">¥<%= @outcomes_plans_total_amount %></td>
-                    <td class="text-center">¥<%= @outcomes_plans_total_amount - @outcomes_total_amount %> (<%= number_to_percentage(@outcomes_per * 100) %>)</td>
+                    <td class="text-center"><%= number_to_currency(@outcomes_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@outcomes_plans_total_amount, :unit => "¥", precision: 0) %></td>
+                    <td class="text-center"><%= number_to_currency(@outcomes_plans_total_amount - @outcomes_total_amount, :unit => "¥", precision: 0) %> (<%= number_to_percentage(@outcomes_per * 100, precision: 1) %>)</td>
                   </tr>
                 </tbody>
               </table>
@@ -166,19 +166,19 @@
                 <div class="card bg-danger text-white">
                   <div class="card-body">
                     <h5 class="card-title">目標額</h5>
-                    <h4 class="card-text">¥<%= @investment_plans_total_amount %></h4>
+                    <h4 class="card-text"><%= number_to_currency(@investment_plans_total_amount, :unit => "¥", precision: 0) %></h4>
                   </div>
                 </div>
                 <div class="card bg-info text-white">
                   <div class="card-body">
                     <h5 class="card-title">達成額</h5>
-                    <h4 class="card-text">¥<%= @investment_total_amount %></h4>
+                    <h4 class="card-text"><%= number_to_currency(@investment_total_amount, :unit => "¥", precision: 0) %></h4>
                   </div>
                 </div>
                 <div class="card bg-success text-white">
                   <div class="card-body">
                     <h5 class="card-title">達成率</h5>
-                    <h4 class="card-text"><%= number_to_percentage(@investment_per * 100) %></h4>
+                    <h4 class="card-text"><%= number_to_percentage(@investment_per * 100, precision: 1) %></h4>
                   </div>
                 </div>
               </div>
@@ -196,13 +196,13 @@
                 <div class="card bg-danger text-white">
                   <div class="card-body">
                     <h5 class="card-title">未購入合計</h5>
-                    <h4 class="card-text">¥<%= @not_purchased_lists_total_price %><small>（<%= @not_purchased_lists.count %>件）</small></h4>
+                    <h4 class="card-text"><%= number_to_currency(@not_purchased_lists_total_price, :unit => "¥", precision: 0) %><small>（<%= @not_purchased_lists.count %>件）</small></h4>
                   </div>
                 </div>
                 <div class="card bg-info text-white">
                   <div class="card-body">
                     <h5 class="card-title">購入済合計</h5>
-                    <h4 class="card-text">¥<%= @purchased_lists_total_price %><small>（<%= @purchased_lists.count %>件）</small></h4>
+                    <h4 class="card-text"><%= number_to_currency(@purchased_lists_total_price, :unit => "¥", precision: 0) %><small>（<%= @purchased_lists.count %>件）</small></h4>
                   </div>
                 </div>
               </div>

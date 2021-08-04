@@ -113,19 +113,19 @@
                     <table class="table table-sm table-borderless">
                       <tr>
                         <th>収入</th>
-                        <td>¥<%= @incomes_plans_total_amount %></td>
+                        <td><%= number_to_currency(@incomes_plans_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
                       <tr>
                         <th>固定費</th>
-                        <td>¥<%= @fixed_plans_total_amount %></td>
+                        <td><%= number_to_currency(@fixed_plans_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
                       <tr>
                         <th>変動費</th>
-                        <td>¥<%= @variable_plans_total_amount %></td>
+                        <td><%= number_to_currency(@variable_plans_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
                       <tr>
                         <th>貯蓄・投資</th>
-                        <td>¥<%= @investment_plans_total_amount %></td>
+                        <td><%= number_to_currency(@investment_plans_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
 
                     </table>
@@ -153,19 +153,19 @@
                     <table class="table table-sm table-borderless">
                       <tr>
                         <th>収入</th>
-                        <td>¥<%= @incomes_total_amount %></td>
+                        <td><%= number_to_currency(@incomes_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
                       <tr>
                         <th>固定費</th>
-                        <td>¥<%= @fixed_total_amount %></td>
+                        <td><%= number_to_currency(@fixed_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
                       <tr>
                         <th>変動費</th>
-                        <td>¥<%= @variable_total_amount %></td>
+                        <td><%= number_to_currency(@variable_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
                       <tr>
                         <th>貯蓄・投資</th>
-                        <td>¥<%= @investment_total_amount %></td>
+                        <td><%= number_to_currency(@investment_total_amount, :unit => "¥", precision: 0) %></td>
                       </tr>
                     </table>
                   </div>

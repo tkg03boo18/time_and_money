@@ -18,7 +18,7 @@
         <div class="list-group-item">
           <div class="d-flex w-100 justify-content-between">
             <label>金額</label>
-            <label>¥<%= @list.price %></label>
+            <label><%= number_to_currency(@list.price, :unit => "¥", precision: 0) %></label>
           </div>
         </div>
         <div class="list-group-item">

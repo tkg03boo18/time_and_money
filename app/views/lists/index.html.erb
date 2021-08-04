@@ -29,15 +29,15 @@
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           必要資金
-          <span>¥<%= @not_purchased_total_price %></span>
+          <span><%= number_to_currency(@not_purchased_total_price, :unit => "¥", precision: 0) %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           My貯金
-          <span>¥<%= @my_savings_total_amount %></span>
+          <span><%= number_to_currency(@my_savings_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
           不足額
-          <span>¥<%= @not_purchased_total_price - @my_savings_total_amount %></span>
+          <span><%= number_to_currency(@not_purchased_total_price - @my_savings_total_amount, :unit => "¥", precision: 0) %></span>
         </li>
       </ul>
     </div>
@@ -55,7 +55,7 @@
                       <label class="mb-1"><%= list.name %></label>
                       <small>購入希望期限：<%= list.date.strftime('%Y/%m/%d') %></small>
                     </div>
-                    <p class="mb-1">金額：¥<%= list.price %></p>
+                    <p class="mb-1">金額：<%= number_to_currency(list.price, :unit => "¥", precision: 0) %></p>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -74,7 +74,7 @@
                     <%= link_to list_path(list), remote: true, class: "wishlist2 list-group-item list-group-item-action flex-column align-items-start border-info" do %>
                     <div class="d-flex w-100 justify-content-between">
                       <label class="mb-1"><%= list.name %></label>
-                      <small>金額：¥<%= list.price %></small>
+                      <small>金額：<%= number_to_currency(list.price, :unit => "¥", precision: 0) %></small>
                     </div>
                     <% end %>
                   <% end %>
