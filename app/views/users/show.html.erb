@@ -62,14 +62,14 @@
               </ul>
             </div>
             <div class="card-footer text-center">
-              <%= link_to users_mypage_path do %>
-              <button type="button" class="btn btn-primary btn-block mb-2">My Pageへ</button>
+              <%= link_to users_mypage_path, class: "btn btn-primary btn-block mb-2" do %>
+              My Pageへ
               <% end %>
-              <%= link_to users_edit_path(@user) do %>
-              <button type="button" class="btn btn-success btn-block mb-2">編集する</button>
+              <%= link_to users_edit_path(@user), class: "btn btn-success btn-block mb-2" do %>
+              編集する
               <% end %>
-              <%= link_to  users_unsubscribe_path do %>
-              <button type="button" class="btn btn-danger btn-block">退会する</button>
+              <%= link_to  users_unsubscribe_path, class: "btn btn-danger btn-block" do %>
+              退会する
               <% end %>
             </div>
           </div>

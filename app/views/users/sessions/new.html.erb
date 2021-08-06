@@ -1,11 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4 offset-sm-4 my-4">
+      <% if @user.is_deleted == true %>
+      <div class="alert alert-danger" role="alert">
+        <%= flash[:error] %>
+      </div>
+      <% end %>
       <div class="card">
         <div class="card-header">
           ログイン
         </div>
         <div class="card-body">
+
           <%= form_with model: @user, url: user_session_path, local: true do |f| %>
             <div class="form-group field">
               <%= f.label :email, "メールアドレス", class: "form-control-label" %>
