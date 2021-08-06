@@ -55,8 +55,13 @@ class BudgetPlansController < ApplicationController
 
   def create
     @budget_plan = BudgetPlan.new(budget_plan_params)
-    @budget_plan.save
-    redirect_to budget_plans_path
+    if @budget_plan.save
+      flash[:success] = "保存に成功しました！"
+      redirect_to budget_plans_path
+    else
+      flash[:alert] = "保存に失敗しました"
+      redirect_to budget_plans_path
+    end
   end
 
   def show
@@ -69,14 +74,24 @@ class BudgetPlansController < ApplicationController
 
   def update
     @budget_plan = BudgetPlan.find(params[:id])
-    @budget_plan.update(budget_plan_params)
-    redirect_to budget_plans_path
+    if @budget_plan.update(budget_plan_params)
+      flash[:success] = "更新に成功しました！"
+      redirect_to budget_plans_path
+    else
+      flash[:alert] = "更新に失敗しました"
+      redirect_to budget_plans_path
+    end
   end
 
   def destroy
     @budget_plan = BudgetPlan.find(params[:id])
-    @budget_plan.destroy
-    redirect_to budget_plans_path
+    if @budget_plan.destroy
+      flash[:success] = "削除に成功しました！"
+      redirect_to budget_plans_path
+    else
+      flash[:alert] = "削除に失敗しました"
+      redirect_to budget_plans_path
+    end
   end
 
   private

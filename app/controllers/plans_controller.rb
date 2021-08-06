@@ -23,14 +23,24 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    @plan.save
-    redirect_to plans_path
+    if @plan.save
+      flash[:success] = "保存に成功しました！"
+      redirect_to plans_path
+    else
+      flash[:alert] = "保存に失敗しました"
+      redirect_to plans_path
+    end
   end
 
 
   def update
-    @plan.update(plan_params)
-    redirect_to plans_path
+    if @plan.update(plan_params)
+      flash[:success] = "更新に成功しました！"
+      redirect_to plans_path
+    else
+      flash[:alert] = "更新に失敗しました"
+      redirect_to plans_path
+    end
   end
 
   def calendarupdate
@@ -45,8 +55,13 @@ class PlansController < ApplicationController
 
 
   def destroy
-    @plan.destroy
-    redirect_to plans_path
+    if @plan.destroy
+      flash[:success] = "削除に成功しました！"
+      redirect_to plans_path
+    else
+      flash[:alert] = "削除に失敗しました"
+      redirect_to plans_path
+    end
   end
 
   private

@@ -69,8 +69,13 @@ class UsersController < ApplicationController
 
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to users_show_path
+    if @user.update(user_params)
+      flash[:success] = "更新に成功しました！"
+      redirect_to users_show_path
+    else
+      flash[:alert] = "更新に失敗しました"
+      redirect_to users_show_path
+    end
   end
 
   def unsubscribe
@@ -79,9 +84,11 @@ class UsersController < ApplicationController
 
   def withdraw
     @user = current_user
-    @user.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
+    if @user.update(is_deleted: true)
+      reset_session
+      flash[:info] = "ご利用ありがとうございました"
+      redirect_to root_path
+    end
   end
 
   private

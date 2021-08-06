@@ -21,8 +21,13 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    @list.save
-    redirect_to lists_path
+    if @list.save
+      flash[:sucess] = "保存に成功しました！"
+      redirect_to lists_path
+    else
+      flash[:alert] = "保存に失敗しました"
+      redirect_to lists_path
+    end
   end
 
   def show
@@ -35,14 +40,24 @@ class ListsController < ApplicationController
 
   def update
     @list = List.find(params[:id])
-    @list.update(list_params)
-    redirect_to lists_path
+    if @list.update(list_params)
+      flash[:success] = "更新に成功しました！"
+      redirect_to lists_path
+    else
+      flash[:alert] = "更新に失敗しました"
+      redirect_to lists_path
+    end
   end
 
   def destroy
     @list = List.find(params[:id])
-    @list.destroy
-    redirect_to lists_path
+    if @list.destroy
+      flash[:success] = "削除に成功しました！"
+      redirect_to lists_path
+    else
+      flash[:alert] = "削除に失敗しました"
+      redirect_to lists_path
+    end
   end
 
   private

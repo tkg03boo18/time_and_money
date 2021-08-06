@@ -197,81 +197,11 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      flash[:notice] = "You have created book successfully"
+      flash[:success] = "保存に成功しました！"
       redirect_to books_path
     else
-      @user = current_user
-      @totalbooks = @user.books
-      @totalincomes = @totalbooks.where(main_category_id: 1)
-      @totalincomes_total_amount = 0
-      @totalincomes.each do |ti|
-        @totalincomes_total_amount += ti.amount
-      end
-      @totalfixed = @totalbooks.where(main_category_id: 2)
-      @totalfixed_total_amount = 0
-      @totalfixed.each do |tf|
-        @totalfixed_total_amount += tf.amount
-      end
-      @totalvariable = @totalbooks.where(main_category_id: 3)
-      @totalvariable_total_amount = 0
-      @totalvariable.each do |tv|
-        @totalvariable_total_amount += tv.amount
-      end
-      @totalinvestment = @totalbooks.where(main_category_id: 4)
-      @totalinvestment_total_amount = 0
-      @totalinvestment.each do |t_inv|
-        @totalinvestment_total_amount += t_inv.amount
-      end
-
-      if params[:month]
-        @books = @user.books.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
-        @outcomes = @books.where(main_category_id: [2, 3])
-        @incomes = @books.where(main_category_id: 1)
-        @incomes_total_amount = 0
-        @incomes.each do |income|
-          @incomes_total_amount += income.amount
-        end
-        @fixed = @books.where(main_category_id: 2)
-        @fixed_total_amount = 0
-        @fixed.each do |fixed|
-          @fixed_total_amount += fixed.amount
-        end
-        @variable = @books.where(main_category_id: 3)
-        @variable_total_amount = 0
-        @variable.each do |variable|
-          @variable_total_amount += variable.amount
-        end
-        @investment = @books.where(main_category_id: 4)
-        @investment_total_amount = 0
-        @investment.each do |investment|
-          @investment_total_amount += investment.amount
-        end
-
-      else
-        @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
-        @outcomes = @books.where(main_category_id: [2, 3])
-        @incomes = @books.where(main_category_id: 1)
-        @incomes_total_amount = 0
-        @incomes.each do |income|
-          @incomes_total_amount += income.amount
-        end
-        @fixed = @books.where(main_category_id: 2)
-        @fixed_total_amount = 0
-        @fixed.each do |fixed|
-          @fixed_total_amount += fixed.amount
-        end
-        @variable = @books.where(main_category_id: 3)
-        @variable_total_amount = 0
-        @variable.each do |variable|
-          @variable_total_amount += variable.amount
-        end
-        @investment = @books.where(main_category_id: 4)
-        @investment_total_amount = 0
-        @investment.each do |investment|
-          @investment_total_amount += investment.amount
-        end
-      end
-      render 'index'
+      flash[:alert] = "保存に失敗しました"
+      redirect_to books_path
     end
   end
 
@@ -285,14 +215,24 @@ class BooksController < ApplicationController
 
   def update
     @book = Book.find(params[:id])
-    @book.update(book_params)
-    redirect_to books_path
+    if @book.update(book_params)
+      flash[:success] = "更新に成功しました！"
+      redirect_to books_path
+    else
+      flash[:alert] = "更新に失敗しました"
+      redirect_to books_path
+    end
   end
 
   def destroy
     @book = Book.find(params[:id])
-    @book.destroy
-    redirect_to books_path
+    if @book.destroy
+      flash[:success] = "削除に成功しました！"
+      redirect_to books_path
+    else
+      flash[:alert] = "削除に失敗しました"
+      redirect_to books_path
+    end
   end
 
   private
