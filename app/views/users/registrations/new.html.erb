@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4 offset-sm-4 my-4">
-    	<div class="card">
-    		<div class="card-header">
+    	<div class="card border-primary">
+    		<div class="card-header bg-primary text-white">
     			新規会員登録
     		</div>
     		<div class="card-body">
     			<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-          <%= render "devise/shared/error_messages", resource: resource %>
+          <%= render "users/shared/error_messages", resource: resource %>
           <div class="form-group field">
           	<%= f.label :name, "ユーザー名", class: "form-control-label" %>
           	<%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "aaa" %>
@@ -38,16 +38,14 @@
           <% end %>
     		</div>
     	</div>
+    	<div class="card mt-4 border-success">
+    	  <div class="card-header bg-success text-white">
+    	    既に登録済みの方
+    	  </div>
+    	  <div class="card-body">
+    	    <%= link_to "こちら", new_user_session_path %> からログインしてください。
+    	  </div>
+    	</div>
     </div>
   </div>
-  <div class="row">
-		<div class="col-sm-10 offset-sm-1 my-4">
-      <h4 class="text-center">既に登録済みの方</h4>
-    </div>
-    <div class="col-sm-4 offset-sm-4">
-      <p class="text-center">
-        <%= link_to "こちら", new_user_session_path %> からログインしてください。
-      </p>
-    </div>
-	</div>
 </div>

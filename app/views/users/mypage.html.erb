@@ -43,7 +43,7 @@
                 <% @plans.each do |plan| %>
                 <div class="list-group-item">
                   <div class="d-flex w-100 justify-content-between">
-                    <label class="mb-1"><%= plan.title %></label>
+                    <small class="mb-1"><%= plan.title %></small>
                     <small><%= plan.start_date.strftime("%m/%d %H:%M") %>〜<%= plan.end_date.strftime("%m/%d %H:%M") %></small>
                   </div>
                 </div>

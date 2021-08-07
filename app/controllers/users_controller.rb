@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   def mypage
     @user = current_user
 
-    @plans = @user.plans.where(start_date: Time.current.beginning_of_week..Time.current.end_of_week)
+    @plans = @user.plans.where(start_date: Time.current.beginning_of_week..Time.current.end_of_week).order(:start_date)
 
-    @tasks = @user.tasks
+    @tasks = @user.tasks.order(:deadline)
 
     @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
     @incomes = @books.where(main_category_id: 1)

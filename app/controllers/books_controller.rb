@@ -27,7 +27,7 @@ class BooksController < ApplicationController
     end
 
     if params[:month]
-      @books = @user.books.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
+      @books = @user.books.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month).order(:date)
       @outcomes = @books.where(main_category_id: [2, 3])
       @incomes = @books.where(main_category_id: 1)
       @incomes_total_amount = 0
@@ -51,7 +51,7 @@ class BooksController < ApplicationController
       end
 
     else
-      @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+      @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month).order(:date)
       @outcomes = @books.where(main_category_id: [2, 3])
       @incomes = @books.where(main_category_id: 1)
       @incomes_total_amount = 0
