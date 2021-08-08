@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-  before_action :set_plan, only: [:show, :edit, :update, :destroy, :calendarupdate]
+  before_action :set_plan, only: [:edit, :update, :destroy, :calendarupdate]
 
 
   def index
@@ -9,15 +9,8 @@ class PlansController < ApplicationController
     @tasks = @user.tasks
   end
 
-
-  def show
-    @plan = Plan.find(params[:id])
-  end
-
-
-
   def edit
-    @plan = Plan.find(params[:id])
+
   end
 
 

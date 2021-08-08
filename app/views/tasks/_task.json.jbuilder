@@ -1,1 +1,0 @@
-json.extract! task, :id, :user_id, :title, :body, :importance, :urgency, :deadline, :created_at, :updated_at
