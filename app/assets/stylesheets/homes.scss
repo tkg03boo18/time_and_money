@@ -19,7 +19,7 @@ body {
 }
 
 $skewDeg: 18deg;
-$magicVH: 32.4vh; // this number is magic and depends on skew angle
+$magicVH: 32.4vh;
 $scrollTime: 1s;
 
 .skw-page {
@@ -118,7 +118,7 @@ $scrollTime: 1s;
 
   &-1 {
     .skw-page__half--left .skw-page__content {
-      background-image: url(img/time11.jpg);
+      background-image: image-url(img/time11.jpg);
     }
     .skw-page__half--right .skw-page__content {
       background: lighten(#007bff, 5%);
@@ -129,12 +129,12 @@ $scrollTime: 1s;
       background: lighten(#007bff, 5%);
     }
     .skw-page__half--right .skw-page__content {
-      background-image: url(img/time3.jpg);
+      background-image: image-url(img/time3.jpg);
     }
   }
   &-3 {
     .skw-page__half--left .skw-page__content {
-      background-image: url(img/time_todo.jpg);
+      background-image: image-url(img/time_todo.jpg);
     }
     .skw-page__half--right .skw-page__content {
       background: lighten(#007bff, 5%);
@@ -145,12 +145,12 @@ $scrollTime: 1s;
       background: lighten(#FA7E00, 5%);
     }
     .skw-page__half--right .skw-page__content {
-      background-image: url(img/money2.jpg);
+      background-image: image-url(img/money2.jpg);
     }
   }
   &-5 {
     .skw-page__half--left .skw-page__content {
-      background-image: url(img/2610757.jpg);
+      background-image: image-url(img/2610757.jpg);
     }
     .skw-page__half--right .skw-page__content {
       background: lighten(#FA7E00, 5%);
@@ -161,12 +161,12 @@ $scrollTime: 1s;
       background: lighten(#FA7E00, 5%);
     }
     .skw-page__half--right .skw-page__content {
-      background-image: url(img/money5.jpg);
+      background-image: image-url(img/money5.jpg);
     }
   }
   &-7 {
     .skw-page__half--left .skw-page__content {
-      background-image: url(img/step.jpg);
+      background-image: image-url(img/step.jpg);
     }
     .skw-page__half--right .skw-page__content {
       background: lighten(#1C1C1C, 5%);

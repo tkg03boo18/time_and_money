@@ -129,8 +129,7 @@ $btn1-alt-color: #28a745;
 
 .topbox2 {
   height: 92vh;
-  background-image: url(img/portfoliomain.002.jpeg);
-  background-size: cover;
+
 }
 
 .top-nav1:hover {
@@ -207,11 +206,11 @@ $btn1-alt-color: #28a745;
 
 .side-menu1 {
   color: black;
-  border-left: solid 8px #25F500;/*左側の線*/
-  background: white;/*背景色*/
-  margin-bottom: 5px;/*下のバーとの余白*/
+  border-left: solid 8px #25F500;
+  background: white;
+  margin-bottom: 5px;
   line-height: 1.5;
-  border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
+  border-radius: 0 15px 15px 0;
   padding: 0.5em;
   list-style-type: none!important;
   transition: .4s;
@@ -225,11 +224,11 @@ $btn1-alt-color: #28a745;
 
 .side-menu2 {
   color: black;
-  border-left: solid 8px #007bff;/*左側の線*/
-  background: white;/*背景色*/
-  margin-bottom: 5px;/*下のバーとの余白*/
+  border-left: solid 8px #007bff;
+  background: white;
+  margin-bottom: 5px;
   line-height: 1.5;
-  border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
+  border-radius: 0 15px 15px 0;
   padding: 0.5em;
   list-style-type: none!important;
   transition: .4s;
@@ -243,11 +242,11 @@ $btn1-alt-color: #28a745;
 
 .side-menu3 {
   color: black;
-  border-left: solid 8px #FA7E00;/*左側の線*/
-  background: white;/*背景色*/
-  margin-bottom: 5px;/*下のバーとの余白*/
+  border-left: solid 8px #FA7E00;
+  background: white;
+  margin-bottom: 5px;
   line-height: 1.5;
-  border-radius: 0 15px 15px 0;/*右側の角だけ丸く*/
+  border-radius: 0 15px 15px 0;
   padding: 0.5em;
   list-style-type: none!important;
   transition: .4s;
@@ -270,7 +269,7 @@ $btn1-alt-color: #28a745;
 }
 
 .tasklist1 {
-  border-left: solid 8px #dc3545;/*左側の線*/
+  border-left: solid 8px #dc3545;
 }
 
 .tasklist2 {
