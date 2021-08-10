@@ -5,47 +5,47 @@ class BudgetPlansController < ApplicationController
     @user = current_user
     @budget_plan = BudgetPlan.new
     if params[:month]
-      @budget_plans = @user.budget_plans.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month)
-      @outcomes = @budget_plans.where(main_category_id: [2, 3])
-      @incomes = @budget_plans.where(main_category_id: 1)
+      @budget_plans = @user.budget_plans.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month).order(:sub_category_id)
+      @outcomes = @budget_plans.where(main_category_id: [2, 3]).order(:sub_category_id)
+      @incomes = @budget_plans.where(main_category_id: 1).order(:sub_category_id)
       @incomes_total_amount = 0
       @incomes.each do |income|
         @incomes_total_amount += income.amount
       end
-      @fixed = @budget_plans.where(main_category_id: 2)
+      @fixed = @budget_plans.where(main_category_id: 2).order(:sub_category_id)
       @fixed_total_amount = 0
       @fixed.each do |fixed|
         @fixed_total_amount += fixed.amount
       end
-      @variable = @budget_plans.where(main_category_id: 3)
+      @variable = @budget_plans.where(main_category_id: 3).order(:sub_category_id)
       @variable_total_amount = 0
       @variable.each do |variable|
         @variable_total_amount += variable.amount
       end
-      @investment = @budget_plans.where(main_category_id: 4)
+      @investment = @budget_plans.where(main_category_id: 4).order(:sub_category_id)
       @investment_total_amount = 0
       @investment.each do |investment|
         @investment_total_amount += investment.amount
       end
     else
-      @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
-      @outcomes = @budget_plans.where(main_category_id: [2, 3])
-      @incomes = @budget_plans.where(main_category_id: 1)
+      @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month).order(:sub_category_id)
+      @outcomes = @budget_plans.where(main_category_id: [2, 3]).order(:sub_category_id)
+      @incomes = @budget_plans.where(main_category_id: 1).order(:sub_category_id)
       @incomes_total_amount = 0
       @incomes.each do |income|
         @incomes_total_amount += income.amount
       end
-      @fixed = @budget_plans.where(main_category_id: 2)
+      @fixed = @budget_plans.where(main_category_id: 2).order(:sub_category_id)
       @fixed_total_amount = 0
       @fixed.each do |fixed|
         @fixed_total_amount += fixed.amount
       end
-      @variable = @budget_plans.where(main_category_id: 3)
+      @variable = @budget_plans.where(main_category_id: 3).order(:sub_category_id)
       @variable_total_amount = 0
       @variable.each do |variable|
         @variable_total_amount += variable.amount
       end
-      @investment = @budget_plans.where(main_category_id: 4)
+      @investment = @budget_plans.where(main_category_id: 4).order(:sub_category_id)
       @investment_total_amount = 0
       @investment.each do |investment|
         @investment_total_amount += investment.amount

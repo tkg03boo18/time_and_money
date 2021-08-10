@@ -28,23 +28,23 @@ class BooksController < ApplicationController
 
     if params[:month]
       @books = @user.books.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month).order(:date)
-      @outcomes = @books.where(main_category_id: [2, 3])
-      @incomes = @books.where(main_category_id: 1)
+      @outcomes = @books.where(main_category_id: [2, 3]).order(:sub_category_id)
+      @incomes = @books.where(main_category_id: 1).order(:sub_category_id)
       @incomes_total_amount = 0
       @incomes.each do |income|
         @incomes_total_amount += income.amount
       end
-      @fixed = @books.where(main_category_id: 2)
+      @fixed = @books.where(main_category_id: 2).order(:sub_category_id)
       @fixed_total_amount = 0
       @fixed.each do |fixed|
         @fixed_total_amount += fixed.amount
       end
-      @variable = @books.where(main_category_id: 3)
+      @variable = @books.where(main_category_id: 3).order(:sub_category_id)
       @variable_total_amount = 0
       @variable.each do |variable|
         @variable_total_amount += variable.amount
       end
-      @investment = @books.where(main_category_id: 4)
+      @investment = @books.where(main_category_id: 4).order(:sub_category_id)
       @investment_total_amount = 0
       @investment.each do |investment|
         @investment_total_amount += investment.amount
@@ -52,23 +52,23 @@ class BooksController < ApplicationController
 
     else
       @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month).order(:date)
-      @outcomes = @books.where(main_category_id: [2, 3])
-      @incomes = @books.where(main_category_id: 1)
+      @outcomes = @books.where(main_category_id: [2, 3]).order(:sub_category_id)
+      @incomes = @books.where(main_category_id: 1).order(:sub_category_id)
       @incomes_total_amount = 0
       @incomes.each do |income|
         @incomes_total_amount += income.amount
       end
-      @fixed = @books.where(main_category_id: 2)
+      @fixed = @books.where(main_category_id: 2).order(:sub_category_id)
       @fixed_total_amount = 0
       @fixed.each do |fixed|
         @fixed_total_amount += fixed.amount
       end
-      @variable = @books.where(main_category_id: 3)
+      @variable = @books.where(main_category_id: 3).order(:sub_category_id)
       @variable_total_amount = 0
       @variable.each do |variable|
         @variable_total_amount += variable.amount
       end
-      @investment = @books.where(main_category_id: 4)
+      @investment = @books.where(main_category_id: 4).order(:sub_category_id)
       @investment_total_amount = 0
       @investment.each do |investment|
         @investment_total_amount += investment.amount
