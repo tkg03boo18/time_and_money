@@ -22,7 +22,7 @@ class ListsController < ApplicationController
   def create
     @list = List.new(list_params)
     if @list.save
-      flash[:sucess] = "保存に成功しました！"
+      flash[:success] = "保存に成功しました！"
       redirect_to lists_path
     else
       flash[:alert] = "保存に失敗しました"
