@@ -71,10 +71,10 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       flash[:success] = "更新に成功しました！"
-      redirect_to users_show_path
+      redirect_to users_path
     else
       flash[:alert] = "更新に失敗しました"
-      redirect_to users_show_path
+      redirect_to users_path
     end
   end
 

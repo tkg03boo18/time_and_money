@@ -10,12 +10,14 @@ Rails.application.routes.draw do
  root to: 'homes#top'
  get 'about' => 'homes#about'
 
- get 'users/mypage'
- get 'users/show'
- get 'users/edit' => 'users#edit'
- patch 'users' => 'users#update'
- get 'users/unsubscribe'
- patch 'users/withdraw' => 'users#withdraw'
+ resource :users, only: [:show, :edit, :update] do
+  collection do
+   get 'mypage'
+   get 'unsubscribe'
+   patch 'withdraw'
+  end
+ end
+
  patch 'plans/:id/calendarupdate' => 'plans#calendarupdate'
  get 'books/mypage' => 'books#mypage'
  resources :books, only: [:index, :show, :create, :edit, :update, :destroy]

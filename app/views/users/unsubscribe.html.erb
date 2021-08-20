@@ -4,10 +4,10 @@
       <h3><i class="far fa-user-circle"></i> My Page</h3>
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
       <nav class="nav d-flex flex-column">
-        <%= link_to users_mypage_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <%= link_to mypage_users_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
         <i class="far fa-user-circle"></i> My Page
         <% end %>
-        <%= link_to users_show_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <%= link_to users_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-id-card"></i> ユーザー詳細
         <% end %>
         <%= link_to plans_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
@@ -43,8 +43,8 @@
               これまでのスケジュール・収支管理が閲覧できなくなります。<br/>
               退会する場合は、「退会する」をクリックしてください。
               </p>
-              <%= link_to "退会しない", users_show_path, class: "btn btn-primary btn-block" %>
-              <%= link_to "退会する", users_withdraw_path, method: :patch, class: "btn btn-danger btn-block" %>
+              <%= link_to "退会しない", users_path, class: "btn btn-primary btn-block" %>
+              <%= link_to "退会する", withdraw_users_path, method: :patch, class: "btn btn-danger btn-block" %>
             </div>
           </div>
         </div>

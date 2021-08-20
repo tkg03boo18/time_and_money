@@ -5,10 +5,10 @@
       <h5><%= Date.current.strftime('%Y年%m月%d日') %></h5>
 
       <nav class="nav d-flex flex-column">
-        <%= link_to users_mypage_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <%= link_to mypage_users_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
         <i class="far fa-user-circle"></i> My Page
         <% end %>
-        <%= link_to users_show_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
+        <%= link_to users_path, class: "side-menu1 nav-link", data: { "turbolinks": false } do %>
         <i class="fas fa-id-card"></i> ユーザー詳細
         <% end %>
         <%= link_to plans_path, class: "side-menu2 nav-link", data: { "turbolinks": false } do %>
