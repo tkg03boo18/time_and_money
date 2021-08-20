@@ -4,60 +4,43 @@ class UsersController < ApplicationController
 
   def mypage
     @user = current_user
-
+    
     @plans = @user.plans.where(start_date: Time.current.beginning_of_week..Time.current.end_of_week).order(:start_date)
-
+    
     @tasks = @user.tasks.order(:deadline)
-
+    
     @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    
     @incomes = @books.where(main_category_id: 1)
-    @incomes_total_amount = 0
-    @incomes.each do |income|
-      @incomes_total_amount += income.amount
-    end
+    @incomes_total_amount = @incomes.sum(:amount)
+    
     @not_incomes = @books.where(main_category_id: [2, 3, 4])
+    
     @fixed = @books.where(main_category_id: 2)
-    @fixed_total_amount = 0
-    @fixed.each do |fixed|
-      @fixed_total_amount += fixed.amount
-    end
+    @fixed_total_amount = @fixed.sum(:amount)
+    
     @variable = @books.where(main_category_id: 3)
-    @variable_total_amount = 0
-    @variable.each do |variable|
-      @variable_total_amount += variable.amount
-    end
+    @variable_total_amount = @variable.sum(:amount)
+    
     @investment = @books.where(main_category_id: 4)
-    @investment_total_amount = 0
-    @investment.each do |investment|
-      @investment_total_amount += investment.amount
-    end
-
+    @investment_total_amount = @investment.sum(:amount)
+    
     @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    
     @not_incomes_plans = @budget_plans.where(main_category_id: [2, 3, 4])
+    
     @incomes_plans = @budget_plans.where(main_category_id: 1)
-    @incomes_plans_total_amount = 0
-    @incomes_plans.each do |ip|
-      @incomes_plans_total_amount += ip.amount
-    end
+    @incomes_plans_total_amount = @incomes_plans.sum(:amount)
+    
     @fixed_plans = @budget_plans.where(main_category_id: 2)
-    @fixed_plans_total_amount = 0
-    @fixed_plans.each do |fp|
-      @fixed_plans_total_amount += fp.amount
-    end
+    @fixed_plans_total_amount = @fixed_plans.sum(:amount)
+    
     @variable_plans = @budget_plans.where(main_category_id: 3)
-    @variable_plans_total_amount = 0
-    @variable_plans.each do |vp|
-      @variable_plans_total_amount += vp.amount
-    end
+    @variable_plans_total_amount = @variable_plans.sum(:amount)
+    
     @investment_plans = @budget_plans.where(main_category_id: 4)
-    @investment_plans_total_amount = 0
-    @investment_plans.each do |ip|
-      @investment_plans_total_amount += ip.amount
-    end
-
+    @investment_plans_total_amount = @investment_plans.sum(:amount)
   end
-
-
 
   def show
     @user = current_user

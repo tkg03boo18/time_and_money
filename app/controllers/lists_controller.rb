@@ -4,17 +4,12 @@ class ListsController < ApplicationController
     @user = current_user
     @list = List.new
     @lists = @user.lists
-    @not_purchased= @lists.where(purchased: false)
-    @not_purchased_total_price = 0
-    @not_purchased.each do |np|
-     @not_purchased_total_price += np.price
-    end
+    @not_purchased = @lists.where(purchased: false)
+    @not_purchased_total_price = @not_purchased.sum(:price)
+
     @books = @user.books
     @my_savings = @books.where(sub_category_id: 24)
-    @my_savings_total_amount = 0
-    @my_savings.each do |ms|
-      @my_savings_total_amount += ms.amount
-    end
+    @my_savings_total_amount = @my_savings.sum(:amount)
 
   end
 

@@ -4,177 +4,110 @@ class BooksController < ApplicationController
   def index
     @user = current_user
     @book = Book.new
-    @totalbooks = @user.books
-    @totalincomes = @totalbooks.where(main_category_id: 1)
-    @totalincomes_total_amount = 0
-    @totalincomes.each do |ti|
-      @totalincomes_total_amount += ti.amount
-    end
-    @totalfixed = @totalbooks.where(main_category_id: 2)
-    @totalfixed_total_amount = 0
-    @totalfixed.each do |tf|
-      @totalfixed_total_amount += tf.amount
-    end
-    @totalvariable = @totalbooks.where(main_category_id: 3)
-    @totalvariable_total_amount = 0
-    @totalvariable.each do |tv|
-      @totalvariable_total_amount += tv.amount
-    end
-    @totalinvestment = @totalbooks.where(main_category_id: 4)
-    @totalinvestment_total_amount = 0
-    @totalinvestment.each do |t_inv|
-      @totalinvestment_total_amount += t_inv.amount
-    end
-
     if params[:month]
       @books = @user.books.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month).order(:date)
+      
       @outcomes = @books.where(main_category_id: [2, 3]).order(:sub_category_id)
+      
       @incomes = @books.where(main_category_id: 1).order(:sub_category_id)
-      @incomes_total_amount = 0
-      @incomes.each do |income|
-        @incomes_total_amount += income.amount
-      end
+      @incomes_total_amount = @incomes.sum(:amount)
+      
       @fixed = @books.where(main_category_id: 2).order(:sub_category_id)
-      @fixed_total_amount = 0
-      @fixed.each do |fixed|
-        @fixed_total_amount += fixed.amount
-      end
+      @fixed_total_amount = @fixed.sum(:amount)
+      
       @variable = @books.where(main_category_id: 3).order(:sub_category_id)
-      @variable_total_amount = 0
-      @variable.each do |variable|
-        @variable_total_amount += variable.amount
-      end
+      @variable_total_amount = @variable.sum(:amount)
+      
       @investment = @books.where(main_category_id: 4).order(:sub_category_id)
-      @investment_total_amount = 0
-      @investment.each do |investment|
-        @investment_total_amount += investment.amount
-      end
-
+      @investment_total_amount = @investment.sum(:amount)
     else
       @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month).order(:date)
+      
       @outcomes = @books.where(main_category_id: [2, 3]).order(:sub_category_id)
+      
       @incomes = @books.where(main_category_id: 1).order(:sub_category_id)
-      @incomes_total_amount = 0
-      @incomes.each do |income|
-        @incomes_total_amount += income.amount
-      end
+      @incomes_total_amount = @incomes.sum(:amount)
+      
       @fixed = @books.where(main_category_id: 2).order(:sub_category_id)
-      @fixed_total_amount = 0
-      @fixed.each do |fixed|
-        @fixed_total_amount += fixed.amount
-      end
+      @fixed_total_amount = @fixed.sum(:amount)
+      
       @variable = @books.where(main_category_id: 3).order(:sub_category_id)
-      @variable_total_amount = 0
-      @variable.each do |variable|
-        @variable_total_amount += variable.amount
-      end
+      @variable_total_amount = @variable.sum(:amount)
+      
       @investment = @books.where(main_category_id: 4).order(:sub_category_id)
-      @investment_total_amount = 0
-      @investment.each do |investment|
-        @investment_total_amount += investment.amount
-      end
+      @investment_total_amount = @investment.sum(:amount)
     end
-
   end
 
   def mypage
     @user = current_user
-
+    
     @totalbooks = @user.books
+    
     @totalincomes = @totalbooks.where(main_category_id: 1)
-    @totalincomes_total_amount = 0
-    @totalincomes.each do |ti|
-      @totalincomes_total_amount += ti.amount
-    end
+    @totalincomes_total_amount = @totalincomes.sum(:amount)
+    
     @totalfixed = @totalbooks.where(main_category_id: 2)
-    @totalfixed_total_amount = 0
-    @totalfixed.each do |tf|
-      @totalfixed_total_amount += tf.amount
-    end
+    @totalfixed_total_amount = @totalfixed.sum(:amount)
+    
     @totalvariable = @totalbooks.where(main_category_id: 3)
-    @totalvariable_total_amount = 0
-    @totalvariable.each do |tv|
-      @totalvariable_total_amount += tv.amount
-    end
+    @totalvariable_total_amount = @totalvariable.sum(:amount)
+    
     @totalinvestment = @totalbooks.where(main_category_id: 4)
-    @totalinvestment_total_amount = 0
-    @totalinvestment.each do |t_inv|
-      @totalinvestment_total_amount += t_inv.amount
-    end
-
+    @totalinvestment_total_amount = @totalinvestment.sum(:amount)
+    
     @books = @user.books.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    
     @not_incomes = @books.where(main_category_id: [2, 3, 4])
+    
     @outcomes = @books.where(main_category_id: [2, 3])
-    @outcomes_total_amount = 0
-    @outcomes.each do |outcome|
-      @outcomes_total_amount += outcome.amount
-    end
+    @outcomes_total_amount = @outcomes.sum(:amount)
+    
     @incomes = @books.where(main_category_id: 1)
-    @incomes_total_amount = 0
-    @incomes.each do |income|
-      @incomes_total_amount += income.amount
-    end
+    @incomes_total_amount = @incomes.sum(:amount)
+    
     @fixed = @books.where(main_category_id: 2)
-    @fixed_total_amount = 0
-    @fixed.each do |fixed|
-      @fixed_total_amount += fixed.amount
-    end
+    @fixed_total_amount = @fixed.sum(:amount)
+    
     @variable = @books.where(main_category_id: 3)
-    @variable_total_amount = 0
-    @variable.each do |variable|
-      @variable_total_amount += variable.amount
-    end
+    @variable_total_amount = @variable.sum(:amount)
+    
     @investment = @books.where(main_category_id: 4)
-    @investment_total_amount = 0
-    @investment.each do |investment|
-      @investment_total_amount += investment.amount
-    end
+    @investment_total_amount = @investment.sum(:amount)
+    
     @prev_books = @user.books.where(date: Time.current.prev_month.beginning_of_month..Time.current.prev_month.end_of_month)
+    
     @prev_incomes = @prev_books.where(main_category_id: 1)
-    @prev_incomes_total_amount = 0
-    @prev_incomes.each do |income|
-      @prev_incomes_total_amount += income.amount
-    end
+    @prev_incomes_total_amount = @prev_incomes.sum(:amount)
+    
     @prev_outcomes = @prev_books.where(main_category_id: [2, 3])
     @prev_not_incomes = @prev_books.where(main_category_id: [2, 3, 4])
+    
     @prev_fixed = @prev_books.where(main_category_id: 2)
-    @prev_fixed_total_amount = 0
-    @prev_fixed.each do |fixed|
-      @prev_fixed_total_amount += fixed.amount
-    end
+    @prev_fixed_total_amount = @prev_fixed.sum(:amount)
+    
     @prev_variable = @prev_books.where(main_category_id: 3)
-    @prev_variable_total_amount = 0
-    @prev_variable.each do |variable|
-      @prev_variable_total_amount += variable.amount
-    end
+    @prev_variable_total_amount = @prev_variable.sum(:amount)
+    
     @prev_investment = @prev_books.where(main_category_id: 4)
-    @prev_investment_total_amount = 0
-    @prev_investment.each do |investment|
-      @prev_investment_total_amount += investment.amount
-    end
+    @prev_investment_total_amount = @prev_investment.sum(:amount)
 
     @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month)
+    
     @not_incomes_plans = @budget_plans.where(main_category_id: [2, 3, 4])
+    
     @outcomes_plans = @budget_plans.where(main_category_id: [2, 3])
-    @outcomes_plans_total_amount = 0
-    @outcomes_plans.each do |op|
-      @outcomes_plans_total_amount += op.amount
-    end
+    @outcomes_plans_total_amount = @outcomes_plans.sum(:amount)
+
     @fixed_plans = @budget_plans.where(main_category_id: 2)
-    @fixed_plans_total_amount = 0
-    @fixed_plans.each do |fp|
-      @fixed_plans_total_amount += fp.amount
-    end
+    @fixed_plans_total_amount = @fixed_plans.sum(:amount)
+
     @variable_plans = @budget_plans.where(main_category_id: 3)
-    @variable_plans_total_amount = 0
-    @variable_plans.each do |vp|
-      @variable_plans_total_amount += vp.amount
-    end
+    @variable_plans_total_amount = @variable_plans.sum(:amount)
+
     @investment_plans = @budget_plans.where(main_category_id: 4)
-    @investment_plans_total_amount = 0
-    @investment_plans.each do |ip|
-      @investment_plans_total_amount += ip.amount
-    end
+    @investment_plans_total_amount = @investment_plans.sum(:amount)
+
     @outcomes_per = @outcomes_total_amount.to_f / @outcomes_plans_total_amount.to_f
     @fixed_per = @fixed_total_amount.to_f / @fixed_plans_total_amount.to_f
     @variable_per = @variable_total_amount.to_f / @variable_plans_total_amount.to_f
@@ -182,15 +115,10 @@ class BooksController < ApplicationController
 
     @lists = @user.lists
     @purchased_lists = @lists.where(purchased: true)
-    @purchased_lists_total_price = 0
-    @purchased_lists.each do |pl|
-      @purchased_lists_total_price += pl.price
-    end
+    @purchased_lists_total_price = @purchased_lists.sum(:price)
+
     @not_purchased_lists = @lists.where(purchased: false)
-    @not_purchased_lists_total_price = 0
-    @not_purchased_lists.each do |npl|
-      @not_purchased_lists_total_price += npl.price
-    end
+    @not_purchased_lists_total_price = @not_purchased_lists.sum(:price)
 
   end
 

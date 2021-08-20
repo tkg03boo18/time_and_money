@@ -8,48 +8,32 @@ class BudgetPlansController < ApplicationController
       @budget_plans = @user.budget_plans.where(date: Time.current.since(params[:month].to_i.months).beginning_of_month..Time.current.since(params[:month].to_i.months).end_of_month).order(:sub_category_id)
       @outcomes = @budget_plans.where(main_category_id: [2, 3]).order(:sub_category_id)
       @incomes = @budget_plans.where(main_category_id: 1).order(:sub_category_id)
-      @incomes_total_amount = 0
-      @incomes.each do |income|
-        @incomes_total_amount += income.amount
-      end
+      @incomes_total_amount = @incomes.sum(:amount)
+      
       @fixed = @budget_plans.where(main_category_id: 2).order(:sub_category_id)
-      @fixed_total_amount = 0
-      @fixed.each do |fixed|
-        @fixed_total_amount += fixed.amount
-      end
+      @fixed_total_amount = @fixed.sum(:amount)
+      
       @variable = @budget_plans.where(main_category_id: 3).order(:sub_category_id)
-      @variable_total_amount = 0
-      @variable.each do |variable|
-        @variable_total_amount += variable.amount
-      end
+      @variable_total_amount = @variable.sum(:amount)
+      
       @investment = @budget_plans.where(main_category_id: 4).order(:sub_category_id)
-      @investment_total_amount = 0
-      @investment.each do |investment|
-        @investment_total_amount += investment.amount
-      end
+      @investment_total_amount = @investment.sum(:amount)
+      
     else
       @budget_plans = @user.budget_plans.where(date: Time.current.beginning_of_month..Time.current.end_of_month).order(:sub_category_id)
       @outcomes = @budget_plans.where(main_category_id: [2, 3]).order(:sub_category_id)
       @incomes = @budget_plans.where(main_category_id: 1).order(:sub_category_id)
-      @incomes_total_amount = 0
-      @incomes.each do |income|
-        @incomes_total_amount += income.amount
-      end
+      @incomes_total_amount = @incomes.sum(:amount)
+     
       @fixed = @budget_plans.where(main_category_id: 2).order(:sub_category_id)
-      @fixed_total_amount = 0
-      @fixed.each do |fixed|
-        @fixed_total_amount += fixed.amount
-      end
+      @fixed_total_amount = @fixed.sum(:amount)
+     
       @variable = @budget_plans.where(main_category_id: 3).order(:sub_category_id)
-      @variable_total_amount = 0
-      @variable.each do |variable|
-        @variable_total_amount += variable.amount
-      end
+      @variable_total_amount = @variable.sum(:amount)
+     
       @investment = @budget_plans.where(main_category_id: 4).order(:sub_category_id)
-      @investment_total_amount = 0
-      @investment.each do |investment|
-        @investment_total_amount += investment.amount
-      end
+      @investment_total_amount = @investment.sum(:amount)
+     
     end
   end
 
